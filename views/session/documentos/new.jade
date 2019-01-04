@@ -1,0 +1,180 @@
+extends ../../layout.jade
+
+block contenido
+	-if (user.permission == "Admin") 
+		include ../session_permission/adminActions.jade
+	-else if (user.permission == "Branch")
+		include ../session_permission/branchActions.jade
+	-else if (user.permission == "Resource")
+		include ../session_permission/resourceActions.jade
+	-else
+		include ../session_permission/userActions.jade
+
+	div(class="container mx-auto col-xs-10 col-sm-8 col-md-6 col-lg-4 top-space")
+		h1(class="text-center") Crear documento
+		form(id="sendDoc" action="/session/documentos" method="POST")
+			div(class="text-center top-space")
+				span(class="step")
+				span(class="step")
+				span(class="step")
+			div(class="tab") Tratamiento:
+				div(class="form-group") 
+					select(class="form-control" name="usr" id="usr")
+						if(users.length == 1)
+							option(class="text-secondary" value=users[0]._id selected)=users[0].name
+						else
+							option(class="text-secondary" value="undefined" disabled selected) Usuario
+							for user in users
+								option(class="text-secondary" value=user._id)=user.name
+				div(class="form-group") 
+					select(class="form-control" name="svc" id="svc")
+						if(services.length == 1) 
+							option(class="text-secondary" value=services[0]._id selected)=services[0].name
+						else 
+							option(class="text-secondary" value="undefined" disabled selected) Elige zona
+							for service in services
+								option(class="text-secondary" value=service._id)=service.name
+			div(class="tab") Sucursal:
+				div(class="form-group")
+					select(class="form-control" name="brch" id="brch")
+						option(class="text-secondary" value="undefined" disabled selected) Elige sucursal
+						for branch in branches
+							option(class="text-secondary" value=branch._id)=branch.name
+			div(class="tab") Agendamiento:
+				div(class="form-group")
+					select(class="form-control" name="ress" id="ress")
+				div(id="calendar" class="disabled")
+					input(type="hidden" id="dateSelect" name="dateSelect" value="")
+
+			div(class="form-group" style="float:right;")
+				button(type="button" class="btn btn-outline-danger btn-lg" id="prevBtn" onclick="nextPrev(-1)" data-toggle="tooltip" data-placement="top" title="Atrás")
+					i(class="fa fa-caret-square-o-left")
+				button(type="button" class="btn btn-outline-success btn-lg" id="nextBtn" onclick="nextPrev(1)" data-toggle="tooltip" data-placement="top" title="Siguiente")
+					i(class="fa fa-check-square-o")
+			
+			script(src="/public/js/renderFuncs.js")
+			script.
+				$(document).ready(function() {
+					var duration = 0;
+					var sessLenght = moment.duration(duration, "minutes");
+					var workHours = [
+						{
+							dow: [1, 2 ,3 ,4 ,5],
+							start: "07:00",
+							end: "20:00"
+						},
+						{
+							dow: [6],
+							start: "07:00",
+							end: "14:00"
+						}
+					];
+
+					$("#svc").change(function(e){
+						if (e.originalEvent) {}
+						else {
+							duration = _.where(!{JSON.stringify(services)}, {_id: this.value})[0].moduleCount*15;
+							sessLenght = moment.duration(duration, "minutes");
+							$('#calendar').fullCalendar('option', {
+								snapDuration: sessLenght
+							});
+						}
+					});
+
+					$("#brch").change(function(e){
+						if (e.originalEvent) {}
+						else {
+							var option = $('<option class="text-secondary" value="undefined" disabled selected>Elige especialista</option>'); 
+							$("#ress")
+								.empty()
+								.append(option);
+							brchResrcs = _.where(!{JSON.stringify(resources)}, {parentBranch: this.value});
+							brchResrcs.forEach(function(resource){
+								$("#ress").append(new Option(resource.name, resource._id));
+							});
+							$('#calendar').fullCalendar("removeEvents");
+							$('#calendar').fullCalendar("option", {	selectable: false });
+							$('#calendar').addClass("disabled");
+						}
+					});
+
+					$("#ress").change(function(){
+						workHours = _.where(!{JSON.stringify(resources)}, {_id: $("#ress").val()})[0].workHours;
+						$('#calendar').removeClass("disabled");
+						$('#calendar').fullCalendar("option", {	
+							selectable: true,
+							businessHours: workHours
+						});
+						$('#calendar').fullCalendar("removeEvents");
+						$('#calendar').fullCalendar("refetchEvents");	
+					});
+					
+					$("#calendar").fullCalendar({
+						header: {
+							left: 'title',
+							right: 'prev,next,today'	
+						},
+						titleFormat: 'MMM YYYY',
+						buttonText: {
+							today:    'hoy'
+						},
+						themeSystem: 'bootstrap4',
+						defaultView: 'agendaWeek',
+						columnHeaderText: function(mom){
+							switch (mom.weekday()){
+								case 0: return 'Dom\n' + mom.date() + '/' + (mom.month()+1); break;
+								case 1: return 'Lun\n' + mom.date() + '/' + (mom.month()+1); break;
+								case 2: return 'Mar\n' + mom.date() + '/' + (mom.month()+1); break;
+								case 3: return 'Mie\n' + mom.date() + '/' + (mom.month()+1); break;
+								case 4: return 'Jue\n' + mom.date() + '/' + (mom.month()+1); break;
+								case 5: return 'Vie\n' + mom.date() + '/' + (mom.month()+1); break;
+								case 6: return 'Sab\n' + mom.date() + '/' + (mom.month()+1); break;
+								default: return;
+							}
+						},
+						allDaySlot: false,
+						slotDuration: "00:15:00",
+						slotLabelInterval: "01:00",
+						slotEventOverlap: false,
+						minTime: "07:00:00",
+						maxTime: "20:00:00",
+						businessHours: workHours,
+						//Para seleccionar fecha y hora
+						selectable: false,
+						selectHelper: true,
+						selectOverlap: false,
+						selectConstraint: 'businessHours',
+						snapDuration: sessLenght,
+						selectAllow: function(selectInfo){
+							if (selectInfo.end.diff(selectInfo.start) !== sessLenght._milliseconds)
+								return false;
+							return true;
+						},
+						select: function(start, end, jsEvent, view){
+							var appointment = {
+								start: moment.utc(start),
+								end: moment.utc(end)
+							};
+							document.getElementById("dateSelect").value = JSON.stringify(appointment);
+						},
+						unselectAuto: false,
+						unselect: function(jsEvent, view){
+							document.getElementById("dateSelect").value = "";
+						},
+						//Para eventos existentes
+						editable: false,
+						events: {
+							url: 'http://localhost:8080/session/documentos/events',
+							type: 'GET',
+							error: function() {
+								console.log('there was an error while fetching events!');
+							},
+							data : function() {
+								return { resourceId : $("#ress").val() }
+							},
+							color: 'lightGray',   // a non-ajax option
+							textColor: 'gray' // a non-ajax option
+						},
+						eventOverlap: false
+					});
+				});

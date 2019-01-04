@@ -1,0 +1,70 @@
+extends ../../layout.jade
+
+block contenido
+	-if (user.permission == "Admin") 
+		include ../session_permission/adminActions.jade
+	-else if (user.permission == "Branch")
+		include ../session_permission/branchActions.jade
+	-else if (user.permission == "Resource")
+		include ../session_permission/resourceActions.jade
+	-else
+		include ../session_permission/userActions.jade
+
+	div(class="container d-flex top-space")
+		div(class="h2 p-2") Mis Documentos
+		div(class="ml-auto p-2")
+			a(href="/session/documentos/new" class="btn btn-default btn-outline-primary btn-lg")
+				i(class="fa fa-plus-square-o")
+	div(class="container mid-space")
+		table(class="table table-hover table-bordered table-responsive rounded") 
+			thead(class="thead-light text-center")
+					tr
+						th(class="col text-center")
+							h5 Documento
+						th(class="col text-center")
+							h5 Estado
+						th(class="col text-center")
+							h5 Acción
+			tbody(id="documentos")
+				for documento in documentos.reverse()
+					tr
+						td
+							a(href="/session/documentos/#{documento._id}")
+								h5(class="text-info") 
+									-if (documento.servicio !== undefined)
+										|Servicio: #{documento.servicio.name} (#{documento.servicio.length}hrs)
+									-else 
+										|Servicio no agendado
+							h5(class="text-secondary") 
+								-if (documento.sucursal !== undefined)
+									|Sucursal: #{documento.sucursal.name}
+								-else 
+									|Servicio no agendado
+						td
+							h5(class="text-secondary") #{documento.status}
+						td
+							div(class="btn-group" role="group")
+								form(action="/session/documentos/#{documento._id}/edit")
+									button(type="submit" class="btn btn-outline-dark btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Editar")
+										i(class="fa fa-pencil-square-o")
+								form(action="/session/documentos/#{documento._id}?_method=DELETE" method="POST")
+									button(type="submit" class="btn btn-outline-danger btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Eliminar")
+										i(class="fa fa-trash-o")
+					
+				script(id="documento-template" type="text/x-handlebars-template")
+					tr
+						td
+							a(href="/session/documentos/{{documento._id}}")
+								h5(class="text-info") Servicio: {{servicio}}
+							h5(class="text-secondary") Sucursal: {{sucursal}}							
+						td
+							h5(class="text-secondary") {{status}}
+						td
+							div(class="btn-group" role="group")
+								form(action="/session/documentos/{{documento._id}}/edit")
+									button(type="submit" class="btn btn-outline-dark btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Editar")
+										i(class="fa fa-pencil-square-o")
+								form(action="/session/documentos/{{documento._id}}?_method=DELETE" method="POST")
+									button(type="submit" class="btn btn-outline-danger btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Eliminar")
+										i(class="fa fa-trash-o")
+				script(src="/public/js/client.js")

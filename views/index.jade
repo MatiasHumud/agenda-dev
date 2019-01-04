@@ -1,0 +1,13 @@
+extends ./layout.jade
+				
+block contenido	
+	-if (currentSession != null) 
+		include ./session/session_permission/authActions.jade
+	-else
+		include ./session/session_permission/unauthActions.jade
+
+	div(class="jumbotron text-center") 
+		h1(class="shadow-text") Lasertam
+		p(class="shadow-text") Depilación Láser
+
+
