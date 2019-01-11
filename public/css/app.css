@@ -1,10 +1,26 @@
 .jumbotron{
 	margin-bottom: 10px;
-    background-image: url(../vineyard-loans.jpg);
-    background-position: 0% 25%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: white;
+  background-image: url(../lasertam3.jpg);
+  background-position: 0% 25%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+}
+.img-responsive{
+  height: 5%;
+  width: auto;
+}
+h1.a{
+  font-family: "Helvetica";
+  font-weight: bold; 
+}
+h2.a{
+  font-family: "Helvetica";
+  font-weight: bold; 
+}
+p.a{
+  font-family: "Helvetica";
+  font-weight: bold; 
 }
 .shadow-text{
 	text-shadow: black 0.3em 0.3em 0.3em;
@@ -22,6 +38,9 @@
 }
 .left-space{
   margin-left: 0.5em;
+}
+.right-space{
+  margin-right: 0.5em;
 }
 .remove-float{
 	float: none;
