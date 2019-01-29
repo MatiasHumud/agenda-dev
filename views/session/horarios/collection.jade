@@ -10,16 +10,17 @@ block contenido
 	-else
 		include ../session_permission/userActions.jade
 
-	div(class="container d-flex top-space")
-		div(class="h2 p-2") Mis Bloqueos
-		div(class="ml-auto p-2")
-			a(href="/session/horarios/set" class="btn btn-default btn-outline-secondary btn-lg" data-toggle="tooltip" data-placement="top" title="Establecer horario")
-				i(class="fa fa-cog")
-			a(href="/session/horarios/new" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Nuevo bloqueo")
-				i(class="fa fa-plus-square-o")
-	div(class="container mid-space")
-		table(class="table table-hover table-bordered table-responsive rounded") 
-			thead(class="thead-light text-center")
+	main
+		div(class="container d-flex top-space")
+			div(class="h2 p-2") Mis Bloqueos
+			div(class="ml-auto p-2")
+				a(href="/session/horarios/set" class="btn btn-default btn-outline-secondary btn-lg" data-toggle="tooltip" data-placement="top" title="Establecer horario")
+					i(class="fa fa-cog")
+				a(href="/session/horarios/new" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Nuevo bloqueo")
+					i(class="fa fa-plus-square-o")
+		div(class="container mid-space")
+			table(class="table table-hover table-bordered table-responsive rounded") 
+				thead(class="thead-light text-center")
 					tr
 						th(class="col text-center")
 							h5 Bloqueo
@@ -27,42 +28,42 @@ block contenido
 							h5 Estado
 						th(class="col text-center")
 							h5 Acción
-			tbody(id="bloqueos")
-				for documento in documentos.reverse()
-					tr
-						td
-							a(href="/session/horarios/#{documento._id}")
-								h5(class="text-info") #{documento.event.start.toISOString().split('T')[0].split('-').reverse().join('/')}
-							h5(class="text-secondary") 
-								-if (documento.sucursal !== undefined)
-									|Sucursal: #{documento.sucursal.name}
-								-else 
-									|Recurso: #{documento.recurso.name}
-						td
-							h5(class="text-secondary") #{documento.status}
-						td
-							div(class="btn-group" role="group")
-								form(action="/session/horarios/#{documento._id}/edit")
-									button(type="submit" class="btn btn-outline-dark btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Editar")
-										i(class="fa fa-pencil-square-o")
-								form(action="/session/horarios/#{documento._id}?_method=DELETE" method="POST")
-									button(type="submit" class="btn btn-outline-danger btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Eliminar")
-										i(class="fa fa-trash-o")
+				tbody(id="bloqueos")
+					for documento in documentos.reverse()
+						tr
+							td
+								a(href="/session/horarios/#{documento._id}")
+									h5(class="text-info") #{documento.event.start.toISOString().split('T')[0].split('-').reverse().join('/')}
+								h5(class="text-secondary") 
+									-if (documento.sucursal !== undefined)
+										|Sucursal: #{documento.sucursal.name}
+									-else 
+										|Recurso: #{documento.recurso.name}
+							td
+								h5(class="text-secondary") #{documento.status}
+							td
+								div(class="btn-group" role="group")
+									form(action="/session/horarios/#{documento._id}/edit")
+										button(type="submit" class="btn btn-outline-dark btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Editar")
+											i(class="fa fa-pencil-square-o")
+									form(action="/session/horarios/#{documento._id}?_method=DELETE" method="POST")
+										button(type="submit" class="btn btn-outline-danger btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Eliminar")
+											i(class="fa fa-trash-o")
 					
-				script(id="bloqueos-template" type="text/x-handlebars-template")
-					tr
-						td
-							a(href="/session/horarios/{{documento._id}}")
-								h5(class="text-info") Bloqueo
-							h5(class="text-secondary") Recurso: {{recurso}}							
-						td
-							h5(class="text-secondary") {{status}}
-						td
-							div(class="btn-group" role="group")
-								form(action="/session/horarios/{{documento._id}}/edit")
-									button(type="submit" class="btn btn-outline-dark btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Editar")
-										i(class="fa fa-pencil-square-o")
-								form(action="/session/horarios/{{documento._id}}?_method=DELETE" method="POST")
-									button(type="submit" class="btn btn-outline-danger btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Eliminar")
-										i(class="fa fa-trash-o")
-				script(src="/public/js/client.js")
+					script(id="bloqueos-template" type="text/x-handlebars-template")
+						tr
+							td
+								a(href="/session/horarios/{{documento._id}}")
+									h5(class="text-info") Bloqueo
+									h5(class="text-secondary") Recurso: {{recurso}}							
+							td
+								h5(class="text-secondary") {{status}}
+							td
+								div(class="btn-group" role="group")
+									form(action="/session/horarios/{{documento._id}}/edit")
+										button(type="submit" class="btn btn-outline-dark btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Editar")
+											i(class="fa fa-pencil-square-o")
+									form(action="/session/horarios/{{documento._id}}?_method=DELETE" method="POST")
+										button(type="submit" class="btn btn-outline-danger btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Eliminar")
+											i(class="fa fa-trash-o")
+					script(src="/public/js/client.js")
