@@ -10,14 +10,15 @@ block contenido
 	-else
 		include ../session_permission/userActions.jade
 
-	div(class="container d-flex top-space")
-		div(class="h2 p-2") Mis Servicios
-		div(class="ml-auto p-2")
-			a(href="/session/servicios/new" class="btn btn-default btn-outline-primary btn-lg")
-				i(class="fa fa-plus-square-o")
-	div(class="container mid-space")
-		table(class="table table-hover table-bordered table-responsive rounded") 
-			thead(class="thead-light text-center")
+	main
+		div(class="container d-flex top-space")
+			div(class="h2 p-2") Mis Servicios
+			div(class="ml-auto p-2")
+				a(href="/session/servicios/new" class="btn btn-default btn-outline-primary btn-lg")
+					i(class="fa fa-plus-square-o")
+		div(class="container mid-space")
+			table(class="table table-hover table-bordered table-responsive rounded") 
+				thead(class="thead-light text-center")
 					tr
 						th(class="col text-center")
 							h5 Servicio
@@ -25,36 +26,36 @@ block contenido
 							h5 Tipo
 						th(class="col text-center")
 							h5 Acción
-			tbody(id="servicio")
-				for service in services.reverse()
-					tr
-						td
-							a(href="/session/servicios/#{service._id}")
-								h5(class="text-info") Servicio: #{service.name}
-							h5(class="text-secondary") Detalle: #{service.brief}
-						td
-							h5(class="text-secondary") #{service.category}
-						td
-							div(class="btn-group" role="group")
-								form(action="/session/servicios/#{service._id}/edit")
-									button(type="submit" class="btn btn-outline-dark btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Editar")
-										i(class="fa fa-pencil-square-o")
-								form(action="/session/servicios/#{service._id}?_method=DELETE" method="POST")
-									button(type="submit" class="btn btn-outline-danger btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Eliminar")
-										i(class="fa fa-trash-o")
+				tbody(id="servicio")
+					for service in services.reverse()
+						tr
+							td
+								a(href="/session/servicios/#{service._id}")
+									h5(class="text-info") Servicio: #{service.name}
+								h5(class="text-secondary") Detalle: #{service.brief}
+							td
+								h5(class="text-secondary") #{service.category}
+							td
+								div(class="btn-group" role="group")
+									form(action="/session/servicios/#{service._id}/edit")
+										button(type="submit" class="btn btn-outline-dark btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Editar")
+											i(class="fa fa-pencil-square-o")
+									form(action="/session/servicios/#{service._id}?_method=DELETE" method="POST")
+										button(type="submit" class="btn btn-outline-danger btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Eliminar")
+											i(class="fa fa-trash-o")
 					
-				script(id="servicio-template" type="text/x-handlebars-template")
-					tr
-						td
-							a(href="/session/servicios/{{service._id}}")
-								h5(class="text-info") Servicio: {{name}}
-							h5(class="text-secondary") Detalle: {{brief}}
-						td
-							h5(class="text-secondary") {{category}}
-						td
-							div(class="btn-group" role="group")
-								form(action="/session/servicios/{{service._id}}/edit")
-									input(type="image" src="../../public/svg/pencil.svg" class="btn btn-outline-primary btn-lg icon" data-toggle="tooltip" data-placement="top" title="Editar" alt="pencil")
-								form(action="/session/servicios/{{service._id}}?_method=DELETE" method="POST")
-									input(type="image" src="../../public/svg/trash.svg" class="btn btn-outline-danger btn-lg icon" data-toggle="tooltip" data-placement="top" title="Eliminar" alt="trash")
-				script(src="/public/js/service.js")
+					script(id="servicio-template" type="text/x-handlebars-template")
+						tr
+							td
+								a(href="/session/servicios/{{service._id}}")
+									h5(class="text-info") Servicio: {{name}}
+								h5(class="text-secondary") Detalle: {{brief}}
+							td
+								h5(class="text-secondary") {{category}}
+							td
+								div(class="btn-group" role="group")
+									form(action="/session/servicios/{{service._id}}/edit")
+										input(type="image" src="../../public/svg/pencil.svg" class="btn btn-outline-primary btn-lg icon" data-toggle="tooltip" data-placement="top" title="Editar" alt="pencil")
+									form(action="/session/servicios/{{service._id}}?_method=DELETE" method="POST")
+										input(type="image" src="../../public/svg/trash.svg" class="btn btn-outline-danger btn-lg icon" data-toggle="tooltip" data-placement="top" title="Eliminar" alt="trash")
+					script(src="/public/js/service.js")
