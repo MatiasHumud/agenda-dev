@@ -7,17 +7,19 @@ block contenido
 		include ./session/session_permission/unauthActions.jade
 
 	div(class="top-space")
-	h1(class="text-center") Iniciar Sesión
-	div(class="mx-auto col-xs-12 col-sm-6 top-space") 
-		form(action="/knock" method="POST")
-			div(class="form-group")
-				label(for="email") Email
-				input(type="text" name="email" placeholder="Email" id="email" class="form-control")
-			div(class="form-group")
-				label(for="password") Password
-				input(type="password" name="password" placeholder="Contraseña" id="password" class="form-control")
-			div(class="row top-space")
-				div(class="col-xs-12 col-sm-6")
-					input(type="submit" value="Enviar" class="btn btn-default")
-				div(class="col-xs-12 col-sm-6 text-right font-weight-light")
-					a(href="/registration") No tengo cuenta
+
+	main
+		h1(class="text-center") Iniciar Sesión
+		div(class="mx-auto col-xs-12 col-sm-6 top-space") 
+			form(action="/knock" method="POST")
+				div(class="form-group")
+					label(for="email") Email
+					input(type="text" name="email" placeholder="Email" id="email" class="form-control")
+				div(class="form-group")
+					label(for="password") Password
+					input(type="password" name="password" placeholder="Contraseña" id="password" class="form-control")
+				div(class="row top-space")
+					div(class="col-xs-12 col-sm-6")
+						input(type="submit" value="Enviar" class="btn btn-default")
+					div(class="col-xs-12 col-sm-6 text-right font-weight-light")
+						a(href="/registration") No tengo cuenta
