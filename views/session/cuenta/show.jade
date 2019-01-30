@@ -10,35 +10,36 @@ block contenido
 	-else
 		include ../session_permission/userActions.jade
 
-	h1(class="text-center") Datos #{user.name}
-	div(class="mx-auto col-xs-12 col-sm-6 top-space")
-		-if(user.permission == "Resource")
+	main
+		h1(class="text-center") Datos #{user.name}
+		div(class="mx-auto col-xs-12 col-sm-6 top-space")
+			-if(user.permission == "Resource")
+				div(class="form-group")
+					label(type="text" class="font-weight-bold" name="branch" id="branch") Sucursal:
+					label(for="name" class="m-3") #{user.parentBranch.name}
 			div(class="form-group")
-				label(type="text" class="font-weight-bold" name="branch" id="branch") Sucursal:
-				label(for="name" class="m-3") #{user.parentBranch.name}
-		div(class="form-group")
-			label(type="text" class="font-weight-bold" name="name" id="name") Nombre:
-			label(for="name" class="m-3") #{user.name}
-		div(class="form-group")
-			label(type="text" class="font-weight-bold" name="lastName" id="lastName") Apellido:
-			label(for="lastName" class="m-3") #{user.lastName}
-		div(class="form-group")
-			label(type="text" class="font-weight-bold" name="email" id="email") Email:
-			label(for="email" class="m-3") #{user.email}
-		-if(user.permission)
+				label(type="text" class="font-weight-bold" name="name" id="name") Nombre:
+				label(for="name" class="m-3") #{user.name}
 			div(class="form-group")
-				label(type="text" class="font-weight-bold" name="permission" id="permission") Rol:
-				label(for="permission" class="m-3") #{user.permission}
-		-if(user.permission == "Branch")
+				label(type="text" class="font-weight-bold" name="lastName" id="lastName") Apellido:
+				label(for="lastName" class="m-3") #{user.lastName}
 			div(class="form-group")
-				label(type="text" class="font-weight-bold" name="addr" id="addr") Dirección:
-				label(for="permission" class="m-3") #{user.address}
-		-if(user.permission)
-			div(class="form-group")
-				label(type="text" class="font-weight-bold" name="workHours" id="workHours") Horas Hábiles:
-				h5 #{JSON.stringify(user.workHours)}
-		div(class="btn-group")
-			a(href="/session/cuenta/edit" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Editar")
-				i(class="fa fa-pencil-square-o")
-			a(href="/session" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver")
-				i(class="fa fa-caret-square-o-left")
+				label(type="text" class="font-weight-bold" name="email" id="email") Email:
+				label(for="email" class="m-3") #{user.email}
+			-if(user.permission)
+				div(class="form-group")
+					label(type="text" class="font-weight-bold" name="permission" id="permission") Rol:
+					label(for="permission" class="m-3") #{user.permission}
+			-if(user.permission == "Branch")
+				div(class="form-group")
+					label(type="text" class="font-weight-bold" name="addr" id="addr") Dirección:
+					label(for="permission" class="m-3") #{user.address}
+			-if(user.permission)
+				div(class="form-group")
+					label(type="text" class="font-weight-bold" name="workHours" id="workHours") Horas Hábiles:
+					h5 #{JSON.stringify(user.workHours)}
+			div(class="btn-group")
+				a(href="/session/cuenta/edit" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Editar")
+					i(class="fa fa-pencil-square-o")
+				a(href="/session" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver")
+					i(class="fa fa-caret-square-o-left")
