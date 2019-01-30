@@ -27,6 +27,7 @@ router.route("/cuenta")
 				res.locals.user.pass_confirm = req.body.password_confirmation;
 			}
 			if(req.body.whSelect) res.locals.user.workHours = JSON.parse(req.body.whSelect);
+			if(req.body.addr) res.locals.user.address = req.body.addr;
 
 			res.locals.user.save(function(err){
 				if(!err){

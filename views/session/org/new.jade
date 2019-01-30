@@ -11,7 +11,7 @@ block contenido
 		include ../session_permission/userActions.jade
 
 	main
-		h1(class="text-center") Nuevo equipo
+		h1(class="text-center") Nuevo miembro del equipo
 		div(class="container mx-auto col-xs-12 col-sm-6 top-space")
 			div(class="col-sm-6" style="height:130px;")
 				form(class="form-vertical" action="/session/org" method="POST")
@@ -30,6 +30,10 @@ block contenido
 					div(class="form-group")
 						label(for="email") Email
 						input(type="text" name="email" placeholder="Email" id="email" class="form-control")
+					-if(user.permission == "Admin")
+						div(class="form-group") 
+							label(for="addr") Dirección
+							input(type="text" name="addr" placeholder="Dirección" id="addr" class="form-control")
 					div(class="form-group")
 						label(for="newPassword") Contraseña nueva
 						input(type="password" name="newPassword" placeholder="Contraseña nueva" id="newPassword" class="form-control")

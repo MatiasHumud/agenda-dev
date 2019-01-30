@@ -26,6 +26,10 @@ block contenido
 				div(class="form-group")
 					label(for="oldPassword") Contraseña actual
 					input(type="password" name="oldPassword" placeholder="Contraseña actual" id="oldPassword" class="form-control")
+				-if(user.permission == "Branch")
+					div(class="form-group") 
+						label(for="addr") Dirección
+						input(type="text" name="addr" value="#{user.address}" id="addr" class="form-control")
 				div(class="form-group")
 					label(for="newPassword") Contraseña nueva
 					input(type="password" name="newPassword" placeholder="Contraseña nueva" id="newPassword" class="form-control")
@@ -125,7 +129,7 @@ block contenido
 									document.getElementById(searchID).value = daysOfWeek[i].end;
 								};
 							};
-						
+
 							$("#accForm").on('submit', function (e) {
 								var newWH;
 								daysOfWeek = [];
