@@ -36,6 +36,7 @@ var User = mongoose.model("User", userSchema);
 
 // Branch User
 var branchSchema = new Schema({
+	address: {type: String, required: "Branch address is blank"},
 	workHours: {
 		type: Array,
 		default: [

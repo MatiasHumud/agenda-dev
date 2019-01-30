@@ -29,6 +29,10 @@ block contenido
 			div(class="form-group")
 				label(type="text" class="font-weight-bold" name="permission" id="permission") Rol:
 				label(for="permission" class="m-3") #{user.permission}
+		-if(user.permission == "Branch")
+			div(class="form-group")
+				label(type="text" class="font-weight-bold" name="addr" id="addr") Dirección:
+				label(for="permission" class="m-3") #{user.address}
 		-if(user.permission)
 			div(class="form-group")
 				label(type="text" class="font-weight-bold" name="workHours" id="workHours") Horas Hábiles:

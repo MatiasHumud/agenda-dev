@@ -71,6 +71,7 @@ router.route("/")
 		var role = (res.locals.user.permission == "Admin") ? req.body.permission : "Resource";
 		var pBranch = (role == "Resource") ? res.locals.user._id : undefined;
 		var brchWorkHrs = (role == "Resource") ? res.locals.user.workHours : undefined;
+		var addr = (role == "Branch") ? req.body.addr : undefined;
 		var datos = {
 			name: req.body.name,
 			lastName: req.body.lastName,
@@ -79,13 +80,20 @@ router.route("/")
 			pass_confirm: req.body.password_confirmation,
 			permission: role,
 			parentBranch: pBranch,
-			workHours: brchWorkHrs
+			workHours: brchWorkHrs,
+			address: addr
 		};
 		var member; 
-		if(role == "Resource")
-			member = new Resource(datos);
-		else
-			member = new User(datos);
+		switch (role){
+			case "Resource":
+				member = new Resource(datos);	
+				break;
+			case "Branch":
+				member = new Branch(datos);	
+				break;
+			default://Hoy Admin no tiene atributos específicos más que User
+				member = new User(datos);
+		}			
 
 		member.save(function(err){
 			if(!err){
