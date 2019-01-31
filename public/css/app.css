@@ -277,7 +277,8 @@ sidebar {
   height: 300px;
 }
 
-.documento-new .human-body {
+.documento-new .human-body,
+.documento-edit .human-body {
   border: 1px solid #ced4da;
   background-image: url("../humanbody.jpg");
   background-size: contain;
