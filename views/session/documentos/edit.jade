@@ -31,6 +31,8 @@ block contenido
 								option(class="text-secondary" value=documento.servicio._id selected) #{documento.servicio.name}
 							else
 								option(class="text-secondary" value="undefined" disabled selected)="Seleccione servicio"
+					-if (user.permission == "Admin")
+						div(class="human-body")
 				div(class="tab") Sucursal:
 					div(class="form-group")
 						select(class="form-control" name="brch" id="brch")
@@ -38,7 +40,7 @@ block contenido
 								option(class="text-secondary" value=documento.sucursal._id selected) #{documento.sucursal.name}
 							else
 								option(class="text-secondary" value="undefined" disabled selected)="Seleccione sucursal"
-					div(id="map",class="map")		
+					div(id="map" class="map")
 				div(class="tab") Agendamiento:
 					div(class="form-group")
 						select(class="form-control" name="ress" id="ress")
