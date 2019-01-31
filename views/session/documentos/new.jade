@@ -85,9 +85,7 @@ block contenido
 						});
 
 						$("#brch").change(function(e){
-							if (e.originalEvent) {
-								// tomar direccion branch #{$("#brch").address}
-							}
+							if (e.originalEvent) {}
 							else {
 								var option = $('<option class="text-secondary" value="undefined" disabled selected>Elige especialista</option>'); 
 								$("#ress")
@@ -182,7 +180,7 @@ block contenido
 							},
 							eventOverlap: false
 						});
-					});
+					});		
 
 				script.
 					function initMap(){
@@ -203,5 +201,3 @@ block contenido
 					}
 
 				script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMXiJ_cvAbyP1zQ9naANFr1hw1s7fruto&callback=initMap", async, defer)
-
-						
