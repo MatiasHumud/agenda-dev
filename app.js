@@ -15,7 +15,7 @@ var session_middleware = require("./middlewares/sessions");
 var methodOverride = require("method-override");
 var RedisStore = require("connect-redis")(session);
 var realtime = require("./realtime");
-global.moduleLength = 15; //Length in mins of each module
+global.moduleLength = 5; //Length in mins of each module
 
 var app = express();
 var server = http.Server(app);

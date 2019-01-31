@@ -11,7 +11,7 @@ block contenido
 		include ../session_permission/userActions.jade
 
 	main
-		div(class="container mx-auto col-xs-10 col-sm-8 col-md-6 col-lg-4 top-space")
+		div(class="container mx-auto col-xs-10 col-sm-8 col-md-6 col-lg-4 top-space documento-new")
 			h1(class="text-center") Crear documento
 			form(id="sendDoc" action="/session/documentos" method="POST")
 				div(class="text-center top-space")
@@ -34,13 +34,15 @@ block contenido
 							else 
 								option(class="text-secondary" value="undefined" disabled selected) Elige zona
 								for service in services
-									option(class="text-secondary" value=service._id)=service.name
+									option(class="text-secondary" value=service._id)=service.name			
+					div(class="human-body")
 				div(class="tab") Sucursal:
 					div(class="form-group")
 						select(class="form-control" name="brch" id="brch")
 							option(class="text-secondary" value="undefined" disabled selected) Elige sucursal
 							for branch in branches
 								option(class="text-secondary" value=branch._id)=branch.name
+					div(id="map", class="map")
 				div(class="tab") Agendamiento:
 					div(class="form-group")
 						select(class="form-control" name="ress" id="ress")
@@ -83,7 +85,9 @@ block contenido
 						});
 
 						$("#brch").change(function(e){
-							if (e.originalEvent) {}
+							if (e.originalEvent) {
+								// tomar direccion branch #{$("#brch").address}
+							}
 							else {
 								var option = $('<option class="text-secondary" value="undefined" disabled selected>Elige especialista</option>'); 
 								$("#ress")
@@ -165,7 +169,7 @@ block contenido
 							//Para eventos existentes
 							editable: false,
 							events: {
-								url: 'http://localhost:8080/session/documentos/events',
+								url: 'http://localhost:3000/session/documentos/events',
 								type: 'GET',
 								error: function() {
 									console.log('there was an error while fetching events!');
@@ -179,3 +183,25 @@ block contenido
 							eventOverlap: false
 						});
 					});
+
+				script.
+					function initMap(){
+						var test = {
+							lat: -33.361940,
+							lng: -70.514989
+						};
+
+						var map = new google.maps.Map(document.getElementById("map"), {
+							center: test,
+							zoom: 15 
+						});
+
+						var marker = new google.maps.Marker({
+							position: test,
+							map: map
+						});
+					}
+
+				script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMXiJ_cvAbyP1zQ9naANFr1hw1s7fruto&callback=initMap", async, defer)
+
+						
