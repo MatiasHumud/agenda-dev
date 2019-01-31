@@ -11,7 +11,7 @@ block contenido
 		include ../session_permission/userActions.jade
 
 	main
-		div(class="container mx-auto col-xs-10 col-sm-8 col-md-6 col-lg-4 top-space")
+		div(class="container mx-auto col-xs-10 col-sm-8 col-md-6 col-lg-4 top-space documento-edit")
 			h1(class="text-center") Editar documento
 			form(id="sendDoc" action="/session/documentos/#{documento.id}?_method=PUT" method="POST")
 				div(class="text-center top-space")
@@ -38,6 +38,7 @@ block contenido
 								option(class="text-secondary" value=documento.sucursal._id selected) #{documento.sucursal.name}
 							else
 								option(class="text-secondary" value="undefined" disabled selected)="Seleccione sucursal"
+					div(id="map",class="map")		
 				div(class="tab") Agendamiento:
 					div(class="form-group")
 						select(class="form-control" name="ress" id="ress")
@@ -192,7 +193,7 @@ block contenido
 							editable: false,
 							displayEventEnd: false,
 							events: {
-								url: 'http://localhost:8080/session/documentos/events',
+								url: 'http://localhost:3000/session/documentos/events',
 								type: 'GET',
 								error: function(){
 									console.log('there was an error while fetching events!');
@@ -213,3 +214,23 @@ block contenido
 							}
 						});
 					});
+
+				script.
+					function initMap(){
+						var test = {
+							lat: -33.361940,
+							lng: -70.514989
+						};
+
+						var map = new google.maps.Map(document.getElementById("map"), {
+							center: test,
+							zoom: 15 
+						});
+
+						var marker = new google.maps.Marker({
+							position: test,
+							map: map
+						});
+					}
+
+				script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMXiJ_cvAbyP1zQ9naANFr1hw1s7fruto&callback=initMap", async, defer)
