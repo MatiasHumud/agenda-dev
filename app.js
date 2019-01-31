@@ -21,7 +21,10 @@ var app = express();
 var server = http.Server(app);
 
 var sessionMiddleware = session({
-	store: new RedisStore({}),
+	store: new RedisStore({
+		host: "172.31.0.135",
+		port: "6379"
+	}),
 	secret: "d6s5f9liofd5g146fvdf6156a"
 });
 
