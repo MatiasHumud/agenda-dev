@@ -14,7 +14,7 @@ block contenido
 		div(class="container d-flex top-space")
 			div(class="h2 p-2") Mi Equipo
 			div(class="ml-auto p-2")
-				a(href="/session/org/new" class="btn btn-default btn-outline-primary btn-lg")
+				a(href="/session/org/new" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Nuevo miembro")
 					i(class="fa fa-plus-square-o")
 		div(class="container mid-space")
 			table(class="table table-hover table-bordered table-responsive rounded") 
@@ -37,14 +37,12 @@ block contenido
 							td
 								h5(class="text-secondary") #{miembro.permission}
 							td
-								div(class="btn-group" role="group")
-									form(action="/session/org/#{miembro._id}/edit")
-										button(type="submit" class="btn btn-outline-dark btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Editar")
+								form
+									div(class="btn-group" role="group")
+										button(type="submit" formaction="/session/org/#{miembro._id}/edit" class="btn btn-outline-dark btn-lg" data-toggle="tooltip" data-placement="top" title="Editar")
 											i(class="fa fa-pencil-square-o")
-									form(action="/session/org/#{miembro._id}?_method=DELETE" method="POST")
-										button(type="submit" class="btn btn-outline-danger btn-lg" id="checkDate" data-toggle="tooltip" data-placement="top" title="Eliminar")
+										button(type="submit" formaction="/session/org/#{miembro._id}?_method=DELETE" formmethod="POST" class="btn btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Eliminar")
 											i(class="fa fa-trash-o")
-					
 					script(id="miembro-template" type="text/x-handlebars-template")
 						tr
 							td
@@ -54,9 +52,10 @@ block contenido
 							td
 								h5(class="text-secondary") {{permission}}
 							td
-								div(class="btn-group" role="group")
-									form(action="/session/org/{{miembro._id}}/edit")
-										input(type="image" src="../../public/svg/pencil.svg" class="btn btn-outline-primary btn-lg icon" data-toggle="tooltip" data-placement="top" title="Editar" alt="pencil")
-									form(action="/session/org/{{miembro._id}}?_method=DELETE" method="POST")
-										input(type="image" src="../../public/svg/trash.svg" class="btn btn-outline-danger btn-lg icon" data-toggle="tooltip" data-placement="top" title="Eliminar" alt="trash")
+								form
+									div(class="btn-group" role="group")
+										button(type="submit" formaction="/session/org/{{miembro._id}}/edit" class="btn btn-outline-dark btn-lg" data-toggle="tooltip" data-placement="top" title="Editar")
+											i(class="fa fa-pencil-square-o")
+										button(type="submit" formaction="/session/org/{{miembro._id}}?_method=DELETE" formmethod="POST" class="btn btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Eliminar")
+											i(class="fa fa-trash-o")
 					script(src="/public/js/member.js")
