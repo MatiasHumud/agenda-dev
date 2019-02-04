@@ -19,6 +19,12 @@ block contenido
 					label(for="lastName") Apellido
 					input(type="text" name="lastName" placeholder="Apellido" id="lastName" class="form-control")
 				div(class="form-group")
+					label(for="gender") Género
+					select(class="form-control" name="gender" id="gender")
+						option(class="text-secondary" value=undefined selected disabled) Selccione una opción
+						option(class="text-secondary" value="M") Mujer
+						option(class="text-secondary" value="H") Hombre
+				div(class="form-group")
 					label(for="email") Email
 					input(type="text" name="email" placeholder="Email" id="email" class="form-control")
 				div(class="form-group")

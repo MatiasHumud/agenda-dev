@@ -21,6 +21,12 @@ block contenido
 					label(for="lastName") Apellido
 					input(type="text" name="lastName" value="#{user.lastName}" id="lastName" class="form-control")
 				div(class="form-group")
+					label(for="gender") Género
+					select(class="form-control" name="gender" id="gender")
+						option(class="text-secondary" value=undefined selected disabled) Selccione una opción
+						option(class="text-secondary" value="M") Mujer
+						option(class="text-secondary" value="H") Hombre
+				div(class="form-group")
 					label(for="email") Email
 					input(type="text" name="email" value="#{user.email}" id="email" class="form-control")
 				div(class="form-group")
@@ -36,78 +42,79 @@ block contenido
 				div(class="form-group")
 					label(for="password_confirmation") Confirmación contraseña
 					input(type="password" name="password_confirmation" placeholder="Confirmación contraseña nueva" id="password_confirmation" class="form-control")
-				div("container")
-					input(type="hidden" id="whSelect" name="whSelect")
-					table(class="table table-hover table-bordered table-responsive rounded" id="whTbl")
-						thead(class="thead-light text-center")
-							tr
-								th(class="col text-center") Día
-								th(class="col text-center") Inicio
-								th(class="col text-center") Fin
-						tbody
-							tr
-								td 
-									input(type="checkbox" id="chbD")
-									label(for="chbD") 
-										h5(class="left-space") D
-								td 
-									input(type="time" id="stD")
-								td 
-									input(type="time" id="etD")
-							tr
-								td 
-									input(type="checkbox" id="chbL")
-									label(for="chbL") 
-										h5(class="left-space") L
-								td 
-									input(type="time" id="stL")
-								td 
-									input(type="time" id="etL")
-							tr
-								td 
-									input(type="checkbox" id="chbM")
-									label(for="chbM") 
-										h5(class="left-space") M
-								td 
-									input(type="time" id="stM")
-								td 
-									input(type="time" id="etM")
-							tr
-								td 
-									input(type="checkbox" id="chbW")
-									label(for="chbW") 
-										h5(class="left-space") W
-								td 
-									input(type="time" id="stW")
-								td 
-									input(type="time" id="etW")
-							tr
-								td 
-									input(type="checkbox" id="chbJ")
-									label(for="chbJ") 
-										h5(class="left-space") J
-								td 
-									input(type="time" id="stJ")
-								td 
-									input(type="time" id="etJ")
-							tr
-								td 
-									input(type="checkbox" id="chbV")
-									label(for="chbV") 
-										h5(class="left-space") V
-								td 
-									input(type="time" id="stV")
-								td 
-									input(type="time" id="etV")
-							tr
-								td 
-									input(type="checkbox" id="chbS")
-									label(for="chbS") 
-										h5(class="left-space") S
-								td 
-									input(type="time" id="stS")
-								td 
-									input(type="time" id="etS")
+				-if(user.permission == "Resource")
+					div("container")
+						input(type="hidden" id="whSelect" name="whSelect")
+						table(class="table table-hover table-bordered table-responsive rounded" id="whTbl")
+							thead(class="thead-light text-center")
+								tr
+									th(class="col text-center") Día
+									th(class="col text-center") Inicio
+									th(class="col text-center") Fin
+							tbody
+								tr
+									td 
+										input(type="checkbox" id="chbD")
+										label(for="chbD") 
+											h5(class="left-space") D
+									td 
+										input(type="time" id="stD")
+									td 
+										input(type="time" id="etD")
+								tr
+									td 
+										input(type="checkbox" id="chbL")
+										label(for="chbL") 
+											h5(class="left-space") L
+									td 
+										input(type="time" id="stL")
+									td 
+										input(type="time" id="etL")
+								tr
+									td 
+										input(type="checkbox" id="chbM")
+										label(for="chbM") 
+											h5(class="left-space") M
+									td 
+										input(type="time" id="stM")
+									td 
+										input(type="time" id="etM")
+								tr
+									td 
+										input(type="checkbox" id="chbW")
+										label(for="chbW") 
+											h5(class="left-space") W
+									td 
+										input(type="time" id="stW")
+									td 
+										input(type="time" id="etW")
+								tr
+									td 
+										input(type="checkbox" id="chbJ")
+										label(for="chbJ") 
+											h5(class="left-space") J
+									td 
+										input(type="time" id="stJ")
+									td 
+										input(type="time" id="etJ")
+								tr
+									td 
+										input(type="checkbox" id="chbV")
+										label(for="chbV") 
+											h5(class="left-space") V
+									td 
+										input(type="time" id="stV")
+									td 
+										input(type="time" id="etV")
+								tr
+									td 
+										input(type="checkbox" id="chbS")
+										label(for="chbS") 
+											h5(class="left-space") S
+									td 
+										input(type="time" id="stS")
+									td 
+										input(type="time" id="etS")
 
 				div(class="form-group text-right top-space")
 					button(type="submit" class="btn btn-outline-success btn-lg" data-toggle="tooltip" data-placement="top" title="Enviar")

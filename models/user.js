@@ -11,6 +11,10 @@ var options = {discriminatorKey: "permission"};
 var userSchema = new Schema({
 	name:{type: String, required: "Name is blank"},
 	lastName:{type: String, required: "Last name is blank"},
+	gender:{
+		type: String, required: "Gender is blank",
+		enum: {values: ["H", "M"], message: "Incorrect category"}
+	},
 	email:{type: String, required: "Email is blank", match: email_match},
 	password:{
 		type: String, 

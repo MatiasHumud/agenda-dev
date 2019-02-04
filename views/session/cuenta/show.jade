@@ -24,8 +24,11 @@ block contenido
 				label(type="text" class="font-weight-bold" name="lastName" id="lastName") Apellido:
 				label(for="lastName" class="m-3") #{user.lastName}
 			div(class="form-group")
-				label(type="text" class="font-weight-bold" name="email" id="email") Email:
-				label(for="email" class="m-3") #{user.email}
+				label(type="text" class="font-weight-bold" name="gender" id="lastName") Apellido:
+				label(for="lastName" class="m-3") #{user.lastName}
+			div(class="form-group")
+				label(type="text" class="font-weight-bold" name="email" id="gender") Género:
+				label(for="gender" class="m-3") #{user.gender}
 			-if(user.permission)
 				div(class="form-group")
 					label(type="text" class="font-weight-bold" name="permission" id="permission") Rol:

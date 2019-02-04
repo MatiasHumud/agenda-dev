@@ -22,6 +22,7 @@ router.route("/cuenta")
 			if(req.body.name) res.locals.user.name = req.body.name;
 			if(req.body.lastName) res.locals.user.lastName = req.body.lastName;
 			if(req.body.email) res.locals.user.email = req.body.email;
+			if(req.body.gender) res.locals.user.gender = req.body.gender;
 			if(req.body.newPassword && req.body.password_confirmation) {
 				res.locals.user.password = req.body.newPassword;
 				res.locals.user.pass_confirm = req.body.password_confirmation;

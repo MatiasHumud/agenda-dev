@@ -65,7 +65,8 @@ app.post("/newUser", function(req, res){// Envío de formulario "Registration"
 			var user = new User({
 							email: req.body.email, 
 							name: req.body.name,
-							lastName: req.body.lastName, 
+							lastName: req.body.lastName,
+							gender: req.body.gender,
 							password: req.body.password, 
 							pass_confirm: req.body.password_confirmation
 						});
