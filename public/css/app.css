@@ -280,12 +280,22 @@ sidebar {
 .documento-new .human-body,
 .documento-edit .human-body {
   border: 1px solid #ced4da;
-  background-image: url("../humanbody.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 550px; 
   margin-bottom: 1em; 
+  width: 100%; 
+  height: 600px;
+}
+
+.documento-new .human-body g,
+.documento-edit .human-body g {
+  opacity: 0;
+  fill: steelblue;
+  cursor: pointer;
+  transition: background-color 0.1s linear; 
+}
+
+.documento-new .human-body g:hover,
+.documento-edit .human-body g:hover {
+  opacity: 0.5;
 }
 
 /* Behaviour */ 
