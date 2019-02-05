@@ -12,7 +12,7 @@ block contenido
 
 	main
 		div(class="container mx-auto col-xs-10 col-sm-8 col-md-6 col-lg-4 top-space documento-new")
-			h1(class="text-center") Crear documento
+			h1(class="text-center") Nueva depilación
 			form(id="sendDoc" action="/session/documentos" method="POST")
 				div(class="text-center top-space")
 					span(class="step")
@@ -60,7 +60,7 @@ block contenido
 								div(class="tab-pane fade" id="femaleBodyBack" role="tabpanel" aria-labelledby="femalePillsBack")
 									svg(class="svg-body" viewBox="0 0 30 60")
 										image(href="/public/femalebody_back.jpg" x="0" y="5" height="50")
-					-else if (user.gender == "M")					
+					-else if (user.gender == "H")					
 						div(class="human-body" id="maleBody")
 							nav(class="nav nav-pills nav-fill")
 								a(class="nav-item nav-link active" id="malePillsFront" data-toggle="tab" href="#maleBodyFront" role="tab" aria-controls="femaleBodyFront" aria-selected="true") Frente
