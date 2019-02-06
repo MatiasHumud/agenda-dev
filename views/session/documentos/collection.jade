@@ -12,16 +12,16 @@ block contenido
 
 	main
 		div(class="container d-flex top-space")
-			div(class="h2 p-2") Mis Documentos
+			div(class="h2 p-2") Mis Agendamientos
 			div(class="ml-auto p-2")
-				a(href="/session/documentos/new" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Nuevo documento")
+				a(href="/session/documentos/new" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Nuevo agendamiento")
 					i(class="fa fa-plus-square-o")
 		div(class="container mid-space")
 			table(class="table table-hover table-bordered table-responsive rounded") 
 				thead(class="thead-light text-center")
 					tr
 						th(class="col text-center")
-							h5 Documento
+							h5 Agendamiento
 						th(class="col text-center")
 							h5 Estado
 						th(class="col text-center")
@@ -33,7 +33,7 @@ block contenido
 								a(href="/session/documentos/#{documento._id}")
 									h5(class="text-info") 
 										-if (documento.servicio !== undefined)
-											|Servicio: #{documento.servicio.name} (#{documento.servicio.length}hrs)
+											|Servicio: #{documento.servicio.name} (#{documento.servicio.length} min)
 										-else 
 											|Servicio no agendado
 								h5(class="text-secondary") 
@@ -65,5 +65,5 @@ block contenido
 										button(type="submit" formaction="/session/documentos/{{documento._id}}/edit" class="btn btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Editar")
 											i(class="fa fa-pencil-square-o")
 										button(type="submit" formaction="/session/documentos/{{documento._id}}?_method=DELETE" formmethod="POST" class="btn btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Eliminar")
-											i(class="fa fa-trash-o")
+												i(class="fa fa-trash-o")
 					script(src="/public/js/client.js")

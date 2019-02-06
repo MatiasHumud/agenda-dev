@@ -15,32 +15,33 @@ block contenido
 		div(class="mx-auto col-xs-12 col-sm-6 top-space")
 			-if(user.permission == "Resource")
 				div(class="form-group")
-					label(type="text" class="font-weight-bold" name="branch" id="branch") Sucursal:
-					label(for="name" class="m-3") #{user.parentBranch.name}
+					label(type="text" class="font-weight-bold mr-3" name="branch" id="branch") Sucursal:
+					label(for="name") #{user.parentBranch.name}
 			div(class="form-group")
-				label(type="text" class="font-weight-bold" name="name" id="name") Nombre:
-				label(for="name" class="m-3") #{user.name}
+				label(type="text" class="font-weight-bold mr-3" name="name" id="name") Nombre:
+				label(for="name") #{user.name}
 			div(class="form-group")
-				label(type="text" class="font-weight-bold" name="lastName" id="lastName") Apellido:
-				label(for="lastName" class="m-3") #{user.lastName}
-			div(class="form-group")
-				label(type="text" class="font-weight-bold" name="gender" id="lastName") Apellido:
-				label(for="lastName" class="m-3") #{user.lastName}
-			div(class="form-group")
-				label(type="text" class="font-weight-bold" name="email" id="gender") Género:
-				label(for="gender" class="m-3") #{user.gender}
-			-if(user.permission)
+				label(type="text" class="font-weight-bold mr-3" name="lastName" id="lastName") Apellido:
+				label(for="lastName") #{user.lastName}
+			-if(user.permission != "Admin" && user.permission != "Branch" && user.permission != "Resource")	
 				div(class="form-group")
-					label(type="text" class="font-weight-bold" name="permission" id="permission") Rol:
-					label(for="permission" class="m-3") #{user.permission}
+					label(type="text" class="font-weight-bold mr-3" name="email" id="gender") Género:
+					-if(user.gender == "M") 
+						label(for="gender")	Mujer
+					-else if (user.gender == "H") 
+						label(for="gender") Hombre 	
+			-if(user.permission == "Admin" || user.permission == "Branch" || user.permission == "Resource")
+				div(class="form-group")
+					label(type="text" class="font-weight-bold mr-3" name="permission" id="permission") Rol:
+					label(for="permission") #{user.permission}
 			-if(user.permission == "Branch")
 				div(class="form-group")
-					label(type="text" class="font-weight-bold" name="addr" id="addr") Dirección:
-					label(for="permission" class="m-3") #{user.address}
-			-if(user.permission)
+					label(type="text" class="font-weight-bold mr-3" name="addr" id="addr") Dirección:
+					label(for="permission") #{user.address}
+			-if(user.permission == "Resource")
 				div(class="form-group")
 					label(type="text" class="font-weight-bold" name="workHours" id="workHours") Horas Hábiles:
-					h5 #{JSON.stringify(user.workHours)}
+					label #{JSON.stringify(user.workHours)}		
 			div(class="btn-group")
 				a(href="/session/cuenta/edit" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Editar")
 					i(class="fa fa-pencil-square-o")
