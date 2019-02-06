@@ -11,5 +11,20 @@ block contenido
 		include ../session_permission/userActions.jade
 
 	main
-		div(class="container")
-			h5 #{service}
+		div(class="container mx-auto col-xs-10 col-sm-8 col-md-6 col-lg-4 top-space")
+			h1(class="text-center") Detalle de servicio
+			div(class="form-group")
+				label(class="font-weight-bold mr-3") Nombre:
+				label #{service.name}
+			div(class="form-group")
+				label(class="font-weight-bold mr-3") Categoría: 
+				label #{service.category}
+			div(class="form-group")
+				label(class="font-weight-bold mr-3") Descripción:
+				label #{service.brief}
+			div(class="form-group")
+				label(class="font-weight-bold mr-3") Número de módulos:
+				label #{service.moduleCount}
+			div(class="btn-group")
+				a(href="/session/servicios/" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver a Mis Servicios")
+					i(class="fa fa-caret-square-o-left")
