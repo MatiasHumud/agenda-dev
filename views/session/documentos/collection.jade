@@ -33,7 +33,7 @@ block contenido
 								a(href="/session/documentos/#{documento._id}")
 									h5(class="text-info") 
 										-if (documento.servicio !== undefined)
-											|Servicio: #{documento.servicio.name} (#{documento.servicio.length}hrs)
+											|Servicio: #{documento.servicio.name} (#{documento.servicio.length} min)
 										-else 
 											|Servicio no agendado
 								h5(class="text-secondary") 

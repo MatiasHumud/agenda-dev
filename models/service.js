@@ -15,7 +15,7 @@ var serviceSchema = new Schema({
 
 // Retorna el largo del servicio en horas
 serviceSchema.virtual("length").get(function(){
-	return this.moduleCount * global.moduleLength / 60;
+	return this.moduleCount * global.moduleLength;
 });
 
 var Service = mongoose.model("Service", serviceSchema);
