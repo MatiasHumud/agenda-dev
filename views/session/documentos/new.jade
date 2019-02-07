@@ -36,7 +36,7 @@ block contenido
 								option(class="text-secondary" value="undefined" disabled selected) Elija una zona
 								for service in services
 									option(class="text-secondary" value=service._id)=service.name											
-					div(class="human-body" id="femaleBody")
+					div(class="human-body" id="femaleBody" style="display:none;")
 						nav(class="nav nav-pills nav-fill")
 							a(class="nav-item nav-link active" id="femalePillsFront" data-toggle="tab" href="#femaleBodyFront" role="tab" aria-controls="femaleBodyFront" aria-selected="true") Frente
 							a(class="nav-item nav-link" id="femalePillsBack" data-toggle="tab" href="#femaleBodyBack" role="tab" aria-controls="femaleBodyBack" aria-selected="false") Espalda
@@ -60,7 +60,7 @@ block contenido
 							div(class="tab-pane fade" id="femaleBodyBack" role="tabpanel" aria-labelledby="femalePillsBack")
 								svg(class="svg-body" viewBox="0 0 30 60")
 									image(href="/public/femalebody_back.jpg" x="0" y="5" height="50")
-					div(class="human-body" id="maleBody")
+					div(class="human-body" id="maleBody" style="display:none;")
 						nav(class="nav nav-pills nav-fill")
 							a(class="nav-item nav-link active" id="malePillsFront" data-toggle="tab" href="#maleBodyFront" role="tab" aria-controls="femaleBodyFront" aria-selected="true") Frente
 							a(class="nav-item nav-link" id="malePillsBack" data-toggle="tab" href="#maleBodyBack" role="tab" aria-controls="maleBodyBack" aria-selected="false") Espalda
@@ -110,25 +110,17 @@ block contenido
 				-if(users.length == 1)
 					script.
 						$(document).ready(function(){
-							let femaleBody = $("#femaleBody");
-							let maleBody = $("#maleBody"); 	
-
-							femaleBody.css({"display":"none"});
-							maleBody.css({"display":"none"}); 
 
 							let obj = !{JSON.stringify(user)};
 							if (obj.gender == "M") {
-								femaleBody.css({"display":"block"});
+								$("#femaleBody").css({"display":"block"});
 							} else if (obj.gender == "H") {
-								maleBody.css({"display":"block"});
+								$("#maleBody").css({"display":"block"});
 							}
 						});
 				-else
 					script.
 						$(document).ready(function(){
-							$("#femaleBody").css({"display":"none"});
-							$("#maleBody").css({"display":"none"}); 	
-
 							$("#usr").on("change", function(event){
 								let obj = _.where(!{JSON.stringify(users)}, {_id: this.value})[0]; 
 								if (obj.gender == "M") {
