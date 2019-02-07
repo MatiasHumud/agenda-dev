@@ -76,6 +76,7 @@ router.route("/")
 			name: req.body.name,
 			lastName: req.body.lastName,
 			email: req.body.email,
+			gender: req.body.gender,
 			password: req.body.newPassword,
 			pass_confirm: req.body.password_confirmation,
 			permission: role,

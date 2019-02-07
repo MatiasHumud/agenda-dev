@@ -170,7 +170,9 @@ block contenido
 						});
 
 						$("#brch").change(function(e){
-							if (e.originalEvent) {}
+							if (e.originalEvent) {
+									initMap(_.where(!{JSON.stringify(branches)}, {_id: this.value}));
+								}
 							else {
 								var option = $('<option class="text-secondary" value="undefined" disabled selected>Elija un especialista</option>'); 
 								$("#ress")
@@ -268,21 +270,40 @@ block contenido
 					});		
 
 				script.
-					function initMap(){
-						var test = {
-							lat: -33.361940,
-							lng: -70.514989
-						};
+					function initMap(valor){
+						var index = 0;
+						if(valor){
+							var name = valor[0].name;
+							switch(name){
+								case "Vitacura":
+									index = 1;
+									break;
+								case "Lo Barnechea":
+									index = 2;
+									break;
+								case "Las Condes":
+									index = 3;
+									break;
+							}
 
-						var map = new google.maps.Map(document.getElementById("map"), {
-							center: test,
-							zoom: 15 
-						});
+						
+							var test = [
+								{ lat: -33.4378, lng: -70.6505 },
+								{ lat: -33.381813, lng: -70.580371 },
+								{ lat: -33.361942, lng: -70.51506 },
+								{ lat: -33.396684, lng: -70.559062 }
+							];
 
-						var marker = new google.maps.Marker({
-							position: test,
-							map: map
-						});
+							var map = new google.maps.Map(document.getElementById("map"), {
+								center: test[index],
+								zoom: 15 
+							});
+
+							var marker = new google.maps.Marker({
+								position: test[index],
+								map: map
+							});
+						}
 					}
 
 				script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMXiJ_cvAbyP1zQ9naANFr1hw1s7fruto&callback=initMap", async, defer)
