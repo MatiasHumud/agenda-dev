@@ -110,7 +110,6 @@ block contenido
 				-if(users.length == 1)
 					script.
 						$(document).ready(function(){
-
 							let obj = !{JSON.stringify(user)};
 							if (obj.gender == "M") {
 								$("#femaleBody").css({"display":"block"});
@@ -132,6 +131,29 @@ block contenido
 								}
 							});
 						});
+
+				script.
+					$(document).ready(function(){
+						$("g").on("mouseenter", function(event){
+							if ($(this).css("opacity") == 0) {
+								$(this).css({"opacity":0.3})
+							}
+						});
+
+						$("g").on("mouseleave", function(event){
+							if($(this).css("opacity") == 0.3) {
+								$(this).css({"opacity":0}); 
+							}
+						});
+
+						$("g").on("click", function(event){
+							if($(this).css("opacity") == 0.3) {
+								$(this).css({"opacity":0.6});
+							} else if ($(this).css("opacity") == 0.6) {
+								$(this).css({"opacity":0});
+							}
+						});
+					});
 				
 				script.
 					$(document).ready(function() {

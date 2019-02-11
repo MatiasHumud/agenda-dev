@@ -11,7 +11,7 @@ block contenido
 		include ../session_permission/userActions.jade
 
 	main
-		h1(class="text-center") Datos #{user.name}
+		h1(class="text-center mb-3") Datos #{user.name}
 		div(class="mx-auto col-xs-12 col-sm-6 top-space")
 			-if(user.permission == "Resource")
 				div(class="form-group")
