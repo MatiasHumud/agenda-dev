@@ -9,8 +9,8 @@ var docSchema = new Schema({
 	sucursal:{type: Schema.Types.ObjectId, ref: "Branch"},
 	servicio:{type: Schema.Types.ObjectId, ref: "Service"},
 	status:{
-		type: String, required: "Status is blank", default: "comprado",
-		enum: {values: ["comprado", "agendado", "ejecutado"], message: "Incorrect status"}
+		type: String, required: "Status is blank", default: "agendado",
+		enum: {values: ["agendado", "ejecutado", "abandonado"], message: "Incorrect status"}
 	},
 	event:{type: Object},
 	timestamps: [Date] //dateBought, dateScheduled, dateExecuted

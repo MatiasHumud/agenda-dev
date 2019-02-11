@@ -7,6 +7,7 @@ module.exports = function(server, sessionMiddleware){
 	client.subscribe("staff");
 	client.subscribe("service");
 	client.subscribe("hourBlock");
+	client.subscribe("packs");
 
 	io.use(function(socket, next){
 		sessionMiddleware(socket.request, socket.request.res, next);
@@ -25,10 +26,14 @@ module.exports = function(server, sessionMiddleware){
 		if(channel == "hourBlock"){
 			io.emit("new hrBlock", message);
 		}
+		if(channel == "packs"){
+			io.emit("new pack", message);
+		}
 	});
-
+	/*
 	io.sockets.on("connection", function(socket){
 		console.log("Nueva conexión: ")
 		console.log(socket.request.session.user_id);
 	});
+	*/
 }

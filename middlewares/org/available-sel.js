@@ -1,17 +1,16 @@
-//var User = require("../models/user").User;
-
 module.exports = function(req, res, next){
 	switch(res.locals.user.permission){
 		case "Admin":
-			res.locals.tipos = ["XS", "S", "M", "L"];
+			res.locals.permisos = ["Admin", "Branch"];
 			next();
 			break;
 		case "Branch":
-			res.locals.tipos = ["XS", "S", "M", "L"];
+			//res.locals.sucursales = [res.locals.user];
+			res.locals.permisos = ["Resource"];
 			next();
 			break;
 		default:
 			console.log("Acceso no autorizado");
-			res.redirect("/session/servicios");
+			res.redirect("/session/org");
 	}
 }
