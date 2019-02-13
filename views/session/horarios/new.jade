@@ -12,7 +12,7 @@ block contenido
 
 	main
 		div(class="container mx-auto col-xs-10 col-sm-8 col-md-6 col-lg-4 top-space")
-			h1(class="text-center") Bloqueo de horas
+			h1(class="text-center mb-3") Bloqueo de horas
 			form(id="sendDoc" action="/session/horarios" method="POST")
 				div(class="container") Agendamiento:
 					input(type="hidden" id="perm" name="perm" value=user.permission)
@@ -20,7 +20,7 @@ block contenido
 					div(id="calendar")
 						input(type="hidden" id="dateSelect" name="dateSelect" value="")
 
-				div(class="form-group" style="float:right;")
+				div(class="form-group btn-group float-right top-space" role="group")
 					button(type="button" class="btn btn-outline-danger btn-lg" id="prevBtn" onclick="window.location='/session/horarios'" data-toggle="tooltip" data-placement="top" title="Atrás")
 						i(class="fa fa-caret-square-o-left")
 					button(type="button" class="btn btn-outline-success btn-lg" id="nextBtn" onclick="this.form.submit();" data-toggle="tooltip" data-placement="top" title="Siguiente")

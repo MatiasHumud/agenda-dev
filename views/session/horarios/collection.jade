@@ -11,12 +11,11 @@ block contenido
 		include ../session_permission/userActions.jade
 
 	main
-		div(class="container d-flex top-space")
-			h2(class="py-2") Mis Bloqueos
-			div(class="ml-auto py-2")
-				div(class="btn-group" role="group")
-					a(href="/session/horarios/new" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Nuevo bloqueo")
-						i(class="fa fa-plus-square-o")
+		div(class="container d-flex justify-content-between align-items-center top-space")
+			h2 Mis Bloqueos
+			div(class="btn-group" role="group")
+				a(href="/session/horarios/new" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Nuevo bloqueo")
+					i(class="fa fa-plus-square-o")
 		div(class="container mid-space")
 			table(class="table table-hover table-bordered table-responsive rounded") 
 				thead(class="thead-light text-center")
