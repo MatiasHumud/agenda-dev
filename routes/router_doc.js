@@ -30,7 +30,8 @@ router.get("/new", function(req, res){
 			users: res.locals.users,
 			branches: res.locals.branches,
 			resources: res.locals.resources,
-			services: res.locals.services
+			services: res.locals.services,
+			packs: res.locals.packs
 		});
 });
 
@@ -46,7 +47,8 @@ router.get("/:id/edit", function(req, res){
 			users: res.locals.users,
 			branches: res.locals.branches,
 			resources: res.locals.resources,
-			services: res.locals.services
+			services: res.locals.services,
+			packs: res.locals.packs
 		});
 	}
 	else{
@@ -67,8 +69,9 @@ router.route("/:id")
 		res.locals.documento.servicio = req.body.svc;
 		res.locals.documento.recurso = req.body.ress;
 		res.locals.documento.sucursal = req.body.brch;
-		res.locals.documento.event = (req.body.dateSelect) ? new Event(JSON.parse(req.body.dateSelect)) : undefined;
-		
+		res.locals.documento.event = new Event(JSON.parse(req.body.dateSelect));
+		res.locals.documento.timestamp.updatedAt = Date.now();
+
 		res.locals.documento.save(function(err){
 			if(!err){
 				res.redirect("/session/documentos/");	
@@ -95,15 +98,17 @@ router.route("/")
 		res.render("session/documentos/collection", {documentos: res.locals.documentos});
 	})
 	.post(function(req, res){//Crea un nuevo documento
-		var agendado = (req.body.dateSelect) ? new Event(JSON.parse(req.body.dateSelect)) : undefined;
-
+		console.log(typeof req.body.svc === "string");
+		res.redirect("/session/documentos");
+		/*
 		var documento = new Documento({
 			usuario: req.body.usr,
 			servicio: req.body.svc,
 			recurso: req.body.ress,
 			sucursal: req.body.brch,
-			event: agendado
+			event: new Event(JSON.parse(req.body.dateSelect))
 		});
+		documento.timestamp.createdAt = Date.now();
 
 		documento.save(function(err){
 			if(!err){
@@ -114,7 +119,7 @@ router.route("/")
 				console.log("error creando documento");
 				res.send(err);
 			}
-		});
+		});*/
 	});	
 
 /*REST - Miembros de la organización*/

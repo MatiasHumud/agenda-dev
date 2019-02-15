@@ -8,23 +8,25 @@ var router = express.Router();
 var fs = require("fs");
 var blockFinder = require("../middlewares/blocks/find-document");
 var blockCollectionFinder = require("../middlewares/blocks/find-collection");
-var ressEventFinder = require("../middlewares/resource-doc-collection");
+var availableSelection = require("../middlewares/blocks/available-sel");
 var redis = require("redis");
 var moment = require("moment");
+//var saveToDB = require("./saveDocsToDB.js").saveToDB;
 
 var client = redis.createClient();
 
 /* Arquitectura para el manejo de horarios: CRUD = "Create Read Update Delete" */
 /* En este caso, "documento" son los eventos (sesiones de tratamiento) */
 /*REST - horarios*/
-router.all("/events", ressEventFinder);
-router.get("/events", function(req, res){
-	res.json(res.locals.eventos);
-});
 
 // Despliega el formulario para creación de un bloqueo
+router.all("/new", availableSelection);
 router.get("/new", function(req, res){
-	res.render("session/horarios/new");
+	res.render("session/horarios/new", 
+		{
+			branches: res.locals.branches,
+			resources: res.locals.resources
+		});
 });
 
 // Despliega el formulario para edición de un bloqueo específico
@@ -92,75 +94,35 @@ router.route("/")
 		res.render("session/horarios/collection", {horarios: res.locals.horarios});
 	})
 	.post(function(req, res){//Crea un nuevo bloqueo
-		if (req.body.dateSelect) {
-			var blockTitle = "block";
-			var evt = JSON.parse(req.body.dateSelect);
-			evt.title = blockTitle;
-			var usr, ress, bch = undefined;
-
-			switch(req.body.perm) {
-				case "Branch":
-					usr = req.body.userId; 
-					bch = req.body.userId;
-					replicateBlocks(req, res);
-					break;
-				case "Resource":
-					usr = req.body.userId; 
-					ress = req.body.userId;
-					break;
-			}
-
-			var bloqueo = new Documento({
-				title: blockTitle,
-				usuario: usr,
-				servicio: undefined,
-				recurso: ress,
-				sucursal: bch,
-				event: Event(evt)
-			});
-
-			bloqueo.save(function(err){
-				if(!err){
-					client.publish("hourBlock", JSON.stringify(bloqueo));
-					res.redirect("/session/horarios/"+bloqueo._id);
-				}
-				else{
-					console.log("error creando bloqueo");
-					res.send(err);
-				}
-			});
-
-		}
-		
+		saveToDB(req, res);
+		res.redirect("/session/horarios/")
 	});		
 
-async function replicateBlocks(req, res){
-	var bloqueos = new Array(Documento);
+async function saveToDB(req, res){	
 	var blockTitle = "block";
 	var evt = JSON.parse(req.body.dateSelect);
 	evt.title = blockTitle;
-	var bch = req.body.userId;
-	var ress = await Resource.find({parentBranch: bch}).exec();
+	var usr = req.body.userId;
+	var docs = new Array(Documento);
+	var ress = await Resource.find({_id: req.body.resces}).exec();
 
-	if(ress != undefined){
-		for(var i = 0; i < ress.length; i++){
-			bloqueos[i] = new Documento({
-				title: blockTitle,
-				usuario: bch,
-				servicio: undefined,
-				recurso: ress[i],
-				sucursal: bch,
-				event: Event(evt)
-			});
-		}
+	for(var i = 0; i < ress.length; i++){
+		docs[i] = new Documento({
+			title: blockTitle,
+			usuario: usr,
+			servicio: undefined,
+			recurso: ress[i],
+			sucursal: ress[i].parentBranch,
+			event: Event(evt)
+		});
 	}
-	
-	Documento.insertMany(bloqueos, function(err, docs){
+
+	Documento.insertMany(docs, function(err, svDocs){
 		if(!err){
 			return true;
 		}
 		else{
-			console.log("Error on replicating! "+ err);
+			console.log("Error on saving: "+ err);
 			return false;
 		}
 	});
