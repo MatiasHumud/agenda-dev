@@ -63,7 +63,7 @@ router.route("/:id")
 			}
 		})
 	})
-	.delete(function(req, res){//Borrar documento seleccionado
+	.delete(function(req, res){//Borrar pack seleccionado
 		if(res.locals.pack.isRemovable) {
 			Pack.findOneAndRemove({_id: req.params.id}, function(err){
 				if(!err){
@@ -84,7 +84,8 @@ router.route("/")
 		var pack = new Pack({
 			packType: req.body.pTyp,
 			usuario: req.body.usr,
-			dateBought: Date.now()
+			dateBought: Date.now(),
+			treatment: undefined
 		});
 
 		pack.save(function(err){

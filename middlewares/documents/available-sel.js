@@ -1,5 +1,6 @@
 var User = require("../../models/user").User;
 var Service = require("../../models/service").Service;
+var Pack = require("../../models/pack").Pack;
 //var isEditable = require("./is-editable");
 
 module.exports = function(req, res, next){
@@ -13,11 +14,29 @@ module.exports = function(req, res, next){
 								if(resrcs){
 									Service.find({}).then(function(svcs){
 										if(svcs){
-											res.locals.users = usrs;
-											res.locals.branches = brnchs;
-											res.locals.resources = resrcs;
-											res.locals.services = svcs;
-											next();
+											Pack.find({sessRemaining: true})
+												.populate("treatment")
+												.exec(function(err, pcks){
+													if(!err){
+														if(pcks){
+															res.locals.users = usrs;
+															res.locals.branches = brnchs;
+															res.locals.resources = resrcs;
+															res.locals.services = svcs;
+															res.locals.packs = pcks;
+															next();
+														}
+														else{
+															console.log("No se encontraron packs");
+															res.redirect("/session");
+														}
+													}
+													else{
+														console.log(String(err));
+														console.log("Error al buscar packs en base de datos");
+														res.redirect("/session");
+													}													
+												});
 										}
 										else{
 											console.log("No se encontraron sevicios");
@@ -66,11 +85,29 @@ module.exports = function(req, res, next){
 						if(brnchs){
 							Service.find({}).then(function(svcs){
 								if(svcs){
-									res.locals.users = usrs;
-									res.locals.branches = brnchs;
-									res.locals.resources = [res.locals.user.depopulate("parentBranch")];
-									res.locals.services = svcs;
-									next();
+									Pack.find({sessRemaining: true})
+										.populate("treatment")
+										.exec(function(err, pcks){
+											if(!err){
+												if(pcks){
+													res.locals.users = usrs;
+													res.locals.branches = brnchs;
+													res.locals.resources = [res.locals.user.depopulate("parentBranch")];
+													res.locals.services = svcs;
+													res.locals.packs = pcks;
+													next();
+												}
+												else{
+													console.log("No se encontraron packs");
+													res.redirect("/session");
+												}
+											}
+											else{
+												console.log(String(err));
+												console.log("Error al buscar packs en base de datos");
+												res.redirect("/session");
+											}													
+										});
 								}
 								else{
 									console.log("No se encontraron sevicios");
@@ -109,11 +146,29 @@ module.exports = function(req, res, next){
 						if(resrcs){
 							Service.find({}).then(function(svcs){
 								if(svcs){
-									res.locals.users = usrs;
-									res.locals.branches = [res.locals.user];
-									res.locals.resources = resrcs;
-									res.locals.services = svcs;
-									next();
+									Pack.find({sessRemaining: true})
+										.populate("treatment")
+										.exec(function(err, pcks){
+											if(!err){
+												if(pcks){
+													res.locals.users = usrs;
+													res.locals.branches = [res.locals.user];
+													res.locals.resources = resrcs;
+													res.locals.services = svcs;
+													res.locals.packs = pcks;
+													next();
+												}
+												else{
+													console.log("No se encontraron packs");
+													res.redirect("/session");
+												}
+											}
+											else{
+												console.log(String(err));
+												console.log("Error al buscar packs en base de datos");
+												res.redirect("/session");
+											}													
+										});
 								}
 								else{
 									console.log("No se encontraron sevicios");
@@ -152,11 +207,30 @@ module.exports = function(req, res, next){
 						if(resrcs){
 							Service.find({}).then(function(svcs){
 								if(svcs){
-									res.locals.users = [res.locals.user];
-									res.locals.branches = brnchs;
-									res.locals.resources = resrcs;
-									res.locals.services = svcs;
-									next();
+									Pack.find({usuario: res.locals.user, sessRemaining: true})
+										.populate("treatment")
+										.populate("packType")
+										.exec(function(err, pcks){
+											if(!err){
+												if(pcks){
+													res.locals.users = [res.locals.user];
+													res.locals.branches = brnchs;
+													res.locals.resources = resrcs;
+													res.locals.services = svcs;
+													res.locals.packs = pcks;
+													next();
+												}
+												else{
+													console.log("No se encontraron packs");
+													res.redirect("/session");
+												}
+											}
+											else{
+												console.log(String(err));
+												console.log("Error al buscar packs en base de datos");
+												res.redirect("/session");
+											}													
+										});
 								}
 								else{
 									console.log("No se encontraron sevicios");

@@ -14,12 +14,6 @@ block contenido
 		div(class="container mx-auto col-xs-12 col-sm-6 top-space")
 			h1(class="text-center mb-3") Crear Tipo de Pack
 			form(id="sendPackType" class="form-vertical" action="/session/packTypes" method="POST")
-				// -if(user.permission == "Admin") (#*#)
-				// 	div(class="form-group") 
-				// 		label(for="permission") Rol
-				// 		select(class="form-control" name="permission" id="permission")
-				// 			for permiso in permisos
-				// 				option(class="text-secondary" value=permiso)=permiso
 				div(class="form-group")
 					label(for="title") Título
 					input(type="text" name="title" placeholder="Título" id="title" class="form-control")

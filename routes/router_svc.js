@@ -40,11 +40,18 @@ router.route("/:id")
 		res.locals.service.brief = req.body.brief;
 		if(req.body.isAllDay == "on"){
 			res.locals.service.isAllDay = true;
-			res.locals.service.moduleCount = 36;
+			res.locals.service.duration = 540;
 		}
 		else{
 			res.locals.service.isAllDay = false;
-			res.locals.service.moduleCount = req.body.moduleCount;
+			res.locals.service.duration = (function(cat){
+				switch(cat){
+					case "XS": return 5;
+					case "S": return 10;
+					case "M": return 20;
+					case "L": return 30;
+				}
+			})(res.locals.service.category);
 		}
 
 		res.locals.service.save(function(err){
@@ -78,7 +85,14 @@ router.route("/")
 			category: req.body.category,
 			brief: req.body.brief,
 			isAllDay: (req.body.isAllDay == "on") ? true : false,
-			moduleCount: (req.body.isAllDay == "on") ? 36 : req.body.moduleCount
+			duration: (function(cat){
+				switch(cat){
+					case "XS": return 5;
+					case "S": return 10;
+					case "M": return 20;
+					case "L": return 30;
+				}
+			})(req.body.category)
 		});
 
 		offeredSvc.save(function(err){

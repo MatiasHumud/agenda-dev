@@ -11,6 +11,6 @@ module.exports = function(req, res, next){
 			break;
 		default:
 			console.log("Acceso no autorizado");
-			res.redirect("/session/org");
+			res.redirect("/session");
 	}
 }

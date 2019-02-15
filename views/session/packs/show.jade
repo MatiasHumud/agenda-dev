@@ -12,7 +12,66 @@ block contenido
 
 	main
 		div(class="container mx-auto col-xs-12 col-sm-6 top-space")
-			h5(class="text-center mb-3") #{pack}
-			div(class="btn-group top-space" role="group")
-				a(href="/session/packs/" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver a Mis Packs")
-					i(class="fa fa-caret-square-o-left")
+			div(class="container mid-space")
+				-if(pack.sessRemaining) 
+					h5 Tratamiento incompleto
+				-else 
+					h5 Tratamiento finalizado
+				table(class="table table-hover table-bordered table-responsive rounded text-center") 
+					thead(class="thead-light")
+						tr
+							th
+								h5 Tipo
+							th
+								h5 Zona
+							th
+								h5 Local
+							th(class="w-100")
+								h5 Tratamiento
+					tbody(id="nZones")
+								
+					script.
+						$(document).ready(function(){
+							var numZones = "!{pack.packType.zoneTypes}".split('+');
+							for(var i = 0; i < numZones.length; i++){
+								var isTreatmentDefined = ("#{pack.treatment}" === "") ? false : true;
+								var type, zne, suc;
+								if(isTreatmentDefined){
+									firstDoc = "#{pack.treatment[0]}";
+									type = firstDoc.servicio.category;
+									zne = firstDoc.servicio.name;
+									suc = firstDoc.sucursal.name;
+								}
+								else{
+									type = numZones[i];
+									zne = "Por definir";
+									suc = "Por definir";
+								}
+
+								var row = $('<tr/>').appendTo("#nZones");
+								//First cell of row
+								var cell0 = $('<td/>');
+								cell0.text(type);
+								cell0.appendTo(row);
+								//Second cell of row
+								var cell1 = $('<td/>');
+								cell1.text(zne);
+								cell1.appendTo(row);
+								//Third cell of row
+								var cell2 = $('<td/>');
+								cell2.text(suc);
+								cell2.appendTo(row);
+								//Fourth cell of row
+								var cell3 = $('<td/>');
+
+								var docs = [];
+								var doc;
+								for (var j = 0; j < "#{pack.packType.nSessions}"; j++) {
+									doc = $("<a href='/session/packs' class='btn btn-default btn-outline-primary btn-lg'>");
+									doc.append($("<i class='fa fa-plus-square-o'>"));
+									docs.push(doc);
+								}
+								cell3.append(docs);
+								cell3.appendTo(row);
+							}
+						});

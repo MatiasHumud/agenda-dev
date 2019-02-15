@@ -99,7 +99,10 @@ block contenido
 						$("#svc").change(function(e){
 							if (e.originalEvent) {}
 							else {
-								duration = _.where(!{JSON.stringify(services)}, {_id: this.value})[0].moduleCount*15;
+								var selOpt = _.where(this.options, {selected: true}).map(a => a.value);
+								duration = _.filter(!{JSON.stringify(services)}, function(elem){
+									return (selOpt).includes(elem._id);
+								}).map(b => b.duration).reduce((c, d) => (c + d));
 								sessLenght = moment.duration(duration, "minutes");
 								$('#calendar').fullCalendar('option', {
 									snapDuration: sessLenght
@@ -179,7 +182,7 @@ block contenido
 							selectConstraint: 'businessHours',
 							snapDuration: sessLenght,
 							selectAllow: function(selectInfo){
-								if (selectInfo.end.diff(selectInfo.start) !== sessLenght._milliseconds)
+								if (selectInfo.end.diff(selectInfo.start) !== sessLenght._milliseconds || selectInfo.start < Date.now())
 									return false;
 								return true;
 							},

@@ -30,7 +30,8 @@ router.get("/new", function(req, res){
 			users: res.locals.users,
 			branches: res.locals.branches,
 			resources: res.locals.resources,
-			services: res.locals.services
+			services: res.locals.services,
+			packs: res.locals.packs
 		});
 });
 
@@ -46,7 +47,8 @@ router.get("/:id/edit", function(req, res){
 			users: res.locals.users,
 			branches: res.locals.branches,
 			resources: res.locals.resources,
-			services: res.locals.services
+			services: res.locals.services,
+			packs: res.locals.packs
 		});
 	}
 	else{
@@ -67,8 +69,9 @@ router.route("/:id")
 		res.locals.documento.servicio = req.body.svc;
 		res.locals.documento.recurso = req.body.ress;
 		res.locals.documento.sucursal = req.body.brch;
-		res.locals.documento.event = (req.body.dateSelect) ? new Event(JSON.parse(req.body.dateSelect)) : undefined;
-		
+		res.locals.documento.event = new Event(JSON.parse(req.body.dateSelect));
+		res.locals.documento.timestamp.updatedAt = Date.now();
+
 		res.locals.documento.save(function(err){
 			if(!err){
 				res.redirect("/session/documentos/");	
@@ -104,6 +107,7 @@ router.route("/")
 			sucursal: req.body.brch,
 			event: agendado
 		});
+		documento.timestamp.createdAt = Date.now();
 
 		documento.save(function(err){
 			if(!err){
