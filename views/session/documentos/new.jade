@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -20,7 +20,7 @@ block contenido
 					span(class="step")
 				div(class="tab")
 					p Selección de tratamiento
-					div(class="form-group") 
+					div(class="form-group")
 						select(class="form-control" name="usr" id="usr")
 							if(users.length == 1)
 								option(class="text-secondary" value=users[0]._id selected)=users[0].name
@@ -28,14 +28,14 @@ block contenido
 								option(class="text-secondary" value="undefined" disabled selected) Seleccione un usuario
 								for user in users
 									option(class="text-secondary" value=user._id)=user.name
-					div(class="form-group") 
+					div(class="form-group")
 						select(class="form-control selectpicker" name="svc" id="svc" multiple)
-							if(services.length == 1) 
+							if(services.length == 1)
 								option(class="text-secondary" value=services[0]._id selected)=services[0].name
 							else
 								option(class="text-secondary" value="undefined" disabled) Elija una zona
 								for service in services
-									option(class="text-secondary" value=service._id)=service.name											
+									option(class="text-secondary" value=service._id)=service.name
 					div(class="human-body" id="femaleBody" style="display:none;")
 						nav(class="nav nav-pills nav-fill")
 							a(class="nav-item nav-link active" id="femalePillsFront" data-toggle="tab" href="#femaleBodyFront" role="tab" aria-controls="femaleBodyFront" aria-selected="true") Frente
@@ -84,6 +84,9 @@ block contenido
 							div(class="tab-pane fade" id="maleBodyBack" role="tabpanel" aria-labelledby="malePillsBack")
 								svg(class="svg-body" viewBox="0 0 30 60")
 									image(href="/public/malebody_back.jpg" x="0" y="5" height="50")
+					div(class="selected-zones" id="selectedZones" style="display:none;")
+						h5 Zonas seleccionadas #[span(class="badge") ]
+						div(class="body-zones" id="bodyZones")
 				div(class="tab")
 					p Selección de sucursal
 					div(class="form-group")
@@ -92,7 +95,7 @@ block contenido
 							for branch in branches
 								option(class="text-secondary" value=branch._id)=branch.name
 					div(id="map" class="map")
-				div(class="tab") 
+				div(class="tab")
 					p Agendamiento de hora
 					div(class="form-group")
 						select(class="form-control" name="ress" id="ress")
@@ -108,11 +111,8 @@ block contenido
 				div(id="toggableCard" class="toggable-card card width-300")
 					div(class="card-body")
 						h5(class="card-title")
-						p
-							i(class="fa fa-plus fa-fw")
-							span Selecciona para agregar
+						p(class="card-text")
 
-			
 				script(src="/public/js/renderFuncs.js")
 
 				-if(users.length == 1)
@@ -129,68 +129,82 @@ block contenido
 					script.
 						$(document).ready(function(){
 							$("#usr").on("change", function(event){
-								let obj = _.where(!{JSON.stringify(users)}, {_id: this.value})[0]; 
+								let obj = _.where(!{JSON.stringify(users)}, {_id: this.value})[0];
 								if (obj.gender == "M") {
 									$("#femaleBody").css({"display":"block"});
 									$("#maleBody").css({"display":"none"});
 								} else if (obj.gender == "H") {
 									$("#maleBody").css({"display":"block"});
-									$("#femaleBody").css({"display":"none"}); 		
+									$("#femaleBody").css({"display":"none"});
 								}
 							});
 						});
 
 				script.
 					$(document).ready(function(){
-						/* Guarda la selección de las formas */ 
-						let selected = []; 
+						/* Guarda la selección de las formas */
+						let selected = [];
+
+						let selectLimit = 3;
 
 						let card = {
 							element: $("#toggableCard"),
-							title: $(".card-title")
-						}
+							title: $(".card-title"),
+							text: $(".card-text")
+						};
 
+						let selectedZones = {
+							element: $("#selectedZones"),
+							badge: $(".badge"),
+							zones: $(".body-zones")
+						};
+
+						/* Eventos sobre los grupos de formas */
 
 						$("g").on("mouseenter", function(event){
 							if ($(this).css("opacity") == 0) {
 								$(this).css({"opacity":0.3})
 							}
 
-							setCard(event); 
+							openCard(event);
 						});
 
 						$("g").on("mousemove", function(event){
-							setCard(event); 
+							openCard(event);
 						});
 
 						$("g").on("mouseleave", function(event){
 							if($(this).css("opacity") == 0.3) {
-								$(this).css({"opacity":0}); 
+								$(this).css({"opacity":0});
 							}
 
 							closeCard();
 						});
 
 						$("g").on("click", function(event){
-							let indexSelected; 
+							let indexSelected;
 
 							if($(this).css("opacity") == 0.3) {
 								$(this).css({"opacity":0.6});
-								selected.push(event.currentTarget); 
+								selected.push(event.currentTarget);
 							} else if ($(this).css("opacity") == 0.6) {
-								$(this).css({"opacity":0});
+								$(this).css({"opacity":0.3});
 								indexSelected = selected.findIndex(function(element){
-									return $(element).is(event.currentTarget); 
+									return $(element).is(event.currentTarget);
 								});
-								selected = selected.slice(0, indexSelected).concat(selected.slice(indexSelected + 1)); 
+								selected = selected.slice(0, indexSelected).concat(selected.slice(indexSelected + 1));
 							}
+
+							editCard(event);
+							setZones();
 						});
 
-						function setCard(event){
+						/* Card */
+
+						function openCard(event){
 							let posX = event.clientX;
 							let posY = event.clientY;
-							let title = $(event.currentTarget).attr("title");
-							card.title.html(title);
+							editCard(event);
 							card.element.css({
 								"top": (posY + 20) + "px",
 								"left": (posX + 20) + "px",
@@ -198,13 +212,88 @@ block contenido
 							});
 						}
 
+						function editCard(event){
+							let title = $(event.currentTarget).attr("title");
+							card.title.html(title);
+							if (isSelected(event)){
+								card.text.html("<p><i class='fa fa-plus fa-fw'></i> Selecciona para agregar</p>");
+							} else {
+								card.text.html("<p class='text-success'><i class='fa fa-check'></i> Agregada</p>");
+							}
+						}
+
 						function closeCard(){
 							card.element.css({
 								"display":"none"
 							});
 						}
+
+						/* Body Zones */
+
+						function setZones(){
+							let zonesStr = "";
+							let currentSelect = 0;
+
+							selectedZones.badge.html(selected.length);
+							selectedZones.zones.html("");
+
+							for (let i = 0; i < selected.length; i++) {
+								currentSelect++;
+
+								let d = document.createElement("div");
+								$(d).addClass("alert")
+									.addClass((currentSelect > selectLimit) ? "alert-danger" : "alert-primary")
+									.addClass("fade")
+									.addClass("show")
+									.attr("role", "alert")
+									.html($(selected[i]).attr("title"));
+
+								let b = document.createElement("button");
+								$(b).addClass("close")
+									.attr("data-dismiss", "alert")
+									.attr("aria-label", "Close")
+									.html("&times")
+									.on("click",
+									function(){
+										deselectElement(selected[i]);
+									}
+								);
+
+								$(b).appendTo($(d));
+								$(d).appendTo($(".body-zones"));
+
+								if (currentSelect > selectLimit){
+									selectedZones.badge.addClass("badge-danger").removeClass("badge-primary");
+								} else {
+									selectedZones.badge.addClass("badge-primary").removeClass("badge-danger");
+								}
+							}
+
+							selectedZones.element.css({
+								"display": (selected.length != 0 ? "block": "none")
+							});
+						};
+
+						/* Auxiliar Functions */
+
+						function deselectElement(elementToDelete){
+							let index =  selected.findIndex(function(element){
+								return $(element).is(elementToDelete);
+							});
+							selected = selected.slice(0, index).concat(selected.slice(index + 1));
+							$(elementToDelete).css({"opacity":"0"}); 
+							setZones();
+
+						};
+
+						function isSelected(e) {
+							let index = selected.findIndex(function(element){
+								return $(element).is(event.currentTarget);
+							});
+							return (index == -1);
+						}
 					});
-				
+
 				script.
 					$(document).ready(function() {
 						var duration = 0;
@@ -241,7 +330,7 @@ block contenido
 									initMap(_.where(!{JSON.stringify(branches)}, {_id: this.value}));
 								}
 							else {
-								var option = $('<option class="text-secondary" value="undefined" disabled selected>Elija un especialista</option>'); 
+								var option = $('<option class="text-secondary" value="undefined" disabled selected>Elija un especialista</option>');
 								$("#ress")
 									.empty()
 									.append(option);
@@ -258,18 +347,18 @@ block contenido
 						$("#ress").change(function(){
 							workHours = _.where(!{JSON.stringify(resources)}, {_id: $("#ress").val()})[0].workHours;
 							$('#calendar').removeClass("disabled");
-							$('#calendar').fullCalendar("option", {	
+							$('#calendar').fullCalendar("option", {
 								selectable: true,
 								businessHours: workHours
 							});
 							$('#calendar').fullCalendar("removeEvents");
-							$('#calendar').fullCalendar("refetchEvents");	
+							$('#calendar').fullCalendar("refetchEvents");
 						});
-					
+
 						$("#calendar").fullCalendar({
 							header: {
 								left: 'title',
-								right: 'prev,next,today'	
+								right: 'prev,next,today'
 							},
 							titleFormat: 'MMM YYYY',
 							buttonText: {
@@ -334,7 +423,7 @@ block contenido
 							},
 							eventOverlap: false
 						});
-					});		
+					});
 
 				script.
 					function initMap(valor){
@@ -353,7 +442,7 @@ block contenido
 									break;
 							}
 
-						
+
 							var test = [
 								{ lat: -33.4378, lng: -70.6505 },
 								{ lat: -33.381813, lng: -70.580371 },
@@ -363,7 +452,7 @@ block contenido
 
 							var map = new google.maps.Map(document.getElementById("map"), {
 								center: test[index],
-								zoom: 15 
+								zoom: 15
 							});
 
 							var marker = new google.maps.Marker({
