@@ -10,7 +10,8 @@ block contenido
 	-else
 		include ./session_permission/userActions.jade
 		
-	main(class="text-center")
-		div(class="btn-group-vertical default")
-			a(href="/session/documentos/new" class="btn btn-default btn-outline-dark btn-lg") Nuevo Agendamiento
-			a(href="/session/documentos" class="btn btn-default btn-outline-dark btn-lg") Mis Agendamientos
+	main
+		div(class="container mx-auto col-xs-12 col-sm-6 top-space text-center")
+			div(class="btn-group-vertical default")
+				a(href="/session/documentos/new" class="btn btn-default btn-outline-dark btn-lg") Nuevo Agendamiento
+				a(href="/session/documentos" class="btn btn-default btn-outline-dark btn-lg") Mis Agendamientos

@@ -68,7 +68,6 @@ router.route("/")
 		res.render("session/packTypes/collection", {packTypes: res.locals.packTypes});
 	})
 	.post(function(req, res){//Crea un nuevo packType
-		console.log(req.body.zonesString);
 		var packType = new PackType({
 			title: req.body.title,
 			nZones: req.body.nZones,

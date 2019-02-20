@@ -11,5 +11,8 @@ block contenido
 		include ../session_permission/userActions.jade
 
 	main
-		div(class="container")
-			h5 #{packType}
+		div(class="container mx-auto col-xs-12 col-sm-6 top-space")
+			h5(class="text-center mb-3") #{packType}
+			div(class="btn-group top-space" role="group")
+				a(href="/session/packTypes/" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver a Mis Packs")
+					i(class="fa fa-caret-square-o-left")

@@ -5,15 +5,19 @@ var Schema = mongoose.Schema;
 var docSchema = new Schema({
 	title: {type: String, default: "default"},
 	usuario:{type: Schema.Types.ObjectId, ref: "User", required: "User is blank"},
-	recurso:{type: Schema.Types.ObjectId, ref: "Resource"},
-	sucursal:{type: Schema.Types.ObjectId, ref: "Branch"},
+	recurso:{type: Schema.Types.ObjectId, ref: "Resource", required: "Resource is blank"},
+	sucursal:{type: Schema.Types.ObjectId, ref: "Branch", required: "Branch is blank"},
 	servicio:{type: Schema.Types.ObjectId, ref: "Service"},
 	status:{
 		type: String, required: "Status is blank", default: "agendado",
 		enum: {values: ["agendado", "ejecutado", "abandonado"], message: "Incorrect status"}
 	},
-	event:{type: Object},
-	timestamps: [Date] //dateBought, dateScheduled, dateExecuted
+	event:{type: Object, required: "Sesión no agendada"},
+	timestamp:{
+		createdAt: {type: Date},
+		updatedAt: {type: Date},
+		ejecutedAt: {type: Date}
+	} 
 });
 
 var Documento = mongoose.model("Documento", docSchema);

@@ -11,11 +11,10 @@ block contenido
 		include ../session_permission/userActions.jade
 
 	main
-		div(class="container d-flex top-space")
-			h2(class="py-2") Mis Agendamientos
-			div(class="ml-auto py-2")
-				a(href="/session/documentos/new" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Nuevo agendamiento")
-					i(class="fa fa-plus-square-o")
+		div(class="container d-flex justify-content-between align-items-center top-space")
+			h2 Mis Agendamientos
+			a(href="/session/documentos/new" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Nuevo agendamiento")
+				i(class="fa fa-plus-square-o")
 		div(class="container mid-space")
 			table(class="table table-hover table-bordered table-responsive rounded") 
 				thead(class="thead-light text-center")
@@ -33,7 +32,7 @@ block contenido
 								a(href="/session/documentos/#{documento._id}")
 									h5(class="text-info") 
 										-if (documento.servicio !== undefined)
-											|Servicio: #{documento.servicio.name} (#{documento.servicio.length} min)
+											|Servicio: #{documento.servicio.name} (#{documento.servicio.duration} min)
 										-else 
 											|Servicio no agendado
 								h5(class="text-secondary") 
@@ -66,4 +65,4 @@ block contenido
 											i(class="fa fa-pencil-square-o")
 										button(type="submit" formaction="/session/documentos/{{documento._id}}?_method=DELETE" formmethod="POST" class="btn btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Eliminar")
 												i(class="fa fa-trash-o")
-					script(src="/public/js/client.js")
+					script(src="/public/js/sockets/client.js")

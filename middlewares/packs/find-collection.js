@@ -6,6 +6,10 @@ module.exports = function(req, res, next){
 			Pack.find({})
 				.populate("usuario")
 				.populate("packType")
+				.populate({
+					path: "treatment.docs",
+					populate: {path: "servicio sucursal"} 
+				})
 				.exec(function(err, packs){
 					if(!err){
 						res.locals.packs = packs;
@@ -20,6 +24,10 @@ module.exports = function(req, res, next){
 			Pack.find({})
 				.populate("usuario")
 				.populate("packType")
+				.populate({
+					path: "treatment.docs",
+					populate: {path: "servicio sucursal"} 
+				})
 				.exec(function(err, packs){
 					if(!err){
 						res.locals.packs = packs;
@@ -34,6 +42,10 @@ module.exports = function(req, res, next){
 			Pack.find({})
 				.populate("usuario")
 				.populate("packType")
+				.populate({
+					path: "treatment.docs",
+					populate: {path: "servicio sucursal"} 
+				})
 				.exec(function(err, packs){
 					if(!err){
 						res.locals.packs = packs;
@@ -48,6 +60,10 @@ module.exports = function(req, res, next){
 			Pack.find({usuario: res.locals.user._id})
 				.populate("usuario")
 				.populate("packType")
+				.populate({
+					path: "treatment.docs",
+					populate: {path: "servicio sucursal"} 
+				})
 				.exec(function(err, packs){
 					if(!err){
 						res.locals.packs = packs;

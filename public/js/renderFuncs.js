@@ -4,15 +4,9 @@ showTab(currentTab);
 function showTab(n) {
 	var x = document.getElementsByClassName("tab");
 	x[n].style.display = "block";
-	if (n == 0) {
-		document.getElementById("prevBtn").innerHTML = "<i class='fa fa-shopping-cart'>";
-	} else {
-		document.getElementById("prevBtn").innerHTML ="<i class='fa fa-caret-square-o-left'>";
-		if(n == x.length-1) {
-			$('#calendar').fullCalendar('render');
-		}
+	if(n == x.length-1) {
+		$('#calendar').fullCalendar('render');
 	}
-	
 	fixStepIndicator(n);
 }
 
@@ -21,13 +15,8 @@ function nextPrev(n) {
 	if (n == 1 && !validateForm()) 
 		return false;
 	if ((currentTab == 0) && (n == -1)) {
-		if(validateForm()) {
-			document.getElementById("sendDoc").submit();
-			return false;
-		}
-		else {
-			return false;
-		}
+		window.history.back();
+		return false;
 	}
 	x[currentTab].style.display = "none";
 

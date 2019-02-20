@@ -11,6 +11,7 @@ var availableSelection = require("../middlewares/documents/available-sel");
 var ressEventFinder = require("../middlewares/resource-doc-collection");
 var redis = require("redis");
 var moment = require("moment");
+var helpers = require("../utils/pack-doc-bind");
 
 var client = redis.createClient();
 
@@ -98,30 +99,47 @@ router.route("/")
 		res.render("session/documentos/collection", {documentos: res.locals.documentos});
 	})
 	.post(function(req, res){//Crea un nuevo documento
-		console.log(typeof req.body.svc === "string");
-		res.redirect("/session/documentos");
-		/*
-		var documento = new Documento({
-			usuario: req.body.usr,
-			servicio: req.body.svc,
-			recurso: req.body.ress,
-			sucursal: req.body.brch,
-			event: new Event(JSON.parse(req.body.dateSelect))
-		});
-		documento.timestamp.createdAt = Date.now();
-
-		documento.save(function(err){
-			if(!err){
-				client.publish("documentos", JSON.stringify(documento));
-				res.redirect("/session/documentos/"+documento._id);
-			}
-			else{
-				console.log("error creando documento");
-				res.send(err);
-			}
-		});*/
+		saveToDB(req, res);
+		res.redirect("/session/documentos/");
 	});	
 
-/*REST - Miembros de la organización*/
+//Save new documents to DB, separating each service into a different document
+async function saveToDB(req, res){
+	var evt = JSON.parse(req.body.dateSelect);
+	var usr = req.body.usr;
+	var svc = await Service.find({_id: req.body.svc}).exec();
+	var ress = req.body.ress;
+	var brch = req.body.brch;
+	var docs = new Array(Documento);
+	var packBind = {};
+	for(var i = 0; i < svc.length; i++){
+		evt.end = moment(evt.start).add(svc[i].duration, 'minutes');
+		docs[i] = new Documento({
+			usuario: usr,
+			servicio: svc[i],
+			recurso: ress,
+			sucursal: brch,
+			event: Event(evt)
+		});
+		evt.start = evt.end;
+		try {
+			packBind["5c6da9ff1898f237107b269d"/*req.body.pack[i]*/].push(i/*req.body.idx[i]*/);
+		}
+		catch(e) {
+			packBind["5c6da9ff1898f237107b269d"/*req.body.pack[i]*/] = [i/*req.body.idx[i]*/];
+		}
+	}
+
+	Documento.insertMany(docs, function(err, svDocs){
+		if(!err){
+			helpers.updatePacks(req, res, svDocs, packBind);
+			return true;
+		}
+		else{
+			console.log("Error on saving: "+ err);
+			return false;
+		}
+	});
+}
 
 module.exports = router;

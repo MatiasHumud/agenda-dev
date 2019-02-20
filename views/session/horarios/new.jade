@@ -12,24 +12,47 @@ block contenido
 
 	main
 		div(class="container mx-auto col-xs-10 col-sm-8 col-md-6 col-lg-4 top-space")
-			h1(class="text-center") Bloqueo de horas
+			h1(class="text-center mb-3") Bloqueo de horas
 			form(id="sendDoc" action="/session/horarios" method="POST")
 				div(class="container") Agendamiento:
 					input(type="hidden" id="perm" name="perm" value=user.permission)
 					input(type="hidden" id="userId" name="userId" value=user._id)
+					if(user.permission == "Admin")
+						div(class="form-group")
+							select(class="form-control selectpicker" multiple name="bches" id="bches")
+								for branch in branches
+										option(class="text-secondary" value=branch._id selected)=branch.name
+					div(class="form-group")
+						select(class="form-control selectpicker" multiple name="resces" id="resces")
+							for resource in resources
+								option(class="text-secondary" value=resource._id selected)=resource.name
 					div(id="calendar")
 						input(type="hidden" id="dateSelect" name="dateSelect" value="")
 
-				div(class="form-group" style="float:right;")
+				div(class="form-group btn-group float-right top-space" role="group")
 					button(type="button" class="btn btn-outline-danger btn-lg" id="prevBtn" onclick="window.location='/session/horarios'" data-toggle="tooltip" data-placement="top" title="Atrás")
 						i(class="fa fa-caret-square-o-left")
 					button(type="button" class="btn btn-outline-success btn-lg" id="nextBtn" onclick="this.form.submit();" data-toggle="tooltip" data-placement="top" title="Siguiente")
 						i(class="fa fa-check-square-o")
 
 				script.
-					$(document).ready(function() {
-						var workHours = !{JSON.stringify(user.workHours)};
+					$("#bches").change(function(e){
+						if (e.originalEvent) {
+							var selBchs = _.where(this.options, {selected: true}).map(a => a.value);
+							var shownRess = _.filter(!{JSON.stringify(resources)}, function(elem){
+								return (selBchs).includes(elem.parentBranch);
+							}).map(b => b._id);
+							$("#resces option").filter(function(i, elem){
+								return ((shownRess).includes(elem.value))
+							});
+						}
+						else {
+							
+						}
+					});
 
+				script.
+					$(document).ready(function() {
 						$("#calendar").fullCalendar({
 							header: {
 								left: 'title',
@@ -59,7 +82,11 @@ block contenido
 							slotEventOverlap: false,
 							minTime: "07:00:00",
 							maxTime: "20:00:00",
-							businessHours: workHours,
+							businessHours: {
+								dow: [ 1, 2, 3, 4, 5, 6, 7 ],
+								start: '07:00',
+								end: '21:00'
+							},
 							//Para seleccionar fecha y hora
 							selectable: true,
 							selectHelper: true,
@@ -75,22 +102,7 @@ block contenido
 							unselectAuto: false,
 							unselect: function(jsEvent, view){
 								document.getElementById("dateSelect").value = "";
-							},
+							}
 							//Para eventos existentes
-							editable: false,
-							displayEventEnd: false,
-							events: {
-								url: 'http://localhost:3000/session/horarios/events',
-								type: 'GET',
-								error: function() {
-									console.log('there was an error while fetching events!');
-								},
-								data : function() {
-									return { resourceId : "!{user._id}" }
-								},
-								color: 'lightGray',   // a non-ajax option
-								textColor: 'gray' // a non-ajax option
-							},
-							eventOverlap: false
 						});
 					});

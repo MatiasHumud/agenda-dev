@@ -11,7 +11,6 @@ var blockCollectionFinder = require("../middlewares/blocks/find-collection");
 var availableSelection = require("../middlewares/blocks/available-sel");
 var redis = require("redis");
 var moment = require("moment");
-//var saveToDB = require("./saveDocsToDB.js").saveToDB;
 
 var client = redis.createClient();
 

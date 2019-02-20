@@ -12,7 +12,7 @@ block contenido
 
 	main
 		div(class="container mx-auto col-xs-10 col-sm-8 col-md-6 col-lg-4 top-space documento-edit")
-			h1(class="text-center") Editar agendamiento
+			h1(class="text-center mb-3") Editar agendamiento
 			form(id="sendDoc" action="/session/documentos/#{documento.id}?_method=PUT" method="POST")
 				div(class="text-center top-space")
 					span(class="step")
@@ -50,7 +50,7 @@ block contenido
 					div(id="calendar" class="disabled")
 						input(type="hidden" id="dateSelect" name="dateSelect" value="")
 
-				div(class="form-group btn-group" style="float:right;")
+				div(class="form-group btn-group float-right top-space" role="group")
 					button(type="button" class="btn btn-outline-danger btn-lg" id="prevBtn" onclick="nextPrev(-1)" data-toggle="tooltip" data-placement="top" title="Atrás")
 						i(class="fa fa-caret-square-o-left")
 					button(type="button" class="btn btn-outline-success btn-lg" id="nextBtn" onclick="nextPrev(1)" data-toggle="tooltip" data-placement="top" title="Siguiente")
@@ -99,7 +99,10 @@ block contenido
 						$("#svc").change(function(e){
 							if (e.originalEvent) {}
 							else {
-								duration = _.where(!{JSON.stringify(services)}, {_id: this.value})[0].moduleCount*15;
+								var selOpt = _.where(this.options, {selected: true}).map(a => a.value);
+								duration = _.filter(!{JSON.stringify(services)}, function(elem){
+									return (selOpt).includes(elem._id);
+								}).map(b => b.duration).reduce((c, d) => (c + d));
 								sessLenght = moment.duration(duration, "minutes");
 								$('#calendar').fullCalendar('option', {
 									snapDuration: sessLenght
@@ -179,7 +182,7 @@ block contenido
 							selectConstraint: 'businessHours',
 							snapDuration: sessLenght,
 							selectAllow: function(selectInfo){
-								if (selectInfo.end.diff(selectInfo.start) !== sessLenght._milliseconds)
+								if (selectInfo.end.diff(selectInfo.start) !== sessLenght._milliseconds || selectInfo.start < Date.now())
 									return false;
 								return true;
 							},

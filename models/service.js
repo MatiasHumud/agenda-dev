@@ -9,13 +9,8 @@ var serviceSchema = new Schema({
 		enum: {values: ["XS", "S", "M", "L"], message: "Incorrect category"}
 	},
 	brief:{type: String},
-	moduleCount:{type: Number, required: "Module count is blank"},
+	duration:{type: Number, required: "Session duration is blank"},
 	isAllDay:{type: Boolean, default: false}
-});
-
-// Retorna el largo del servicio en horas
-serviceSchema.virtual("length").get(function(){
-	return this.moduleCount * global.moduleLength;
 });
 
 var Service = mongoose.model("Service", serviceSchema);
