@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -20,7 +20,7 @@ block contenido
 					span(class="step")
 				div(class="tab")
 					p Selección de tratamiento
-					div(class="form-group") 
+					div(class="form-group")
 						select(class="form-control" name="usr" id="usr")
 							if(users.length == 1)
 								option(class="text-secondary" value=users[0]._id selected)=users[0].name
@@ -28,14 +28,14 @@ block contenido
 								option(class="text-secondary" value="undefined" disabled selected) Seleccione un usuario
 								for user in users
 									option(class="text-secondary" value=user._id)=user.name
-					div(class="form-group") 
+					div(class="form-group")
 						select(class="form-control selectpicker" name="svc" id="svc" multiple)
-							if(services.length == 1) 
+							if(services.length == 1)
 								option(class="text-secondary" value=services[0]._id selected)=services[0].name
 							else
 								option(class="text-secondary" value="undefined" disabled) Elija una zona
 								for service in services
-									option(class="text-secondary" value=service._id)=service.name											
+									option(class="text-secondary" value=service._id)=service.name
 					div(class="human-body" id="femaleBody" style="display:none;")
 						nav(class="nav nav-pills nav-fill")
 							a(class="nav-item nav-link active" id="femalePillsFront" data-toggle="tab" href="#femaleBodyFront" role="tab" aria-controls="femaleBodyFront" aria-selected="true") Frente
@@ -60,6 +60,12 @@ block contenido
 							div(class="tab-pane fade" id="femaleBodyBack" role="tabpanel" aria-labelledby="femalePillsBack")
 								svg(class="svg-body" viewBox="0 0 30 60")
 									image(href="/public/femalebody_back.jpg" x="0" y="5" height="50")
+									g(data-toggle="tooltip" data-placement="left" title="Nuca")
+										polygon(points="14.2,11 14.5,11.5 16.5,12.5 16.5,13 14.5,12.5 13.5,12")
+									g(data-toggle="tooltip" data-placement="right" title="Espalda completa")
+										polygon(points="11.2,13.5 11,14 10.8,15 10.7,17.5 10.9,18 11.5,19 12,20 12.4,21 12.7,22 12.8,23 12.85,23.3 12.3,24.5 12,25 11.8,26 11.8,26.5 12.5,26.2 14,26.2 17,26.2 18,26.3 19,26.6 19.3,26.7 19.3,26 19.4,25.7 19.6,25.4 19.8,25 19.5,24 19.1,23 18.9,21 18.7,19 18.7,17 18.6,15 18.5,13.5 18,13.35 17,13.1 16.7,13 16,12.9 15,12.7 14,12.4")
+									g(data-toggle="tooltip" data-placement="left" title="Glúteos")
+										polygon(points="11.4,27.8 11.45,27 12,26.5 13,26.2 13.5,26.2 16,26.25 18,26.35 19.1,26.7 19.2,28 19.1,29 17.3,31 16,31.05 13,31 11,30")
 					div(class="human-body" id="maleBody" style="display:none;")
 						nav(class="nav nav-pills nav-fill")
 							a(class="nav-item nav-link active" id="malePillsFront" data-toggle="tab" href="#maleBodyFront" role="tab" aria-controls="femaleBodyFront" aria-selected="true") Frente
@@ -84,6 +90,15 @@ block contenido
 							div(class="tab-pane fade" id="maleBodyBack" role="tabpanel" aria-labelledby="malePillsBack")
 								svg(class="svg-body" viewBox="0 0 30 60")
 									image(href="/public/malebody_back.jpg" x="0" y="5" height="50")
+									g(data-toggle="tooltip" data-placement="right" title="Nuca")
+										polygon(points="14.5,12.5 15,12.4 16,12.3 17.4,12.4 17.3,13 17.4,13.5 14.3,13.5")
+									g(data-toggle="tooltip" data-placement="left" title="Espalda completa")
+										polygon(points="11.5,14.5 11,16.5 11.3,18 11.7,19 11.9,20 12.1,21 12.3,22 12.5,23 12.7,24 12.7,26 12.5,27.3 13,27 18,26.8 19,26.9 20.2,27.1 20,26.5 19.8,26 19.6,25.8 19.5,25 19.3,23 19.5,22 19.6,21 20,20 20.2,19 20.4,18.5 20.6,18 20.8,17.5 20.8,14.8 20.5,14.6 20,14.4 19.5,14.3 19,14.2 18.5,14.1 18,13.8 17.5,13.6 14.5,13.6")
+									g(data-toggle="tooltip" data-placement="right" title="Glúteos")
+										polygon(points="12.4,27.3 14,27 15,26.9 17,26.9 19,27 20.2,27.2 20.6,29 20.5,29.2 20.3,29.7 19.8,30.5 19.2,31 18.5,31.4 17,31.7 15,31.8 14,31.5 13.5,31 13,30.5 12.7,30 12.4,29.7")
+					div(class="selected-zones" id="selectedZones" style="display:none;")
+						h5 Zonas seleccionadas #[span(class="badge") ]
+						div(class="body-zones" id="bodyZones")
 				div(class="tab")
 					p Selección de sucursal
 					div(class="form-group")
@@ -92,7 +107,7 @@ block contenido
 							for branch in branches
 								option(class="text-secondary" value=branch._id)=branch.name
 					div(id="map" class="map")
-				div(class="tab") 
+				div(class="tab")
 					p Agendamiento de hora
 					div(class="form-group")
 						select(class="form-control" name="ress" id="ress")
@@ -108,11 +123,8 @@ block contenido
 				div(id="toggableCard" class="toggable-card card width-300")
 					div(class="card-body")
 						h5(class="card-title")
-						p
-							i(class="fa fa-plus fa-fw")
-							span Selecciona para agregar
+						p(class="card-text")
 
-			
 				script(src="/public/js/renderFuncs.js")
 
 				-if(users.length == 1)
@@ -129,68 +141,90 @@ block contenido
 					script.
 						$(document).ready(function(){
 							$("#usr").on("change", function(event){
-								let obj = _.where(!{JSON.stringify(users)}, {_id: this.value})[0]; 
+								let obj = _.where(!{JSON.stringify(users)}, {_id: this.value})[0];
 								if (obj.gender == "M") {
 									$("#femaleBody").css({"display":"block"});
 									$("#maleBody").css({"display":"none"});
 								} else if (obj.gender == "H") {
 									$("#maleBody").css({"display":"block"});
-									$("#femaleBody").css({"display":"none"}); 		
+									$("#femaleBody").css({"display":"none"});
 								}
 							});
 						});
 
 				script.
 					$(document).ready(function(){
-						/* Guarda la selección de las formas */ 
-						let selected = []; 
+						/* Guarda la selección de las formas */
+						let selected = [];
+
+						let selectLimit = 3;
 
 						let card = {
 							element: $("#toggableCard"),
-							title: $(".card-title")
-						}
+							title: $(".card-title"),
+							text: $(".card-text")
+						};
 
+						let selectedZones = {
+							element: $("#selectedZones"),
+							badge: $(".badge"),
+							zones: $(".body-zones")
+						};
+
+						let userSelect = $("#usr");
+
+						/* Eventos sobre los grupos de formas */
 
 						$("g").on("mouseenter", function(event){
 							if ($(this).css("opacity") == 0) {
 								$(this).css({"opacity":0.3})
 							}
 
-							setCard(event); 
+							openCard(event);
 						});
 
 						$("g").on("mousemove", function(event){
-							setCard(event); 
+							openCard(event);
 						});
 
 						$("g").on("mouseleave", function(event){
 							if($(this).css("opacity") == 0.3) {
-								$(this).css({"opacity":0}); 
+								$(this).css({"opacity":0});
 							}
 
 							closeCard();
 						});
 
 						$("g").on("click", function(event){
-							let indexSelected; 
+							let indexSelected;
 
 							if($(this).css("opacity") == 0.3) {
 								$(this).css({"opacity":0.6});
-								selected.push(event.currentTarget); 
+								selected.push(event.currentTarget);
 							} else if ($(this).css("opacity") == 0.6) {
-								$(this).css({"opacity":0});
+								$(this).css({"opacity":0.3});
 								indexSelected = selected.findIndex(function(element){
-									return $(element).is(event.currentTarget); 
+									return $(element).is(event.currentTarget);
 								});
-								selected = selected.slice(0, indexSelected).concat(selected.slice(indexSelected + 1)); 
+								selected = selected.slice(0, indexSelected).concat(selected.slice(indexSelected + 1));
 							}
+
+							editCard(event);
+							setZones();
 						});
 
-						function setCard(event){
+						/* Eventos sobre el select */
+
+						userSelect.on("change", function(){
+							resetSelectedZones();
+						});
+
+						/* Card */
+
+						function openCard(event){
 							let posX = event.clientX;
 							let posY = event.clientY;
-							let title = $(event.currentTarget).attr("title");
-							card.title.html(title);
+							editCard(event);
 							card.element.css({
 								"top": (posY + 20) + "px",
 								"left": (posX + 20) + "px",
@@ -198,13 +232,99 @@ block contenido
 							});
 						}
 
+						function editCard(event){
+							let title = $(event.currentTarget).attr("title");
+							card.title.html(title);
+							if (isSelected(event)){
+								card.text.html("<p><i class='fa fa-plus fa-fw'></i> Selecciona para agregar</p>");
+							} else {
+								card.text.html("<p class='text-success'><i class='fa fa-check'></i> Agregada</p>");
+							}
+						}
+
 						function closeCard(){
 							card.element.css({
 								"display":"none"
 							});
 						}
+
+						/* Body Zones */
+
+						function setZones(){
+							let zonesStr = "";
+							let currentSelect = 0;
+
+							selectedZones.badge.html(selected.length);
+							selectedZones.zones.html("");
+
+							for (let i = 0; i < selected.length; i++) {
+								currentSelect++;
+
+								let d = document.createElement("div");
+								$(d).addClass("alert")
+									.addClass((currentSelect > selectLimit) ? "alert-danger" : "alert-primary")
+									.addClass("fade")
+									.addClass("show")
+									.attr("role", "alert")
+									.html($(selected[i]).attr("title"));
+
+								let b = document.createElement("button");
+								$(b).addClass("close")
+									.attr("data-dismiss", "alert")
+									.attr("aria-label", "Close")
+									.html("&times")
+									.on("click",
+									function(){
+										deselectElement(selected[i]);
+									}
+								);
+
+								$(b).appendTo($(d));
+								$(d).appendTo($(".body-zones"));
+
+								if (currentSelect > selectLimit){
+									selectedZones.badge.addClass("badge-danger").removeClass("badge-primary");
+								} else {
+									selectedZones.badge.addClass("badge-primary").removeClass("badge-danger");
+								}
+							}
+
+							selectedZones.element.css({
+								"display": (selected.length != 0 ? "block": "none")
+							});
+						};
+
+						/* Auxiliar Functions */
+
+						function deselectElement(elementToDelete){
+							let index =  selected.findIndex(function(element){
+								return $(element).is(elementToDelete);
+							});
+							selected = selected.slice(0, index).concat(selected.slice(index + 1));
+							$(elementToDelete).css({"opacity":"0"});
+							setZones();
+						};
+
+						function isSelected(e) {
+							let index = selected.findIndex(function(element){
+								return $(element).is(event.currentTarget);
+							});
+							return (index == -1);
+						}
+
+						function resetSelectedZones(){
+							$("g").css({
+								"opacity":0
+							});
+							selectedZones.badge.html(0);
+							selectedZones.element.css({
+								"display":"none"
+							});
+							selectedZones.zones.html("");
+							selected = [];
+						};
 					});
-				
+
 				script.
 					$(document).ready(function() {
 						var duration = 0;
@@ -241,7 +361,7 @@ block contenido
 									initMap(_.where(!{JSON.stringify(branches)}, {_id: this.value}));
 								}
 							else {
-								var option = $('<option class="text-secondary" value="undefined" disabled selected>Elija un especialista</option>'); 
+								var option = $('<option class="text-secondary" value="undefined" disabled selected>Elija un especialista</option>');
 								$("#ress")
 									.empty()
 									.append(option);
@@ -258,18 +378,18 @@ block contenido
 						$("#ress").change(function(){
 							workHours = _.where(!{JSON.stringify(resources)}, {_id: $("#ress").val()})[0].workHours;
 							$('#calendar').removeClass("disabled");
-							$('#calendar').fullCalendar("option", {	
+							$('#calendar').fullCalendar("option", {
 								selectable: true,
 								businessHours: workHours
 							});
 							$('#calendar').fullCalendar("removeEvents");
-							$('#calendar').fullCalendar("refetchEvents");	
+							$('#calendar').fullCalendar("refetchEvents");
 						});
-					
+
 						$("#calendar").fullCalendar({
 							header: {
 								left: 'title',
-								right: 'prev,next,today'	
+								right: 'prev,next,today'
 							},
 							titleFormat: 'MMM YYYY',
 							buttonText: {
@@ -334,7 +454,7 @@ block contenido
 							},
 							eventOverlap: false
 						});
-					});		
+					});
 
 				script.
 					function initMap(valor){
@@ -353,7 +473,7 @@ block contenido
 									break;
 							}
 
-						
+
 							var test = [
 								{ lat: -33.4378, lng: -70.6505 },
 								{ lat: -33.381813, lng: -70.580371 },
@@ -363,7 +483,7 @@ block contenido
 
 							var map = new google.maps.Map(document.getElementById("map"), {
 								center: test[index],
-								zoom: 15 
+								zoom: 15
 							});
 
 							var marker = new google.maps.Marker({
