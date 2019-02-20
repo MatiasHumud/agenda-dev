@@ -10,7 +10,7 @@ var packSchema = new Schema({
 	sessRemaining:{type: Boolean, default: true},
 	payed:{type: Boolean, default: false},
 	treatment:[{
-		docs: {type: [Schema.Types.ObjectId], ref: "Documento"}
+		docs: [{type: Schema.Types.ObjectId, ref: "Documento"}]
 	}]
 });
 

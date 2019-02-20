@@ -27,41 +27,13 @@ router.get("/new", function(req, res){
 
 // Assign "packFinder" middleware to every document/id request 
 router.all("/:id*", packFinder);
-// Assign "availableSelection" middleware to every document/id/edit request 
-router.all("/:id/edit", availableSelection);
-// Despliega el formulario para edición de un documento específico
-router.get("/:id/edit", function(req, res){//Ruta innecesaria 404
-	/*
-	if(res.locals.pack.hasSessions){
-		res.render("session/packs/edit", 
-		{
-			pack: res.locals.pack
-		});
-	}
-	else{
-		res.redirect("/session/packs/");
-	}*/
-});
-
 // Assign "docCollectionFinder" middleware to every document collection request
 router.all("/", docCollectionFinder);
 
 //CRUD packs específicos
 router.route("/:id")
-	.get(function(req, res){//Mostrar packs seleccionado
+	.get(function(req, res){//Mostrar pack seleccionado
 		res.render("session/packs/show", {pack: res.locals.pack});
-	})
-	.put(function(req, res){//Editar pack seleccionado
-		res.locals.pack.treatment = req.body.treatment;
-		res.locals.pack.save(function(err){
-			if(!err){
-				res.redirect("/session/packs/");	
-			}
-			else{
-				console.log(err);
-				res.redirect("/session/packs/"+req.params.id+"/edit");
-			}
-		})
 	})
 	.delete(function(req, res){//Borrar pack seleccionado
 		if(res.locals.pack.isRemovable) {
@@ -81,11 +53,17 @@ router.route("/")
 		res.render("session/packs/collection", {packs: res.locals.packs});
 	})
 	.post(function(req, res){//Crea un nuevo pack
+		var treat = [];
+		for (var i = 0; i < req.body.nZones; i++){
+			treat.push({
+				docs: undefined
+			});
+		}
 		var pack = new Pack({
 			packType: req.body.pTyp,
 			usuario: req.body.usr,
 			dateBought: Date.now(),
-			treatment: undefined
+			treatment: treat
 		});
 
 		pack.save(function(err){

@@ -24,6 +24,7 @@ block contenido
 							for user in users
 								option(class="text-secondary" value=user._id)=user.name
 				div(class="form-group") 
+					input(type="hidden" id="nZones" name="nZones")
 					select(class="form-control" name="pTyp" id="pTyp")
 						if(packTypes.length == 1) 
 							option(class="text-secondary" value=packTypes[0]._id selected)=packTypes[0].title
@@ -36,3 +37,13 @@ block contenido
 						i(class="fa fa-caret-square-o-left")
 					button(type="submit" class="btn btn-outline-success btn-lg" id="nextBtn" data-toggle="tooltip" data-placement="top" title="Crear")
 						i(class="fa fa-check-square-o")
+
+					script.
+						$("#pTyp").change(function(e){
+							if (e.originalEvent) {
+									$("#nZones")[0].value = (_.where(!{JSON.stringify(packTypes)}, {_id: this.value})[0].nZones);
+								}
+							else {
+
+							}
+						});
