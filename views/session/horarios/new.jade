@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -47,7 +47,7 @@ block contenido
 							});
 						}
 						else {
-							
+
 						}
 					});
 
@@ -56,7 +56,7 @@ block contenido
 						$("#calendar").fullCalendar({
 							header: {
 								left: 'title',
-								right: 'prev,next,today'	
+								right: 'prev,next,today'
 							},
 							titleFormat: 'MMM YYYY',
 							buttonText: {

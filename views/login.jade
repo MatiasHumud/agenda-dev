@@ -1,7 +1,7 @@
 extends ./layout.jade
 
 block contenido
-	-if (currentSession != null) 
+	-if (currentSession != null)
 		include ./session/session_permission/authActions.jade
 	-else
 		include ./session/session_permission/unauthActions.jade
@@ -10,7 +10,7 @@ block contenido
 
 	main
 		h1(class="text-center") Iniciar Sesión
-		div(class="container mx-auto col-xs-12 col-sm-6 top-space") 
+		div(class="container mx-auto col-xs-12 col-sm-6 top-space")
 			form(action="/knock" method="POST" class="login")
 				div(class="form-group")
 					label(for="email") Email

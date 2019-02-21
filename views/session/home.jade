@@ -1,7 +1,7 @@
 extends ../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ./session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ./session_permission/branchActions.jade
@@ -9,7 +9,7 @@ block contenido
 		include ./session_permission/resourceActions.jade
 	-else
 		include ./session_permission/userActions.jade
-		
+
 	main
 		div(class="container mx-auto col-xs-12 col-sm-6 top-space text-center")
 			div(class="btn-group-vertical default")

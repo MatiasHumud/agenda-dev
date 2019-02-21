@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -15,7 +15,7 @@ block contenido
 			h1(class="text-center mb-3") Nuevo miembro del equipo
 			form(class="form-vertical" action="/session/org" method="POST")
 				-if(user.permission == "Admin")
-					div(class="form-group") 
+					div(class="form-group")
 						label(for="permission") Rol
 						select(class="form-control" name="permission" id="permission")
 							for permiso in permisos
@@ -30,11 +30,11 @@ block contenido
 					label(for="email") Email
 					input(type="text" name="email" placeholder="Email" id="email" class="form-control")
 				-if(user.permission == "Admin")
-					div(class="form-group") 
+					div(class="form-group")
 						label(for="addr") Dirección
 						input(type="text" name="addr" placeholder="Dirección" id="addr" class="form-control")
 				-if(user.permission == "Branch")
-					div(class="form-group") 
+					div(class="form-group")
 						label(for="gender") Género
 						select(class="form-control" name="gender" id="gender")
 							option(class="text-secondary" value=undefined selected disabled) Selccione una opción

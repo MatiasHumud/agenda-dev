@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -11,7 +11,7 @@ block contenido
 		include ../session_permission/userActions.jade
 
 	main
-		div(class="mx-auto col-xs-12 col-sm-6 top-space") 
+		div(class="mx-auto col-xs-12 col-sm-6 top-space")
 			h1(class="text-center mb-3") Editar #{user.name}
 			form(action="/session/cuenta?_method=PUT" method="POST" id="accForm" name="accForm")
 				div(class="form-group")
@@ -33,7 +33,7 @@ block contenido
 					label(for="oldPassword") Contraseña actual
 					input(type="password" name="oldPassword" placeholder="Contraseña actual" id="oldPassword" class="form-control")
 				-if(user.permission == "Branch")
-					div(class="form-group") 
+					div(class="form-group")
 						label(for="addr") Dirección
 						input(type="text" name="addr" value="#{user.address}" id="addr" class="form-control")
 				div(class="form-group")
@@ -53,67 +53,67 @@ block contenido
 									th(class="col text-center") Fin
 							tbody
 								tr
-									td 
+									td
 										input(type="checkbox" id="chbD")
-										label(for="chbD") 
+										label(for="chbD")
 											h5(class="left-space") D
-									td 
+									td
 										input(type="time" id="stD")
-									td 
+									td
 										input(type="time" id="etD")
 								tr
-									td 
+									td
 										input(type="checkbox" id="chbL")
-										label(for="chbL") 
+										label(for="chbL")
 											h5(class="left-space") L
-									td 
+									td
 										input(type="time" id="stL")
-									td 
+									td
 										input(type="time" id="etL")
 								tr
-									td 
+									td
 										input(type="checkbox" id="chbM")
-										label(for="chbM") 
+										label(for="chbM")
 											h5(class="left-space") M
-									td 
+									td
 										input(type="time" id="stM")
-									td 
+									td
 										input(type="time" id="etM")
 								tr
-									td 
+									td
 										input(type="checkbox" id="chbW")
-										label(for="chbW") 
+										label(for="chbW")
 											h5(class="left-space") W
-									td 
+									td
 										input(type="time" id="stW")
-									td 
+									td
 										input(type="time" id="etW")
 								tr
-									td 
+									td
 										input(type="checkbox" id="chbJ")
-										label(for="chbJ") 
+										label(for="chbJ")
 											h5(class="left-space") J
-									td 
+									td
 										input(type="time" id="stJ")
-									td 
+									td
 										input(type="time" id="etJ")
 								tr
-									td 
+									td
 										input(type="checkbox" id="chbV")
-										label(for="chbV") 
+										label(for="chbV")
 											h5(class="left-space") V
-									td 
+									td
 										input(type="time" id="stV")
-									td 
+									td
 										input(type="time" id="etV")
 								tr
-									td 
+									td
 										input(type="checkbox" id="chbS")
-										label(for="chbS") 
+										label(for="chbS")
 											h5(class="left-space") S
-									td 
+									td
 										input(type="time" id="stS")
-									td 
+									td
 										input(type="time" id="etS")
 
 				div(class="form-group text-right top-space")

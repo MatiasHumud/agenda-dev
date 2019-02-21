@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -16,7 +16,7 @@ block contenido
 			a(href="/session/servicios/new" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Nuevo servicio")
 				i(class="fa fa-plus-square-o")
 		div(class="container mid-space")
-			table(class="table table-hover table-bordered table-responsive rounded") 
+			table(class="table table-hover table-bordered table-responsive rounded")
 				thead(class="thead-light text-center")
 					tr
 						th(class="col text-center")

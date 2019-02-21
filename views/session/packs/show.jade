@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -13,11 +13,11 @@ block contenido
 	main
 		div(class="container mx-auto col-xs-12 col-sm-6 top-space")
 			div(class="container mid-space")
-				-if(pack.sessRemaining) 
+				-if(pack.sessRemaining)
 					h5 Tratamiento incompleto
-				-else 
+				-else
 					h5 Tratamiento finalizado
-				table(class="table table-hover table-bordered table-responsive rounded text-center") 
+				table(class="table table-hover table-bordered table-responsive rounded text-center")
 					thead(class="thead-light")
 						tr
 							th
@@ -29,7 +29,7 @@ block contenido
 							th(class="w-100")
 								h5 Tratamiento
 					tbody(id="nZones")
-								
+
 					script.
 						$(document).ready(function(){
 							var numZones = "!{pack.packType.zoneTypes}".split('+');
