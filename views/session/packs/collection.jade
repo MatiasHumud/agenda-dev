@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -16,7 +16,7 @@ block contenido
 			a(href="/session/packs/new" class="btn btn-default btn-outline-primary btn-lg")
 				i(class="fa fa-plus-square-o")
 		div(class="container mid-space")
-			table(class="table table-hover table-bordered table-responsive rounded") 
+			table(class="table table-hover table-bordered table-responsive rounded")
 				thead(class="thead-light text-center")
 					tr
 						th(class="col text-center")
@@ -31,7 +31,7 @@ block contenido
 							td
 								a(href="/session/packs/#{pack._id}")
 									h5(class="text-info") #{pack.packType.title} (#{(pack.sessRemaining) ? "Incompleto" : "Finalizado"})
-								h5(class="text-secondary") Adquirido el #{pack.dateBought.toISOString().replace(/T.*/,'').split('-').reverse().join('/')} 
+								h5(class="text-secondary") Adquirido el #{pack.dateBought.toISOString().replace(/T.*/,'').split('-').reverse().join('/')}
 							td(class="col text-center")
 								h5(class="text-secondary") #{(pack.payed) ? "Pagado" : "Por pagar"}
 							td(class="col text-center")
@@ -39,7 +39,7 @@ block contenido
 									div(class="btn-group" role="group")
 										button(type="submit" formaction="/session/packs/#{pack._id}?_method=DELETE" formmethod="POST" class="btn btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Eliminar")
 											i(class="fa fa-trash-o")
-					
+
 					script(id="pack-template" type="text/x-handlebars-template")
 						tr
 							td

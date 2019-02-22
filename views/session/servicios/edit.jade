@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -20,7 +20,7 @@ block contenido
 				div(class="form-group")
 					label(for="category") Tipo
 					select(class="form-control" name="category" id="category")
-						for tipo in tipos 
+						for tipo in tipos
 							-if(tipo == service.category)
 								option(class="text-secondary" value=tipo selected)=tipo
 							-else

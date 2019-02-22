@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -12,7 +12,20 @@ block contenido
 
 	main
 		div(class="container mx-auto col-xs-12 col-sm-6 top-space")
-			h5(class="text-center mb-3") #{packType}
+			h1(class="text-center mb-3") Detalle del tipo de pack
+			div(class="form-group")
+				label(class="font-weight-bold mr-3") Título:
+				label #{packType.title}
+			div(class="form-group")
+				label(class="font-weight-bold mr-3") Número de zonas:
+				label #{packType.nZones}
+			div(class="form-group")
+				label(class="font-weight-bold mr-3") Tipos de zonas:
+				label #{packType.zoneTypes}
+			div(class="form-group")
+				label(class="font-weight-bold mr-3") Número de sesiones:
+				label #{packType.nSessions}
+			// h5(class="text-center mb-3") #{packType}
 			div(class="btn-group top-space" role="group")
 				a(href="/session/packTypes/" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver a Mis Packs")
 					i(class="fa fa-caret-square-o-left")

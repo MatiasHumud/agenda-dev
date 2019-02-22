@@ -172,11 +172,72 @@ main {
   position: fixed;
   display: none;
 }
+
+.documento-new .toggable-card .badge {
+  margin-left: 0.5rem; 
+}
+
 /*
 .documento-new .human-body .svg-body g:hover {
   opacity: 0.3;
 }
 */
+
+.documento-new .size-zones .alert-container:not(:last-child) {
+  margin-bottom: 1rem; 
+}
+
+.documento-new .size-zones .alert-container {
+  border-radius: .25rem;
+  border: 1px solid #a8b2b9;
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 20% 1fr;
+}
+
+@media screen and (max-width: 575px) {
+  .documento-new .size-zones .alert-container {
+    font-size: 0.5rem; 
+  }
+
+  /*
+  .documento-new .size-zones .alert-container button {
+    font-size: 0.5rem; 
+  }
+  */
+}
+
+@media screen and (min-width:576px) and (max-width: 991px) {
+  .documento-new .size-zones .alert-container {
+    font-size: 0.75rem; 
+  }
+
+  /*
+  .documento-new .size-zones .alert-container button {
+    font-size: 0.75rem;
+  }
+  */
+}
+
+.documento-new .size-zones .alert-container .size-header {
+  position: relative;
+  font-weight: bold;
+  padding: .75rem 1.25rem;
+  border-right:1px solid #a8b2b9;
+  color: #a8b2b9;
+  text-align: center;
+}
+
+.documento-new .size-zones .alert-container .alert-holder {
+  width: 100%;
+}
+
+.documento-new .size-zones .alert-container .alert-holder .alert {
+  width: inherit;
+  margin-bottom:0;
+  border-radius:0 .25rem .25rem 0;
+  border:0;
+}
 
 .documento-new .map,
 .documento-edit .map {
@@ -411,10 +472,16 @@ main {
 
 @media screen and (max-width: 575px) {
   .alert { font-size: 0.5rem; }
+  .alert button { font-size: 0.5rem; }
 }
 
 @media screen and (min-width: 576px) and (max-width:992px) {
   .alert { font-size: 0.75rem; }
+  .alert button { font-size: 0.75rem; }
+}
+
+.alert-selection {
+  background-color: steelblue; 
 }
 
 .shadow-text {

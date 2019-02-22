@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -15,7 +15,7 @@ block contenido
 			h1(class="text-center mb-3") Crear Pack
 			form(id="createPack" action="/session/packs" method="POST")
 				p Cliente:
-				div(class="form-group") 
+				div(class="form-group")
 					select(class="form-control" name="usr" id="usr")
 						if(users.length == 1)
 							option(class="text-secondary" value=users[0]._id selected)=users[0].name
@@ -23,12 +23,12 @@ block contenido
 							option(class="text-secondary" value="undefined" disabled selected) Usuario
 							for user in users
 								option(class="text-secondary" value=user._id)=user.name
-				div(class="form-group") 
+				div(class="form-group")
 					input(type="hidden" id="nZones" name="nZones")
 					select(class="form-control" name="pTyp" id="pTyp")
-						if(packTypes.length == 1) 
+						if(packTypes.length == 1)
 							option(class="text-secondary" value=packTypes[0]._id selected)=packTypes[0].title
-						else 
+						else
 							option(class="text-secondary" value="undefined" disabled selected) Elige un producto
 							for packType in packTypes
 								option(class="text-secondary" value=packType._id)=packType.title

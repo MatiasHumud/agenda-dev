@@ -1,13 +1,13 @@
 extends ./layout.jade
-				
-block contenido	
-	-if (currentSession != null) 
+
+block contenido
+	-if (currentSession != null)
 		include ./session/session_permission/authActions.jade
 	-else
 		include ./session/session_permission/unauthActions.jade
 
 	main
-		div(class="jumbotron text-center") 
+		div(class="jumbotron text-center")
 			h1(class="shadow-text a top-space") Centros de Depilación
 			h2(class="shadow-text a") Láser Diodo
 			p(class="a top-space") Únicos especialistas en depilación láser diodo con más de 15 centros en todo Chile

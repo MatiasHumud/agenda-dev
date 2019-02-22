@@ -1,15 +1,15 @@
 extends ./layout.jade
 
 block contenido
-	-if (currentSession != null) 
+	-if (currentSession != null)
 		include ./session/session_permission/authActions.jade
 	-else
 		include ./session/session_permission/unauthActions.jade
-	
+
 	div(class="top-space")
 
 	main
-		div(class="container mx-auto col-xs-12 col-sm-6 top-space") 
+		div(class="container mx-auto col-xs-12 col-sm-6 top-space")
 			h1(class="text-center mb-3") Registro
 			form(action="/newUser" method="POST" class="registration")
 				div(class="form-group")

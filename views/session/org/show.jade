@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -15,16 +15,16 @@ block contenido
 			h1(class="text-center mb-3") Detalle de miembro
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Nombre:
-				label #{member.name} 
+				label #{member.name}
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Apellido:
-				label #{member.lastName}	
+				label #{member.lastName}
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Email:
-				label #{member.email}	
+				label #{member.email}
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Horas hábiles
-				label #{JSON.stringify(member.workHours)}	
+				label #{JSON.stringify(member.workHours)}
 			div(class="btn-group top-space" role="group")
 				a(href="/session/org/" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver a Mi Equipo")
 					i(class="fa fa-caret-square-o-left")

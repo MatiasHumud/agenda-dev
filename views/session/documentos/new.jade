@@ -30,75 +30,109 @@ block contenido
 									option(class="text-secondary" value=user._id)=user.name
 					div(class="form-group")
 						select(class="form-control selectpicker" name="svc" id="svc" multiple)
-							if(services.length == 1)
-								option(class="text-secondary" value=services[0]._id selected)=services[0].name
+							if(packs.length == 1)
+								option(class="text-secondary" value=packs[0]._id selected)=packs[0].packType.title
 							else
 								option(class="text-secondary" value="undefined" disabled) Elija una zona
-								for service in services
-									option(class="text-secondary" value=service._id)=service.name
-					div(class="human-body" id="femaleBody" style="display:none;")
-						nav(class="nav nav-pills nav-fill")
-							a(class="nav-item nav-link active" id="femalePillsFront" data-toggle="tab" href="#femaleBodyFront" role="tab" aria-controls="femaleBodyFront" aria-selected="true") Frente
-							a(class="nav-item nav-link" id="femalePillsBack" data-toggle="tab" href="#femaleBodyBack" role="tab" aria-controls="femaleBodyBack" aria-selected="false") Espalda
-						div(class="tab-content" id="femaleTabContent")
-							div(class="tab-pane fade show active" id="femaleBodyFront" role="tabpanel" aria-labelledby="femalePillsFront")
-								svg(class="svg-body" viewBox="0 0 30 60")
-									image(href="/public/femalebody_front.jpg" x="0" y="5" height="50")
-									g(data-toggle="tooltip" data-placement="bottom" title="Abdomen")
-										polygon(points="12.6,19.5 12.8,20.5 12.9,21.5 13,23 12.7,24 12.5,24.2 12.7,24.2 12.9,24 13.3,24.6 13.7,24.7 14,24.8 14.5,24.9 14.6,25 14.8,25.5 14.8,26 14.6,26.5 14.4,26.7 14,27 13,27.5 14,27.5 15,27.6 16,27.6 17,27.6 18,27.5 19.5,27.3 18.3,26.5 17.9,26 18.1,25 18.2,24.5 18.6,24.2 18.9,24.2 19.5,24.1 20.2,24 19.5,23 19.5,21 19.6,20 19.6,19.5 19.3,19.3 19,19.2 18,19 17,18.5 16.5,18.3 16,18.5 15.5,18.8")
-									g(data-toggle="tooltip" data-placement="top" title="Pecho")
-										polygon(points="5,15 12.5,19.5 13.5,19.2 15,18.8 16,18.3 16.9,18.3 17.3,18.6 17.7,18.8 18,19 18.2,19 18.5,19 18.9,19.1 19.5,19.3 19.7,19.5 19.8,19 20.1,17 19.7,15 19.7,13.6 19,13.5 18.5,13.3 18,13 17.5,12.5 17,13 16.5,13.5 16,13.5 15.8,13.5 15,13 14.7,12.7 14,13.1 13,13.4 12.5,13.5 12.3,13.6 12.5,14.5 12.7,15 13,16 12.9,16.7 12.9,17.4 12.9 17.7 12.7,18 12.4,18.4 12.5,19.5")
-									g(data-toggle="tooltip" data-placement="top" title="Pies")
-										polygon(points="14.3,50 15.8,50 16.2,51 16.3,51.5 16.2,51.4 16.2,51.8 16.1,52 15.7,53 15.5,53.5 15,53.5 14.5,53.2")
-										polygon(points="16.7,50 18.3,50 18.4,50.3 18.3,50.5 18.1,50.7 18.1,53 18.5,53.9 18.6,54.1 18.4,54.1 18.1,54.2 17.5,54.3 17,54.3 16.5,54.3 15.5,54.3 15.3,54.2")
-									g(data-toggle="tooltip" data-placement="right" title="Brazos completos")
-										polygon(points="12.4,13.6 11,14 10,15 9.2,16 8.7,16.5 8.4,16.7 8,17 7.5,17.8 7,18.4 6.5,18.8 6,19.4 5.7,19.7 5.6,20 5.6,20.5 5.8,21 6.2,21.5 6.5,21.8 6.7,22 6.9,22.2 7.1,22.4 7.5,22.8 7.7,22.9 8.4,23.3 8.9,23.8 9.2,24.0 9.4,24.2 9.7,24.4 10,24.9 10.3,25.3 10.8,25.8 11.3,26.1 12.1,26.4 12.4,26.8 12.7,27 13,27 13.5,27 13.8,27 14,26.8 14.3,26.5 14.5,26.5 14.5,25.5 14.7,25.5 14.2,24.9 13.6,24.7 13.3,24.6 13,24.2 12.5,24.2 12,24.2 11.5,24.1 11,23.8 10.5,23.3 10,22.9 9.5,22.4 9,21.9 8.5,21.4 8,20.6 7.7,20.3 7.7,20 8,19.7 8.4,19.3 8.7,19.2 9.2,18.7 9.7,18.2 10.2,17.7 10.7,17.2 10.9,16.9")
-										polygon(points="19.5,13.6 20,13.6 20.5,13.6 20.8,13.7 21,13.8 21.3,14.1 21.6,14.5 22,14.8 22.5,15.3 22.9,15.9 23.5,16.9 23.9,17.4 24,17.5 24.5,18 25,18.6 25.5,19.3 25.8,19.8 26,20.2 26.1,20.5 26.1,21 26,21.3 25.5,22.2 25,22.9 24.5,23.7 24,24.3 23.5,24.8 23.2,25.1 22.7,25.6 22.4,26 22.2,26.1 21.9,26.3 21.5,26.2 21,26.3 20.5,26.5 20,26.7 19.5,27 19.2,26.8 18.7,26.7 18.2,26.2 18,26 18.2,25 18.2,24.8 18.6,24.5 18.9,24.3 19.4,24.2 19.7,24.2 20,24.2 20.3,24.2 20.5,24.3 20.8,24.4 21.2,24.7 21.4 24.8 21.6,24.8 21.8,24.7 22.3,24.2 22.8,23.4 23.3,22.7 23.8,21.7 24.2,21 24.2,20.5 23.7,20 23.2,19.5 22.7,18.8 22.2,18.3 21.7,17.8")
-									g(data-toggle="tooltip" data-placement="left" title="Piernas completas")
-										polygon(points="11.8,32 16.3,32 16.3,34 16.2,34.3 16.1,34.8 16.1,35.2 16.1,35.7 16.2,36.2 16.2,36.7 16.3,37.1 16.3,37.5 16.2,38 16.2,38.5 16.2,39 16.1,39.5 16,40 15.9,40.5 16,41 16,42.5 15.9,43 15.9,42.5 15.8,44 15.6,46 15.5,48 15.7,49.5 15.9,50 14.2,50 14.2,49 14,48 13.9,47 13.6,45 13.4,44.5 13.3,44 13.3,43.5 13.1,43 13.1,42 13.1,41 13.2,40.5 13.3,40 13.3,39.5")
-										polygon(points="17,32 21,32 20.9,32.5 20.8,33 20.7,33.6 20.6,34 20.5,34.7 20.3,35.5 20.2,36 20,36.7 19.9,37.4 19.8,38.2 19.7,39 19.6,39.8 19.6,40.6 19.7,41.8 19.7,42.3 19.6,43 19.5,43.8 19.3,44.8 19.1,45.8 18.9,46.8 18.7,47.8 18.4,48.8 18.2,49 18.3,50 16.7,50 16.6,50 16.8,49 16.8,48 16.9,47.5 16.9,47 16.8,46 16.7,45 16.6,43")
-							div(class="tab-pane fade" id="femaleBodyBack" role="tabpanel" aria-labelledby="femalePillsBack")
-								svg(class="svg-body" viewBox="0 0 30 60")
-									image(href="/public/femalebody_back.jpg" x="0" y="5" height="50")
-									g(data-toggle="tooltip" data-placement="left" title="Nuca")
-										polygon(points="14.2,11 14.5,11.5 16.5,12.5 16.5,13 14.5,12.5 13.5,12")
-									g(data-toggle="tooltip" data-placement="right" title="Espalda completa")
-										polygon(points="11.2,13.5 11,14 10.8,15 10.7,17.5 10.9,18 11.5,19 12,20 12.4,21 12.7,22 12.8,23 12.85,23.3 12.3,24.5 12,25 11.8,26 11.8,26.5 12.5,26.2 14,26.2 17,26.2 18,26.3 19,26.6 19.3,26.7 19.3,26 19.4,25.7 19.6,25.4 19.8,25 19.5,24 19.1,23 18.9,21 18.7,19 18.7,17 18.6,15 18.5,13.5 18,13.35 17,13.1 16.7,13 16,12.9 15,12.7 14,12.4")
-									g(data-toggle="tooltip" data-placement="left" title="Glúteos")
-										polygon(points="11.4,27.8 11.45,27 12,26.5 13,26.2 13.5,26.2 16,26.25 18,26.35 19.1,26.7 19.2,28 19.1,29 17.3,31 16,31.05 13,31 11,30")
-					div(class="human-body" id="maleBody" style="display:none;")
-						nav(class="nav nav-pills nav-fill")
-							a(class="nav-item nav-link active" id="malePillsFront" data-toggle="tab" href="#maleBodyFront" role="tab" aria-controls="femaleBodyFront" aria-selected="true") Frente
-							a(class="nav-item nav-link" id="malePillsBack" data-toggle="tab" href="#maleBodyBack" role="tab" aria-controls="maleBodyBack" aria-selected="false") Espalda
-						div(class="tab-content" id="maleTabContent")
-							div(class="tab-pane fade show active" id="maleBodyFront" role="tabpanel" aria-labelledby="malePillsFront")
-								svg(class="svg-body" viewBox="0 0 30 60")
-									image(href="/public/malebody_front.jpg" x="0" y="5" height="50")
-									g(data-toggle="tooltip" data-placement="right" title="Piernas completas")
-										polygon(points="11.7,28.7 11.4,30 11.4,31.3 11.7,31.5 11.9,31.7 12,32 12,32.4 11.8,32.7 11.5,33 11.4,33.1 11.4,33.4 11.5,33.7 11.6,34 11.65,34.3 11.7,35 11.75,35.5 11.8,36 11.85,37 12,38 11.95,38.5 11.95,39 11.93,39.5 11.7,41 11.55,42 11.55,42.5 11.55,43 11.65,44 11.75,45 11.9,46 12,47 12.3,48 12.4,48.45 13.8,48.5 13.7,48 13.75,46 14,44 14.27,43 14.2,42 14.1,41 14,40.5 14.7,39 14.8,38 14.9,37 14.93,35 15.54,33 15.6,32 15.65,31.5 15,31 14,29.9 13,29.3")
-										polygon(points="15.9,31.6 16.7,31 17,30.5 17.5,30.2 17.8,30 18.4,29.6 18.9,29.3 19.4,29 19.9,28.7 20,29.4 20.05,30 20.1,32 20.25,34 20.22,36 20.2,35.5 20.15,37 20.05,38 20,39 20.1,40 20.5,41.5 20.5,42.5 20.4,44 20,47 19.8,48 19.7,48.5 18.4,48.5 18.3,48 18.3,47 18.2,46 18,44 17.9,43 17.8,42 17.9,41 18,40 17.4,39 17.3,38 17.2,37 17.1,36 17,35.5 16.9,35")
-									g(data-toggle="tooltip" data-placement="left" title="Pies")
-										polygon(points="12.5,48.5 14,48.5 13.8,49 13.9,50 13.5,50.5 13.3,51 13.2,51.5 13.1,51 13,52 12.5,52.1 12,52 11.5,51.8 10.7,51.5 10.59,51.2 10.8,51 11.5,50 11.9,49.5 12.1,49")
-										polygon(points="18.2,48.5 19.7,48.5 19.7,49.5 20,50 20.7,51 20.8,51.5 20.8,51.5 20.6,51.7 20.5,51.7 20,51.9 19.5,51.9 19,51.9 18.4,51.9 18,51.0 17.8,50.5")
-									g(data-toggle="tooltip" data-placement="top" title="Pectoral")
-										polygon(points="11.5,14.8 12.5,14.5 13.5,14 13.8,14.3 14.1,14.7 14.5,14.9 15,15.1 16,15.2 17,15.1 17.5,15 18,14.8 18.5,14.3 18.7,14.1 19,14.2 19.5,14.3 19.7,14.5 19.6,18 19.7,19 19.8,20 19.7,20.1 19,20.2 18,20.4 16,20.7 15,20.6 14,20.5 12,20.3 12.2,19 12.3,18.5 12.2,17")
-									g(data-toggle="tooltip" data-placement="bottom" title="Abdomen")
-										polygon(points="12,21 12.2,22 12.3,23 12.5,24 12.23,25 12.23,26 12,27 11.8,27.5 12,27.6 12.5,27.7 13,27.8 13.5,27.9 14.5,28 15.5,28.1 16.5,28 17.5,27.9 18.5,27.8 19.5,27.6 19.8,27.5 19.6,26.5 19.4,25.5 19.3,24.5 19.3,23 19.55,22 19.7,21 19.9,20.2 19,20.2 18,20.5 17,20.7 16,20.8 15,20.7 14,20.6 13,20.5 12,20.4")
-									g(data-toggle="tooltip" data-placement="left" title="Brazos completos")
-										polygon(points="11.5,14.8 11,15 10.7,15.1 10.4,15.4 10.3,15.6 10.2,15.9 10,16.5 9.8,17 9.7,18 9.7,18.5 9.5,19.5 9.45,20 9.4,21 9.35,22 9.4,23 9.2,23.5 9.2,24 9.2,24.4 9.1,25 9.03,26 9,27 9.1,28 9.1,29 9.04,30 9.1,31 9.2,32 9.25,32.5 9.3,32.6 9.3,32.5 9.9,33 10.4,33.4 10.7,33.3 10.6,33.2 10.4,33.3 10.8,33.2 11.1,33 11.5,32.5 11.7,32.4 11.9,32 11.5,31.5 11.3,31.3 11,30.5 10.3,30 10.2,29.9 10,29.8 10.1,29.8 10.1,30 10.2,30.3 10.3,29.8 10.4,29 10.5,28 10.6,27 10.7,27 10.8,26 10.9,25 11,24 11.4,23 11.5,22 11.9,20 12,19 11.8,18")
-										polygon(points="19.5,14.3 20,14.5 21,15 21.4,15.5 21.6,15.8 21.7,16 21.7,16.5 21.95,17.5 21.96,18 21.95,18.5 21.93,19 22.2,20 22.3,22 22.3,22.3 22.5,23 22.6,24 22.7,25 22.8,26 22.8,27 22.8,28 22.7,29 22.75,29.5 22.7,30 22.75,32 22.1,33 21.9,33 21.5,33.1 21,33.2 20.5,33 20.4,32.5 20.5,32 20.6,31 20.65,30.5 20.9,30 21,29.9 21.5,29.5 21.4,29 21.3,28 21.2,27 20.8,25 20.7,24.5 20.6,24 20.5,23 20.4,22 20.1,21 20,20 19.8,19 20,18")
-							div(class="tab-pane fade" id="maleBodyBack" role="tabpanel" aria-labelledby="malePillsBack")
-								svg(class="svg-body" viewBox="0 0 30 60")
-									image(href="/public/malebody_back.jpg" x="0" y="5" height="50")
-									g(data-toggle="tooltip" data-placement="right" title="Nuca")
-										polygon(points="14.5,12.5 15,12.4 16,12.3 17.4,12.4 17.3,13 17.4,13.5 14.3,13.5")
-									g(data-toggle="tooltip" data-placement="left" title="Espalda completa")
-										polygon(points="11.5,14.5 11,16.5 11.3,18 11.7,19 11.9,20 12.1,21 12.3,22 12.5,23 12.7,24 12.7,26 12.5,27.3 13,27 18,26.8 19,26.9 20.2,27.1 20,26.5 19.8,26 19.6,25.8 19.5,25 19.3,23 19.5,22 19.6,21 20,20 20.2,19 20.4,18.5 20.6,18 20.8,17.5 20.8,14.8 20.5,14.6 20,14.4 19.5,14.3 19,14.2 18.5,14.1 18,13.8 17.5,13.6 14.5,13.6")
-									g(data-toggle="tooltip" data-placement="right" title="Glúteos")
-										polygon(points="12.4,27.3 14,27 15,26.9 17,26.9 19,27 20.2,27.2 20.6,29 20.5,29.2 20.3,29.7 19.8,30.5 19.2,31 18.5,31.4 17,31.7 15,31.8 14,31.5 13.5,31 13,30.5 12.7,30 12.4,29.7")
-					div(class="selected-zones" id="selectedZones" style="display:none;")
-						h5 Zonas seleccionadas #[span(class="badge") ]
-						div(class="body-zones" id="bodyZones")
+								for pack in packs
+									option(class="text-secondary" value=pack._id)=pack.packType.title
+					div(class="selection-surface" id="selectionSurface" style="display:none;")
+						div(class="human-body" id="femaleBody" style="display:none;")
+							nav(class="nav nav-pills nav-fill")
+								a(class="nav-item nav-link active" id="femalePillsFront" data-toggle="tab" href="#femaleBodyFront" role="tab" aria-controls="femaleBodyFront" aria-selected="true") Frente
+								a(class="nav-item nav-link" id="femalePillsBack" data-toggle="tab" href="#femaleBodyBack" role="tab" aria-controls="femaleBodyBack" aria-selected="false") Espalda
+							div(class="tab-content" id="femaleTabContent")
+								div(class="tab-pane fade show active" id="femaleBodyFront" role="tabpanel" aria-labelledby="femalePillsFront")
+									svg(class="svg-body" viewBox="0 0 30 60")
+										image(href="/public/femalebody_front.jpg" x="0" y="5" height="50")
+										// L
+										g(data-toggle="tooltip" data-placement="right" title="Brazos completos" data-size="L" data-gender="female")
+											polygon(points="12.4,13.6 11,14 10,15 9.2,16 8.7,16.5 8.4,16.7 8,17 7.5,17.8 7,18.4 6.5,18.8 6,19.4 5.7,19.7 5.6,20 5.6,20.5 5.8,21 6.2,21.5 6.5,21.8 6.7,22 6.9,22.2 7.1,22.4 7.5,22.8 7.7,22.9 8.4,23.3 8.9,23.8 9.2,24.0 9.4,24.2 9.7,24.4 10,24.9 10.3,25.3 10.8,25.8 11.3,26.1 12.1,26.4 12.4,26.8 12.7,27 13,27 13.5,27 13.8,27 14,26.8 14.3,26.5 14.5,26.5 14.5,25.5 14.7,25.5 14.2,24.9 13.6,24.7 13.3,24.6 13,24.2 12.5,24.2 12,24.2 11.5,24.1 11,23.8 10.5,23.3 10,22.9 9.5,22.4 9,21.9 8.5,21.4 8,20.6 7.7,20.3 7.7,20 8,19.7 8.4,19.3 8.7,19.2 9.2,18.7 9.7,18.2 10.2,17.7 10.7,17.2 10.9,16.9")
+											polygon(points="19.5,13.6 20,13.6 20.5,13.6 20.8,13.7 21,13.8 21.3,14.1 21.6,14.5 22,14.8 22.5,15.3 22.9,15.9 23.5,16.9 23.9,17.4 24,17.5 24.5,18 25,18.6 25.5,19.3 25.8,19.8 26,20.2 26.1,20.5 26.1,21 26,21.3 25.5,22.2 25,22.9 24.5,23.7 24,24.3 23.5,24.8 23.2,25.1 22.7,25.6 22.4,26 22.2,26.1 21.9,26.3 21.5,26.2 21,26.3 20.5,26.5 20,26.7 19.5,27 19.2,26.8 18.7,26.7 18.2,26.2 18,26 18.2,25 18.2,24.8 18.6,24.5 18.9,24.3 19.4,24.2 19.7,24.2 20,24.2 20.3,24.2 20.5,24.3 20.8,24.4 21.2,24.7 21.4 24.8 21.6,24.8 21.8,24.7 22.3,24.2 22.8,23.4 23.3,22.7 23.8,21.7 24.2,21 24.2,20.5 23.7,20 23.2,19.5 22.7,18.8 22.2,18.3 21.7,17.8")
+										g(data-toggle="tooltip" data-placement="left" title="Piernas completas" data-size="L" data-gender="female")
+											polygon(points="11.8,32 16.3,32 16.3,34 16.2,34.3 16.1,34.8 16.1,35.2 16.1,35.7 16.2,36.2 16.2,36.7 16.3,37.1 16.3,37.5 16.2,38 16.2,38.5 16.2,39 16.1,39.5 16,40 15.9,40.5 16,41 16,42.5 15.9,43 15.9,42.5 15.8,44 15.6,46 15.5,48 15.7,49.5 15.9,50 14.2,50 14.2,49 14,48 13.9,47 13.6,45 13.4,44.5 13.3,44 13.3,43.5 13.1,43 13.1,42 13.1,41 13.2,40.5 13.3,40 13.3,39.5")
+											polygon(points="17,32 21,32 20.9,32.5 20.8,33 20.7,33.6 20.6,34 20.5,34.7 20.3,35.5 20.2,36 20,36.7 19.9,37.4 19.8,38.2 19.7,39 19.6,39.8 19.6,40.6 19.7,41.8 19.7,42.3 19.6,43 19.5,43.8 19.3,44.8 19.1,45.8 18.9,46.8 18.7,47.8 18.4,48.8 18.2,49 18.3,50 16.7,50 16.6,50 16.8,49 16.8,48 16.9,47.5 16.9,47 16.8,46 16.7,45 16.6,43")
+										// M
+										g(data-toggle="tooltip" data-placement="bottom" title="Abdomen completo" data-size="M" data-gender="female")
+											polygon(points="12.6,19.5 12.8,20.5 12.9,21.5 13,23 12.7,24 12.5,24.2 12.7,24.2 12.9,24 13.3,24.6 13.7,24.7 14,24.8 14.5,24.9 14.6,25 14.8,25.5 14.8,26 14.6,26.5 14.4,26.7 14,27 13,27.5 14,27.5 15,27.6 16,27.6 17,27.6 18,27.5 19.5,27.3 18.3,26.5 17.9,26 18.1,25 18.2,24.5 18.6,24.2 18.9,24.2 19.5,24.1 20.2,24 19.5,23 19.5,21 19.6,20 19.6,19.5 19.3,19.3 19,19.2 18,19 17,18.5 16.5,18.3 16,18.5 15.5,18.8")
+										// S
+										g(data-toggle="tooltip" data-placement="bottom" title="Axilas" data-size="S" data-gender="female")
+											polygon(points="12.25,14 11.7,15 11.5,15.4 11.2,15.9 10.9,16.5 10.8,16.9 10.7,17 12,16.5 12.2,17.7 12.4,18.5 12.5,18 12.7,17.6 12.8,16.3")
+											polygon(points="19.7,14 20.5,15.5 21.9,17.9 21,17 20.5,17 20.3,17.3")
+										g(data-toggle="tooltip" data-placement="top" title="Cuello interior" data-size="S" data-gender="female")
+											polygon(points="13.6,13.2 14,13.5 14.4,13.7 14.9,13.8 15.6,14.1 16.2,14.2 16.8,14.1 17.1,14 17.5,14.1 18,13.8 18.2,13.5 18.3,13.2 18.1,13 17.9,13 17.8,12.9 17,13.1 16.7,13.3 16.4,13.4 16.1,13.3 15.7,13.2 14.7,12.6")
+										// XS
+										g(data-toggle="tooltip" data-placement="right" title="Manos + dedos" data-size="XS" data-gender="female")
+											polygon(points="9.7,24.4 10,24.9 10.3,25.3 10.8,25.8 11.3,26.1 12.1,26.4 12.4,26.8 12.7,27 13,27 13.5,27 13.8,27 14,26.8 14.3,26.5 14.5,26.5 14.5,25.5 14.7,25.5 14.2,24.9 13.6,24.7 13.3,24.6 13,24.2 12.5,24.2 12,24.2 11.5,24.1 11,23.8 10.5,23.3 10,22.9")
+											polygon(points="23.2,25.1 22.7,25.6 22.4,26 22.2,26.1 21.9,26.3 21.5,26.2 21,26.3 20.5,26.5 20,26.7 19.5,27 19.2,26.8 18.7,26.7 18.2,26.2 18,26 18.2,25 18.2,24.8 18.6,24.5 18.9,24.3 19.4,24.2 19.7,24.2 20,24.2 20.3,24.2 20.7,24.4 21.5,24.7")
+										g(data-toggle="tooltip" data-placement="top" title="Pies + dedos" data-size="XS" data-gender="female")
+											polygon(points="14.3,50 15.8,50 16.2,51 16.3,51.5 16.2,51.4 16.2,51.8 16.1,52 15.7,53 15.5,53.5 15,53.5 14.5,53.2")
+											polygon(points="16.7,50 18.3,50 18.4,50.3 18.3,50.5 18.1,50.7 18.1,53 18.5,53.9 18.6,54.1 18.4,54.1 18.1,54.2 17.5,54.3 17,54.3 16.5,54.3 15.5,54.3 15.3,54.2")
+										g(data-toggle="tooltip" data-placement="bottom" title="Nariz" data-size="XS" data-gender="female")
+											polygon(points="16,11 15.5,12 16,12.2 16.3,12.3 16.7,12 16,10.4")
+								div(class="tab-pane fade" id="femaleBodyBack" role="tabpanel" aria-labelledby="femalePillsBack")
+									svg(class="svg-body" viewBox="0 0 30 60")
+										image(href="/public/femalebody_back.jpg" x="0" y="5" height="50")
+										// L
+										g(data-toggle="tooltip" data-placement="right" title="Espalda completa" data-size="L" data-gender="female")
+											polygon(points="11.2,13.5 11,14 10.8,15 10.7,17.5 10.9,18 11.5,19 12,20 12.4,21 12.7,22 12.8,23 12.85,23.3 12.3,24.5 12,25 11.8,26 11.8,26.5 12.5,26.2 14,26.2 17,26.2 18,26.3 19,26.6 19.3,26.7 19.3,26 19.4,25.7 19.6,25.4 19.8,25 19.5,24 19.1,23 18.9,21 18.7,19 18.7,17 18.6,15 18.5,13.5 18,13.35 17,13.1 16.7,13 16,12.9 15,12.7 14,12.4")
+										// M
+										g(data-toggle="tooltip" data-placement="left" title="Glúteos" data-size="M" data-gender="female")
+											polygon(points="11.4,27.8 11.45,27 12,26.5 13,26.2 13.5,26.2 16,26.25 18,26.35 19.1,26.7 19.2,28 19.1,29 17.3,31 16,31.05 13,31 11,30")
+										// S
+										g(data-toggle="tooltip" data-placement="left" title="Nuca/Cuello posterior" data-size="M" data-gender="female")
+											polygon(points="14.2,11 14.5,11.5 16.5,12.5 16.5,13 14.5,12.5 13.5,12")
+						div(class="human-body" id="maleBody" style="display:none;")
+							nav(class="nav nav-pills nav-fill")
+								a(class="nav-item nav-link active" id="malePillsFront" data-toggle="tab" href="#maleBodyFront" role="tab" aria-controls="femaleBodyFront" aria-selected="true") Frente
+								a(class="nav-item nav-link" id="malePillsBack" data-toggle="tab" href="#maleBodyBack" role="tab" aria-controls="maleBodyBack" aria-selected="false") Espalda
+							div(class="tab-content" id="maleTabContent")
+								div(class="tab-pane fade show active" id="maleBodyFront" role="tabpanel" aria-labelledby="malePillsFront")
+									svg(class="svg-body" viewBox="0 0 30 60")
+										image(href="/public/malebody_front.jpg" x="0" y="5" height="50")
+										// L
+										g(data-toggle="tooltip" data-placement="left" title="Brazos completos" data-size="L" data-gender="male")
+											polygon(points="11.5,14.8 11,15 10.7,15.1 10.4,15.4 10.3,15.6 10.2,15.9 10,16.5 9.8,17 9.7,18 9.7,18.5 9.5,19.5 9.45,20 9.4,21 9.35,22 9.4,23 9.2,23.5 9.2,24 9.2,24.4 9.1,25 9.03,26 9,27 9.1,28 9.1,29 10.3,29 10.4,28.5 10.5,28 10.6,27 10.7,26 10.95,25.5 11.1,24 11.3,23")
+											polygon(points="19.5,14.3 20,14.5 21,15 21.4,15.5 21.6,15.8 21.7,16 21.7,16.5 21.95,17.5 21.96,18 21.95,18.5 21.93,19 22.2,20 22.3,22 22.3,22.3 22.5,23 22.6,24 22.7,25 22.8,26 22.8,27 22.8,28 22.7,29 22.7,29.5 22,29.15 21.5,29 21.3,28 21.2,27 21,26 20.5,22 20.5,20 19.7,14.5")
+										g(data-toggle="tooltip" data-placement="right" title="Piernas completas" data-size="L" data-gender="male")
+											polygon(points="11.7,28.7 11.4,30 11.4,31.3 11.7,31.5 11.9,31.7 12,32 12,32.4 11.8,32.7 11.5,33 11.4,33.1 11.4,33.4 11.5,33.7 11.6,34 11.65,34.3 11.7,35 11.75,35.5 11.8,36 11.85,37 12,38 11.95,38.5 11.95,39 11.93,39.5 11.7,41 11.55,42 11.55,42.5 11.55,43 11.65,44 11.75,45 11.9,46 12,47 12.3,48 12.4,48.45 13.8,48.5 13.7,48 13.75,46 14,44 14.27,43 14.2,42 14.1,41 14,40.5 14.7,39 14.8,38 14.9,37 14.93,35 15.54,33 15.6,32 15.65,31.5 15,31 14,29.9 13,29.3")
+											polygon(points="15.9,31.6 16.7,31 17,30.5 17.5,30.2 17.8,30 18.4,29.6 18.9,29.3 19.4,29 19.9,28.7 20,29.4 20.05,30 20.1,32 20.25,34 20.22,36 20.2,35.5 20.15,37 20.05,38 20,39 20.1,40 20.5,41.5 20.5,42.5 20.4,44 20,47 19.8,48 19.7,48.5 18.4,48.5 18.3,48 18.3,47 18.2,46 18,44 17.9,43 17.8,42 17.9,41 18,40 17.4,39 17.3,38 17.2,37 17.1,36 17,35.5 16.9,35")
+										// M
+										g(data-toggle="tooltip" data-placement="bottom" title="Abdomen completo" data-size="M" data-gender="male")
+											polygon(points="12,21 12.2,22 12.3,23 12.5,24 12.23,25 12.23,26 12,27 11.8,27.5 12,27.6 12.5,27.7 13,27.8 13.5,27.9 14.5,28 15.5,28.1 16.5,28 17.5,27.9 18.5,27.8 19.5,27.6 19.8,27.5 19.6,26.5 19.4,25.5 19.3,24.5 19.3,23 19.55,22 19.7,21 19.9,20.2 19,20.2 18,20.5 17,20.7 16,20.8 15,20.7 14,20.6 13,20.5 12,20.4")
+										g(data-toggle="tooltip" data-placement="bottom" title="Barba" data-size="M" data-gender="female")
+											polygon(points="14,11 14.5,12 15,12.5 15.5,12.5 17,12.5 17.5,11.5 17.5,12 17,12.8 16,13.5 15,13.1 14.3,12.4")
+										// S
+										g(data-toggle="tooltip" data-placement="right" title="Axilas" data-size="S" data-gender="male")
+											polygon(points="19.55,15 19.8,15.7 20.5,20 20.3,20.5 20.6,22 20,20.5")
+											polygon(points="11.5,15.5 11.5,19 11.5,22 11.6,21.5 11.7,21 11.8,20.5 11.9,20 12,19.2 12.25,18.5 12.25,18 12,16.5")
+										g(data-toggle="tooltip" data-placement="bottom" title="Cuello interior" data-size="S" data-gender="male")
+											polygon(points="14.3,12.5 14.5,13.3 13.7,14 14.3,14.8 15,15 16,15.1 17,15 18,14.7 18.5,14.2 18.5,14.1 18.3,14 18,13.8 17.7,13.7 17.5,13.6 17.3,13 17.3,12.7 17,12.7 16.5,13.4 16,13.5 15.5,13.5 15,13.3")
+										// XS
+										g(data-toggle="tooltip" data-placement="right" title="Manos + dedos" data-size="XS" data-gender="male")
+											polygon(points="9.1,29 9.04,30 9.1,31 9.2,32 9.25,32.5 9.3,32.6 9.3,32.5 9.9,33 10.4,33.4 10.7,33.3 10.6,33.2 10.4,33.3 10.8,33.2 11.1,33 11.5,32.5 11.7,32.4 11.9,32 11.5,31.5 11.3,31.3 11,30.5 10.3,30 10.3,30 10.2,29.9 10,29.8 10.1,29.8 10.25,29.1")
+											polygon(points="22.75,29.5 22.7,30 22.75,32 22.1,33 21.9,33 21.5,33.1 21,33.2 20.5,33 20.4,32.5 20.5,32 20.6,31 20.65,30.5 20.9,30 21,29.9 21.5,29.5 21.4,29")
+										g(data-toggle="tooltip" data-placement="left" title="Pies + dedos" data-size="XS" data-gender="male")
+											polygon(points="12.5,48.5 14,48.5 13.8,49 13.9,50 13.5,50.5 13.3,51 13.2,51.5 13.1,51 13,52 12.5,52.1 12,52 11.5,51.8 10.7,51.5 10.59,51.2 10.8,51 11.5,50 11.9,49.5 12.1,49")
+											polygon(points="18.2,48.5 19.7,48.5 19.7,49.5 20,50 20.7,51 20.8,51.5 20.8,51.5 20.6,51.7 20.5,51.7 20,51.9 19.5,51.9 19,51.9 18.4,51.9 18,51.0 17.8,50.5")
+										g(data-toggle="tooltip" data-placement="bottom" title="Nariz" data-size="XS" data-gender="male")
+											polygon(points="15.7,10 15.4,11.6 16.4,11.6")
+								div(class="tab-pane fade" id="maleBodyBack" role="tabpanel" aria-labelledby="malePillsBack")
+									svg(class="svg-body" viewBox="0 0 30 60")
+										image(href="/public/malebody_back.jpg" x="0" y="5" height="50")
+										// L
+										g(data-toggle="tooltip" data-placement="left" title="Espalda completa" data-size="L" data-gender="male")
+											polygon(points="11.5,14.5 11,16.5 11.3,18 11.7,19 11.9,20 12.1,21 12.3,22 12.5,23 12.7,24 12.7,26 12.5,27.3 13,27 18,26.8 19,26.9 20.2,27.1 20,26.5 19.8,26 19.6,25.8 19.5,25 19.3,23 19.5,22 19.6,21 20,20 20.2,19 20.4,18.5 20.6,18 20.8,17.5 20.8,14.8 20.5,14.6 20,14.4 19.5,14.3 19,14.2 18.5,14.1 18,13.8 17.5,13.6 14.5,13.6")
+										// M
+										g(data-toggle="tooltip" data-placement="right" title="Glúteos" data-size="M" data-gender="male")
+											polygon(points="12.4,27.3 14,27 15,26.9 17,26.9 19,27 20.2,27.2 20.6,29 20.5,29.2 20.3,29.7 19.8,30.5 19.2,31 18.5,31.4 17,31.7 15,31.8 14,31.5 13.5,31 13,30.5 12.7,30 12.4,29.7")
+										// S
+										g(data-toggle="tooltip" data-placement="right" title="Nuca/Cuello posterior" data-size="S" data-gender="male")
+											polygon(points="14.5,12.5 15,12.4 16,12.3 17.4,12.4 17.3,13 17.4,13.5 14.3,13.5")
+						div(class="selected-zones" id="selectedZones" style="display:none;")
+							h5 Zonas seleccionadas #[span(class="badge badge-primary") ]
+							div(class="body-zones" id="bodyZones")
+							div(class="size-zones" id="sizeZones")
 				div(class="tab")
 					p Selección de sucursal
 					div(class="form-group")
@@ -130,200 +164,715 @@ block contenido
 				-if(users.length == 1)
 					script.
 						$(document).ready(function(){
-							let obj = !{JSON.stringify(user)};
-							if (obj.gender == "M") {
-								$("#femaleBody").css({"display":"block"});
-							} else if (obj.gender == "H") {
-								$("#maleBody").css({"display":"block"});
+							let selectionSurface = {
+								element: $("#selectionSurface"),
+								femaleBody: $("#femaleBody"),
+								maleBody: $("#maleBody"),
+								zonesElement: $("#selectedZones"),
+								badge: $("#selectedZones .badge"),
+								sizeZones: $("#sizeZones")
+							};
+
+							let card = {
+								element: $("#toggableCard"),
+								title: $(".card-title"),
+								text: $(".card-text")
+							};
+
+							let pack;
+							let userObj = !{JSON.stringify(user)};
+
+							let selectTrack = [];
+							let nZones;
+							let remainingZones = [];
+
+							if (userObj.gender == "M") {
+								selectionSurface.femaleBody.css({"display":"block"});
+							} else if (userObj.gender == "H") {
+								selectionSurface.maleBody.css({"display":"block"});
+							}
+
+							$("#svc").on("change", function(event){
+								pack = _.where(!{JSON.stringify(packs)}, {_id: this.value})[0];
+
+								if (userObj == (null || undefined)) {
+									return;
+								}
+
+								let zones = pack.packType.zoneTypes.split("+");
+								remainingZones = zones.slice();
+								nZones = zones.length;
+								selectTrack = [];
+
+								selectionSurface.sizeZones.html("");
+								resetAllShapes();
+
+								for (let zonesI = 0; zonesI < nZones; zonesI++) {
+									let alertContainer = document.createElement("div");
+									$(alertContainer).addClass("alert-container");
+
+									let sizeHeader = document.createElement("div");
+									$(sizeHeader).addClass("size-header")
+											 	 .html(zones[zonesI]);
+
+									let alertHolder = document.createElement("div")
+									$(alertHolder).addClass("alert-holder");
+
+									$(sizeHeader).appendTo($(alertContainer));
+									$(alertHolder).appendTo($(alertContainer));
+
+									$(alertContainer).appendTo(selectionSurface.sizeZones);
+
+									let trackObj = {};
+									trackObj.zone = null;
+									trackObj.size = zones[zonesI];
+									trackObj.container = $(alertContainer);
+									trackObj.holder = $(alertHolder);
+									trackObj.alert = null;
+									trackObj.shape = null;
+
+									selectTrack.push(trackObj);
+								}
+
+								selectionSurface.badge.html("0");
+
+								selectionSurface.zonesElement.css({"display":"block"});
+
+								if ((userObj != (null || undefined)) && (pack != (null || undefined))) {
+									selectionSurface.element.css({"display":"block"});
+								}
+							});
+
+							/* Polígono gráfico de la zona */
+
+							$("g").on("mouseenter", function(event){
+								let shape = $(event.currentTarget);
+
+								shape.css({"opacity":"0.3"});
+
+								openCard(event, shape);
+							});
+
+							$("g").on("mousemove", function(event){
+								let shape = $(event.currentTarget);
+								editCard(event,shape);
+							});
+
+							$("g").on("click", function(event){
+								let shape = $(event.currentTarget);
+								let size = $(shape).attr("data-size");
+
+								let index = getIndexOfShape(shape);
+
+								if (!isShapeTracked(shape)) {
+									/* Seleccionar */
+									if (getIndexOfSize(size) == -1) {
+										return;
+									}
+
+									if(!isShapeAvailableToTrack(shape)) {
+										return;
+									}
+
+									shape.css({"opacity":"0.6"});
+									trackShape(shape);
+								} else {
+									/* Deseleccionar */
+									shape.css({"opacity":"0.3"});
+									$(selectTrack[index].alert).alert("close");
+									changeOpacityByEvent(event, shape);
+								}
+
+								editCard(event,shape);
+							});
+
+							$("g").on("mouseleave", function(event){
+								let shape = $(event.currentTarget);
+
+								let index = selectTrack.findIndex(function(element){
+									return $(shape).is($(element.shape));
+								});
+
+								shape.css({"opacity":(isShapeTracked(shape) ? "0.6" : "0")});
+
+								closeCard();
+							});
+
+							function resetAllShapes(){
+								$("g").css({"opacity":"0"});
+							};
+
+							/* Adición de la zona a la selección actual */
+
+							function trackShape(shape) {
+								let zoneTitle = $(shape).attr("title");
+								let size = $(shape).attr("data-size");
+
+								let index = getIndexOfSize(size);
+
+								if (index == -1) {
+									return;
+								}
+
+								selectTrack[index].zone = zoneTitle;
+								selectTrack[index].alert = createAlert(shape);
+								selectTrack[index].shape = $(shape);
+
+								let indexOfSize = remainingZones.findIndex(function(element){
+									return size == element;
+								});
+
+								remainingZones = remainingZones.slice(0, indexOfSize).concat(remainingZones.slice(indexOfSize + 1));
+								updateBadge();
+							}
+
+							/* Alerta de la zona */
+
+							function createAlert(shape) {
+								let zoneTitle = $(shape).attr("title");
+								let size = $(shape).attr("data-size");
+
+								let index = selectTrack.findIndex(function(element){
+									return (size == element.size);
+								});
+
+								let alert = document.createElement("div");
+							    $(alert).addClass("alert")
+									    .addClass("alert-selection")
+									    .addClass("alert-dismissible")
+									    .addClass("text-light")
+									    .addClass("fade")
+									    .addClass("show")
+									    .html(zoneTitle);
+
+								let closeButton = document.createElement("button");
+								$(closeButton).addClass("close")
+											  .addClass("text-light")
+											  .attr("data-dismiss", "alert")
+											  .attr("aria-label", "close")
+											  .html("&times");
+
+								$(closeButton).appendTo($(alert));
+
+								$(alert).on("close.bs.alert", function(event){
+									changeOpacityByEvent(event, $(selectTrack[index].shape));
+									let tempShape = selectTrack[index].shape;
+
+									selectTrack[index].title = null;
+									selectTrack[index].alert = null;
+									selectTrack[index].shape = null;
+
+									editCard(event, tempShape);
+									closeCard();
+
+									remainingZones.push(size);
+									updateBadge();
+								});
+
+								$(alert).appendTo($(selectTrack[index].holder));
+
+								return $(alert);
+							}
+
+							/* Tarjeta */
+
+							function openCard(event, shape){
+							    editCard(event, shape);
+						    }
+
+							function editCard(event, shape) {
+								let size = $(shape).attr("data-size");
+								let title = $(shape).attr("title");
+
+								let posX = event.clientX;
+								let posY = event.clientY;
+
+								card.title.html(title + "<span class='badge badge-primary'>" + size + "</badge>");
+								card.text.html("");
+
+								let paragraph = document.createElement("p");
+								let faIcon = document.createElement("i");
+
+								if (isShapeAddedToTrack(shape)) {
+									$(faIcon).addClass("fa");
+									$(faIcon).addClass("fa-check");
+									$(faIcon).addClass("fa-fw");
+
+									$(faIcon).appendTo(paragraph);
+									$(paragraph).append("Agregada");
+									$(paragraph).addClass("text-success");
+								} else if (isShapeAvailableToTrack(shape)) {
+									$(faIcon).addClass("fa");
+									$(faIcon).addClass("fa-plus");
+									$(faIcon).addClass("fa-fw");
+
+									$(faIcon).appendTo(paragraph);
+									$(paragraph).append("Selecciona para agregar");
+								} else if (isShapeInPackButNotAvailable(shape)) {
+									$(faIcon).addClass("fa");
+									$(faIcon).addClass("fa-times");
+									$(faIcon).addClass("fa-fw");
+
+									$(faIcon).appendTo(paragraph);
+									$(paragraph).append("Ya se ha escogido una zona de este tamaño");
+									$(paragraph).addClass("text-danger");
+								} else {
+									$(faIcon).addClass("fa");
+									$(faIcon).addClass("fa-times");
+									$(faIcon).addClass("fa-fw");
+
+									$(faIcon).appendTo(paragraph);
+									$(paragraph).append("Esta zona no puede ser seleccionada para este pack");
+									$(paragraph).addClass("text-danger");
+								}
+
+								$(paragraph).appendTo(card.text);
+
+								card.element.css({
+								    "top": (posY + 20) + "px",
+								    "left": (posX + 20) + "px",
+								    "display": "block"
+							    });
+							}
+
+							function closeCard(){
+								card.element.css({
+									"display":"none"
+								});
+							}
+
+							/* Título */
+
+							function updateBadge() {
+								selectionSurface.badge.html(nZones - remainingZones.length);
+							}
+
+							/* Funciones auxiliares */
+
+							function getIndexOfSize(size){
+								return selectTrack.findIndex(function(element){
+									return size == element.size;
+								});
+							}
+
+							function getIndexOfShape(shape){
+								return selectTrack.findIndex(function(element){
+									return $(shape).is($(element.shape));
+								});
+							}
+
+							function itBelongsToPack(shape) {
+								/* ¿La forma pertenece al pack establecido? */
+								let size = $(shape).attr("data-size");
+
+								let index = selectTrack.findIndex(function(element){
+									return element.size == size;
+								});
+
+								return (index != -1);
+							}
+
+							function isShapeTracked(shape) {
+								/* ¿La forma está agregada a la selección actual? */
+								let index = selectTrack.findIndex(function(element){
+									return $(shape).is($(element.shape));
+								});
+
+								return (index != -1);
+							}
+
+							function isShapeSizeRemaining(shape){
+								/* ¿Quedan espacios disponibles para esta forma? */
+								let size = $(shape).attr("data-size");
+								return (remainingZones.includes(size));
+							}
+
+							function isShapeAvailableToTrack(shape) {
+								/* Disponible para agregar:
+								   1. Pertenece al pack
+								   2. No está agregada, o sea, no tiene su forma en selectTrack
+								   3. Está disponible, o sea, está en el arreglo de zonas disponibles */
+
+								return itBelongsToPack(shape) && !isShapeTracked(shape) && isShapeSizeRemaining(shape);
+							}
+
+							function isShapeAddedToTrack(shape) {
+								return itBelongsToPack(shape) && isShapeTracked(shape);
+							}
+
+							function isShapeInPackButNotAvailable(shape) {
+								return itBelongsToPack(shape) && !isShapeTracked(shape) && !isShapeSizeRemaining(shape);
+							}
+
+							function changeOpacityByEvent(event, shape) {
+								if (event.isTrigger) {
+									$(shape).css({"opacity":"0"});
+								} else {
+									$(shape).css({"opacity":"0.3"});
+								}
 							}
 						});
 				-else
 					script.
 						$(document).ready(function(){
+							let selectionSurface = {
+								element: $("#selectionSurface"),
+								femaleBody: $("#femaleBody"),
+								maleBody: $("#maleBody"),
+								zonesElement: $("#selectedZones"),
+								badge: $("#selectedZones .badge"),
+								sizeZones: $("#sizeZones")
+							};
+
+							let card = {
+								element: $("#toggableCard"),
+								title: $(".card-title"),
+								text: $(".card-text")
+							};
+
+							let pack;
+							let userObj;
+
+							let selectTrack = [];
+							let nZones;
+							let remainingZones = [];
+
 							$("#usr").on("change", function(event){
-								let obj = _.where(!{JSON.stringify(users)}, {_id: this.value})[0];
-								if (obj.gender == "M") {
-									$("#femaleBody").css({"display":"block"});
-									$("#maleBody").css({"display":"none"});
-								} else if (obj.gender == "H") {
-									$("#maleBody").css({"display":"block"});
-									$("#femaleBody").css({"display":"none"});
+								userObj = _.where(!{JSON.stringify(users)}, {_id: this.value})[0];
+								if (userObj.gender == "M") {
+									selectionSurface.femaleBody.css({"display":"block"});
+									selectionSurface.maleBody.css({"display":"none"});
+								} else if (userObj.gender == "H") {
+									selectionSurface.maleBody.css({"display":"block"});
+									selectionSurface.femaleBody.css({"display":"none"});
+								}
+
+								if ((userObj != (null || undefined)) && (pack != (null || undefined))) {
+									selectionSurface.element.css({"display":"block"});
 								}
 							});
-						});
 
-				script.
-					$(document).ready(function(){
-						/* Guarda la selección de las formas */
-						let selected = [];
+							$("#svc").on("change", function(event){
+								let pack = _.where(!{JSON.stringify(packs)}, {_id: this.value})[0];
 
-						let selectLimit = 3;
+								if (userObj == (null || undefined)) {
+									return;
+								}
 
-						let card = {
-							element: $("#toggableCard"),
-							title: $(".card-title"),
-							text: $(".card-text")
-						};
+								let zones = pack.packType.zoneTypes.split("+");
+								remainingZones = zones.slice();
+								nZones = zones.length;
+								selectTrack = [];
 
-						let selectedZones = {
-							element: $("#selectedZones"),
-							badge: $(".badge"),
-							zones: $(".body-zones")
-						};
+								selectionSurface.sizeZones.html("");
+								resetAllShapes();
 
-						let userSelect = $("#usr");
+								for (let zonesI = 0; zonesI < nZones; zonesI++) {
+									let alertContainer = document.createElement("div");
+									$(alertContainer).addClass("alert-container");
 
-						/* Eventos sobre los grupos de formas */
+									let sizeHeader = document.createElement("div");
+									$(sizeHeader).addClass("size-header")
+											 	 .html(zones[zonesI]);
 
-						$("g").on("mouseenter", function(event){
-							if ($(this).css("opacity") == 0) {
-								$(this).css({"opacity":0.3})
-							}
+									let alertHolder = document.createElement("div")
+									$(alertHolder).addClass("alert-holder");
 
-							openCard(event);
-						});
+									$(sizeHeader).appendTo($(alertContainer));
+									$(alertHolder).appendTo($(alertContainer));
 
-						$("g").on("mousemove", function(event){
-							openCard(event);
-						});
+									$(alertContainer).appendTo(selectionSurface.sizeZones);
 
-						$("g").on("mouseleave", function(event){
-							if($(this).css("opacity") == 0.3) {
-								$(this).css({"opacity":0});
-							}
+									let trackObj = {};
+									trackObj.zone = null;
+									trackObj.size = zones[zonesI];
+									trackObj.container = $(alertContainer);
+									trackObj.holder = $(alertHolder);
+									trackObj.alert = null;
+									trackObj.shape = null;
 
-							closeCard();
-						});
+									selectTrack.push(trackObj);
+								}
 
-						$("g").on("click", function(event){
-							let indexSelected;
+								selectionSurface.badge.html("0");
 
-							if($(this).css("opacity") == 0.3) {
-								$(this).css({"opacity":0.6});
-								selected.push(event.currentTarget);
-							} else if ($(this).css("opacity") == 0.6) {
-								$(this).css({"opacity":0.3});
-								indexSelected = selected.findIndex(function(element){
-									return $(element).is(event.currentTarget);
-								});
-								selected = selected.slice(0, indexSelected).concat(selected.slice(indexSelected + 1));
-							}
+								selectionSurface.zonesElement.css({"display":"block"});
 
-							editCard(event);
-							setZones();
-						});
-
-						/* Eventos sobre el select */
-
-						userSelect.on("change", function(){
-							resetSelectedZones();
-						});
-
-						/* Card */
-
-						function openCard(event){
-							let posX = event.clientX;
-							let posY = event.clientY;
-							editCard(event);
-							card.element.css({
-								"top": (posY + 20) + "px",
-								"left": (posX + 20) + "px",
-								"display": "block"
+								if ((userObj != (null || undefined)) && (pack != (null || undefined))) {
+									selectionSurface.element.css({"display":"block"});
+								}
 							});
-						}
 
-						function editCard(event){
-							let title = $(event.currentTarget).attr("title");
-							card.title.html(title);
-							if (isSelected(event)){
-								card.text.html("<p><i class='fa fa-plus fa-fw'></i> Selecciona para agregar</p>");
-							} else {
-								card.text.html("<p class='text-success'><i class='fa fa-check'></i> Agregada</p>");
-							}
-						}
+							/* Polígono gráfico de la zona */
 
-						function closeCard(){
-							card.element.css({
-								"display":"none"
+							$("g").on("mouseenter", function(event){
+								let shape = $(event.currentTarget);
+
+								shape.css({"opacity":"0.3"});
+
+								openCard(event, shape);
 							});
-						}
 
-						/* Body Zones */
+							$("g").on("mousemove", function(event){
+								let shape = $(event.currentTarget);
+								editCard(event,shape);
+							});
 
-						function setZones(){
-							let zonesStr = "";
-							let currentSelect = 0;
+							$("g").on("click", function(event){
+								let shape = $(event.currentTarget);
+								let size = $(shape).attr("data-size");
 
-							selectedZones.badge.html(selected.length);
-							selectedZones.zones.html("");
+								let index = getIndexOfShape(shape);
 
-							for (let i = 0; i < selected.length; i++) {
-								currentSelect++;
-
-								let d = document.createElement("div");
-								$(d).addClass("alert")
-									.addClass((currentSelect > selectLimit) ? "alert-danger" : "alert-primary")
-									.addClass("fade")
-									.addClass("show")
-									.attr("role", "alert")
-									.html($(selected[i]).attr("title"));
-
-								let b = document.createElement("button");
-								$(b).addClass("close")
-									.attr("data-dismiss", "alert")
-									.attr("aria-label", "Close")
-									.html("&times")
-									.on("click",
-									function(){
-										deselectElement(selected[i]);
+								if (!isShapeTracked(shape)) {
+									/* Seleccionar */
+									if (getIndexOfSize(size) == -1) {
+										return;
 									}
-								);
 
-								$(b).appendTo($(d));
-								$(d).appendTo($(".body-zones"));
+									if(!isShapeAvailableToTrack(shape)) {
+										return;
+									}
 
-								if (currentSelect > selectLimit){
-									selectedZones.badge.addClass("badge-danger").removeClass("badge-primary");
+									shape.css({"opacity":"0.6"});
+									trackShape(shape);
 								} else {
-									selectedZones.badge.addClass("badge-primary").removeClass("badge-danger");
+									/* Deseleccionar */
+									shape.css({"opacity":"0.3"});
+									$(selectTrack[index].alert).alert("close");
+									changeOpacityByEvent(event, shape);
 								}
+
+								editCard(event,shape);
+							});
+
+							$("g").on("mouseleave", function(event){
+								let shape = $(event.currentTarget);
+
+								let index = selectTrack.findIndex(function(element){
+									return $(shape).is($(element.shape));
+								});
+
+								shape.css({"opacity":(isShapeTracked(shape) ? "0.6" : "0")});
+
+								closeCard();
+							});
+
+							function resetAllShapes(){
+								$("g").css({"opacity":"0"});
+							};
+
+							/* Adición de la zona a la selección actual */
+
+							function trackShape(shape) {
+								let zoneTitle = $(shape).attr("title");
+								let size = $(shape).attr("data-size");
+
+								let index = getIndexOfSize(size);
+
+								if (index == -1) {
+									return;
+								}
+
+								selectTrack[index].zone = zoneTitle;
+								selectTrack[index].alert = createAlert(shape);
+								selectTrack[index].shape = $(shape);
+
+								let indexOfSize = remainingZones.findIndex(function(element){
+									return size == element;
+								});
+
+								remainingZones = remainingZones.slice(0, indexOfSize).concat(remainingZones.slice(indexOfSize + 1));
+								updateBadge();
 							}
 
-							selectedZones.element.css({
-								"display": (selected.length != 0 ? "block": "none")
-							});
-						};
+							/* Alerta de la zona */
 
-						/* Auxiliar Functions */
+							function createAlert(shape) {
+								let zoneTitle = $(shape).attr("title");
+								let size = $(shape).attr("data-size");
 
-						function deselectElement(elementToDelete){
-							let index =  selected.findIndex(function(element){
-								return $(element).is(elementToDelete);
-							});
-							selected = selected.slice(0, index).concat(selected.slice(index + 1));
-							$(elementToDelete).css({"opacity":"0"});
-							setZones();
-						};
+								let index = selectTrack.findIndex(function(element){
+									return (size == element.size);
+								});
 
-						function isSelected(e) {
-							let index = selected.findIndex(function(element){
-								return $(element).is(event.currentTarget);
-							});
-							return (index == -1);
-						}
+								let alert = document.createElement("div");
+							    $(alert).addClass("alert")
+									    .addClass("alert-selection")
+									    .addClass("alert-dismissible")
+									    .addClass("text-light")
+									    .addClass("fade")
+									    .addClass("show")
+									    .html(zoneTitle);
 
-						function resetSelectedZones(){
-							$("g").css({
-								"opacity":0
-							});
-							selectedZones.badge.html(0);
-							selectedZones.element.css({
-								"display":"none"
-							});
-							selectedZones.zones.html("");
-							selected = [];
-						};
-					});
+								let closeButton = document.createElement("button");
+								$(closeButton).addClass("close")
+											  .addClass("text-light")
+											  .attr("data-dismiss", "alert")
+											  .attr("aria-label", "close")
+											  .html("&times");
+
+								$(closeButton).appendTo($(alert));
+
+								$(alert).on("close.bs.alert", function(event){
+									changeOpacityByEvent(event, $(selectTrack[index].shape));
+									let tempShape = selectTrack[index].shape;
+
+									selectTrack[index].title = null;
+									selectTrack[index].alert = null;
+									selectTrack[index].shape = null;
+
+									editCard(event, tempShape);
+									closeCard(); 
+
+									remainingZones.push(size);
+									updateBadge();
+								});
+
+								$(alert).appendTo($(selectTrack[index].holder));
+
+								return $(alert);
+							}
+
+							/* Tarjeta */
+
+							function openCard(event, shape){
+							    editCard(event, shape);
+						    }
+
+							function editCard(event, shape) {
+								let size = $(shape).attr("data-size");
+								let title = $(shape).attr("title");
+
+								let posX = event.clientX;
+								let posY = event.clientY;
+
+								card.title.html(title + "<span class='badge badge-primary'>" + size + "</badge>");
+								card.text.html("");
+
+								let paragraph = document.createElement("p");
+								let faIcon = document.createElement("i");
+
+								if (isShapeAddedToTrack(shape)) {
+									$(faIcon).addClass("fa");
+									$(faIcon).addClass("fa-check");
+									$(faIcon).addClass("fa-fw");
+
+									$(faIcon).appendTo(paragraph);
+									$(paragraph).append("Agregada");
+									$(paragraph).addClass("text-success");
+								} else if (isShapeAvailableToTrack(shape)) {
+									$(faIcon).addClass("fa");
+									$(faIcon).addClass("fa-plus");
+									$(faIcon).addClass("fa-fw");
+
+									$(faIcon).appendTo(paragraph);
+									$(paragraph).append("Selecciona para agregar");
+								} else if (isShapeInPackButNotAvailable(shape)) {
+									$(faIcon).addClass("fa");
+									$(faIcon).addClass("fa-times");
+									$(faIcon).addClass("fa-fw");
+
+									$(faIcon).appendTo(paragraph);
+									$(paragraph).append("Ya se ha escogido una zona de este tamaño");
+									$(paragraph).addClass("text-danger");
+								} else {
+									$(faIcon).addClass("fa");
+									$(faIcon).addClass("fa-times");
+									$(faIcon).addClass("fa-fw");
+
+									$(faIcon).appendTo(paragraph);
+									$(paragraph).append("Esta zona no puede ser seleccionada para este pack");
+									$(paragraph).addClass("text-danger");
+								}
+
+								$(paragraph).appendTo(card.text);
+
+								card.element.css({
+								    "top": (posY + 20) + "px",
+								    "left": (posX + 20) + "px",
+								    "display": "block"
+							    });
+							}
+
+							function closeCard(){
+								card.element.css({
+									"display":"none"
+								});
+							}
+
+
+							/* Título */
+
+							function updateBadge() {
+								selectionSurface.badge.html(nZones - remainingZones.length);
+							}
+
+							/* Funciones auxiliares */
+
+							function getIndexOfSize(size){
+								return selectTrack.findIndex(function(element){
+									return size == element.size;
+								});
+							}
+
+							function getIndexOfShape(shape){
+								return selectTrack.findIndex(function(element){
+									return $(shape).is($(element.shape));
+								});
+							}
+
+							function itBelongsToPack(shape) {
+								/* ¿La forma pertenece al pack establecido? */
+								let size = $(shape).attr("data-size");
+
+								let index = selectTrack.findIndex(function(element){
+									return element.size == size;
+								});
+
+								return (index != -1);
+							}
+
+							function isShapeTracked(shape) {
+								/* ¿La forma está agregada a la selección actual? */
+								let index = selectTrack.findIndex(function(element){
+									return $(shape).is($(element.shape));
+								});
+
+								return (index != -1);
+							}
+
+							function isShapeSizeRemaining(shape){
+								/* ¿Quedan espacios disponibles para esta forma? */
+								let size = $(shape).attr("data-size");
+								return (remainingZones.includes(size));
+							}
+
+							function isShapeAvailableToTrack(shape) {
+								/* Disponible para agregar:
+								   1. Pertenece al pack
+								   2. No está agregada, o sea, no tiene su forma en selectTrack
+								   3. Está disponible, o sea, está en el arreglo de zonas disponibles */
+
+								return itBelongsToPack(shape) && !isShapeTracked(shape) && isShapeSizeRemaining(shape);
+							}
+
+							function isShapeAddedToTrack(shape) {
+								return itBelongsToPack(shape) && isShapeTracked(shape);
+							}
+
+							function isShapeInPackButNotAvailable(shape) {
+								return itBelongsToPack(shape) && !isShapeTracked(shape) && !isShapeSizeRemaining(shape);
+							}
+
+							function changeOpacityByEvent(event, shape) {
+								if (event.isTrigger) {
+									$(shape).css({"opacity":"0"});
+								} else {
+									$(shape).css({"opacity":"0.3"});
+								}
+							}
+						});
 
 				script.
 					$(document).ready(function() {
