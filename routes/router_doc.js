@@ -96,7 +96,20 @@ router.route("/:id")
 //CRUD colección de documentos propios
 router.route("/")
 	.get(function(req, res){//Retorna todos los documentos del usuario
-		res.render("session/documentos/collection", {documentos: res.locals.documentos});
+		if(res.locals.user.permission == undefined) {
+			res.render("session/documentos/collection", {
+				branches: res.locals.branches,
+				resources: res.locals.resources,
+				documentos: res.locals.documentos
+			});
+		}
+		else {
+			res.render("session/documentos/collection-calendar", {
+				branches: res.locals.branches,
+				resources: res.locals.resources,
+				documentos: res.locals.documentos
+			});
+		}
 	})
 	.post(function(req, res){//Crea un nuevo documento
 		saveToDB(req, res);
