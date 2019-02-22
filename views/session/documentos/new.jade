@@ -539,26 +539,25 @@ block contenido
 
 							$("#usr").on("change", function(event){
 								userObj = _.where(!{JSON.stringify(users)}, {_id: this.value})[0];
-								if (userObj.gender == "M") {
-									selectionSurface.femaleBody.css({"display":"block"});
-									selectionSurface.maleBody.css({"display":"none"});
-								} else if (userObj.gender == "H") {
-									selectionSurface.maleBody.css({"display":"block"});
-									selectionSurface.femaleBody.css({"display":"none"});
-								}
 
 								if ((userObj != (null || undefined)) && (pack != (null || undefined))) {
-									selectionSurface.element.css({"display":"block"});
+									initZones();
+								} else {
+									return;
 								}
 							});
 
 							$("#svc").on("change", function(event){
-								let pack = _.where(!{JSON.stringify(packs)}, {_id: this.value})[0];
+								pack = _.where(!{JSON.stringify(packs)}, {_id: this.value})[0];
 
-								if (userObj == (null || undefined)) {
+								if ((userObj != (null || undefined)) && (pack != (null || undefined))) {
+									initZones();
+								} else {
 									return;
 								}
+							});
 
+							function initZones(){
 								let zones = pack.packType.zoneTypes.split("+");
 								remainingZones = zones.slice();
 								nZones = zones.length;
@@ -598,10 +597,16 @@ block contenido
 
 								selectionSurface.zonesElement.css({"display":"block"});
 
-								if ((userObj != (null || undefined)) && (pack != (null || undefined))) {
-									selectionSurface.element.css({"display":"block"});
+								if (userObj.gender == "M") {
+									selectionSurface.femaleBody.css({"display":"block"});
+									selectionSurface.maleBody.css({"display":"none"});
+								} else if (userObj.gender == "H") {
+									selectionSurface.maleBody.css({"display":"block"});
+									selectionSurface.femaleBody.css({"display":"none"});
 								}
-							});
+
+								selectionSurface.element.css({"display":"block"});
+							}
 
 							/* Polígono gráfico de la zona */
 
