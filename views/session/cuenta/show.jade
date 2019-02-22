@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -23,13 +23,13 @@ block contenido
 			div(class="form-group")
 				label(type="text" class="font-weight-bold mr-3" name="lastName" id="lastName") Apellido:
 				label(for="lastName") #{user.lastName}
-			-if(user.permission != "Admin" && user.permission != "Branch" && user.permission != "Resource")	
+			-if(user.permission != "Admin" && user.permission != "Branch" && user.permission != "Resource")
 				div(class="form-group")
 					label(type="text" class="font-weight-bold mr-3" name="email" id="gender") Género:
-					-if(user.gender == "M") 
+					-if(user.gender == "M")
 						label(for="gender")	Mujer
-					-else if (user.gender == "H") 
-						label(for="gender") Hombre 	
+					-else if (user.gender == "H")
+						label(for="gender") Hombre
 			-if(user.permission == "Admin" || user.permission == "Branch" || user.permission == "Resource")
 				div(class="form-group")
 					label(type="text" class="font-weight-bold mr-3" name="permission" id="permission") Rol:
@@ -41,7 +41,7 @@ block contenido
 			-if(user.permission == "Resource")
 				div(class="form-group")
 					label(type="text" class="font-weight-bold" name="workHours" id="workHours") Horas Hábiles:
-					label #{JSON.stringify(user.workHours)}		
+					label #{JSON.stringify(user.workHours)}
 			div(class="btn-group")
 				a(href="/session/cuenta/edit" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Editar")
 					i(class="fa fa-pencil-square-o")

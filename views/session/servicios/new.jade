@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -15,7 +15,7 @@ block contenido
 			h1(class="text-center mb-3") Crear servicio
 			form(class="form-vertical" action="/session/servicios" method="POST")
 				// -if(user.permission == "Admin") (#*#)
-				// 	div(class="form-group") 
+				// 	div(class="form-group")
 				// 		label(for="permission") Rol
 				// 		select(class="form-control" name="permission" id="permission")
 				// 			for permiso in permisos

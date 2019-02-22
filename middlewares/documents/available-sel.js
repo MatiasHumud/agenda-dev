@@ -16,6 +16,7 @@ module.exports = function(req, res, next){
 										if(svcs){
 											Pack.find({sessRemaining: true})
 												.populate("treatment")
+												.populate("packType")
 												.exec(function(err, pcks){
 													if(!err){
 														if(pcks){
@@ -35,7 +36,7 @@ module.exports = function(req, res, next){
 														console.log(String(err));
 														console.log("Error al buscar packs en base de datos");
 														res.redirect("/session");
-													}													
+													}
 												});
 										}
 										else{
@@ -87,6 +88,7 @@ module.exports = function(req, res, next){
 								if(svcs){
 									Pack.find({sessRemaining: true})
 										.populate("treatment")
+										.populate("packType")
 										.exec(function(err, pcks){
 											if(!err){
 												if(pcks){
@@ -106,7 +108,7 @@ module.exports = function(req, res, next){
 												console.log(String(err));
 												console.log("Error al buscar packs en base de datos");
 												res.redirect("/session");
-											}													
+											}
 										});
 								}
 								else{
@@ -148,6 +150,7 @@ module.exports = function(req, res, next){
 								if(svcs){
 									Pack.find({sessRemaining: true})
 										.populate("treatment")
+										.populate("packType")
 										.exec(function(err, pcks){
 											if(!err){
 												if(pcks){
@@ -167,7 +170,7 @@ module.exports = function(req, res, next){
 												console.log(String(err));
 												console.log("Error al buscar packs en base de datos");
 												res.redirect("/session");
-											}													
+											}
 										});
 								}
 								else{
@@ -229,7 +232,7 @@ module.exports = function(req, res, next){
 												console.log(String(err));
 												console.log("Error al buscar packs en base de datos");
 												res.redirect("/session");
-											}													
+											}
 										});
 								}
 								else{

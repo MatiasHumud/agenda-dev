@@ -1,7 +1,7 @@
 extends ../../layout.jade
 
 block contenido
-	-if (user.permission == "Admin") 
+	-if (user.permission == "Admin")
 		include ../session_permission/adminActions.jade
 	-else if (user.permission == "Branch")
 		include ../session_permission/branchActions.jade
@@ -37,7 +37,7 @@ block contenido
 							var x = document.getElementsByTagName("tr");
 							var j = x.length;
 							var n = n - j;
-							for (i = 0; i < n; i++) { 
+							for (i = 0; i < n; i++) {
 								var row = $('<tr/>').appendTo("#zoneTypes");
 								var label = $('<label/>', { 'class':"input-group-text" });
 								label.text("Zona " + (j+i+1));
@@ -68,7 +68,7 @@ block contenido
 						var i;
 						var x = document.getElementsByTagName("select");
 						var n = x.length;
-						for (i = 0; i < n; i++) { 
+						for (i = 0; i < n; i++) {
 							_.where(x[i].options, {}).forEach(function(opt){
 								if(opt.selected){
 									ZneStr += opt.value;
