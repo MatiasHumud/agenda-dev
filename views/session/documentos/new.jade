@@ -21,6 +21,7 @@ block contenido
 				div(class="tab")
 					p Selección de tratamiento
 					div(class="form-group")
+						label(for="usr") Usuario:
 						select(class="form-control" name="usr" id="usr")
 							if(users.length == 1)
 								option(class="text-secondary" value=users[0]._id selected)=users[0].name
@@ -28,15 +29,11 @@ block contenido
 								option(class="text-secondary" value="undefined" disabled selected) Seleccione un usuario
 								for user in users
 									option(class="text-secondary" value=user._id)=user.name
-					div(class="form-group")
+					div(class="form-group mb-5" id="svcContainer" style="display:none;")
+						label(for="svc") Selecciona un pack:
 						select(class="form-control selectpicker" name="svc" id="svc" multiple)
-							if(packs.length == 1)
-								option(class="text-secondary" value=packs[0]._id selected)=packs[0].packType.title
-							else
-								option(class="text-secondary" value="undefined" disabled) Elija una zona
-								for pack in packs
-									option(class="text-secondary" value=pack._id)=pack.packType.title
 					div(class="selection-surface" id="selectionSurface" style="display:none;")
+						p Selecciona las partes deseadas para tratamiento
 						div(class="human-body" id="femaleBody" style="display:none;")
 							nav(class="nav nav-pills nav-fill")
 								a(class="nav-item nav-link active" id="femalePillsFront" data-toggle="tab" href="#femaleBodyFront" role="tab" aria-controls="femaleBodyFront" aria-selected="true") Frente
@@ -130,8 +127,7 @@ block contenido
 										g(data-toggle="tooltip" data-placement="right" title="Nuca/Cuello posterior" data-size="S" data-gender="male")
 											polygon(points="14.5,12.5 15,12.4 16,12.3 17.4,12.4 17.3,13 17.4,13.5 14.3,13.5")
 						div(class="selected-zones" id="selectedZones" style="display:none;")
-							h5 Zonas seleccionadas #[span(class="badge badge-primary") ]
-							div(class="body-zones" id="bodyZones")
+							h5 Zonas seleccionadas #[span(id="selectedZonesCount" class="badge badge-primary") ]
 							div(class="size-zones" id="sizeZones")
 				div(class="tab")
 					p Selección de sucursal
@@ -169,7 +165,7 @@ block contenido
 								femaleBody: $("#femaleBody"),
 								maleBody: $("#maleBody"),
 								zonesElement: $("#selectedZones"),
-								badge: $("#selectedZones .badge"),
+								badge: $("#selectedZonesCount"),
 								sizeZones: $("#sizeZones")
 							};
 
@@ -179,7 +175,8 @@ block contenido
 								text: $(".card-text")
 							};
 
-							let pack;
+							let pack; 
+							let packs = !{JSON.stringify(packs)}; 
 							let userObj = !{JSON.stringify(user)};
 
 							let selectTrack = [];
@@ -192,13 +189,44 @@ block contenido
 								selectionSurface.maleBody.css({"display":"block"});
 							}
 
+							let picker = $("#svc");
+							picker.html("");
+
+							let openingOption = document.createElement("option");
+								$(openingOption).addClass("text-secondary")
+												.attr("value", "undefined")
+												.prop("disabled", true)
+												.html("Elija un pack");
+
+								picker.append($(openingOption));
+
+								packs.filter(function(element){
+									return element.usuario == userObj._id;
+								}).forEach(function(element){
+									let option = document.createElement("option");
+									$(option).addClass("text-secondary")
+											 .attr("value", element._id)
+											 .html(element.packType.title);
+									picker.append(option);
+								});
+
+							$("#svcContainer").css({"display":"block"});
+							selectionSurface.badge.html("0");
+							selectionSurface.zonesElement.css({"display":"block"});
+							selectionSurface.element.css({"display":"block"});
+
+
 							$("#svc").on("change", function(event){
 								pack = _.where(!{JSON.stringify(packs)}, {_id: this.value})[0];
 
-								if (userObj == (null || undefined)) {
+								if ((userObj != (null || undefined)) && (pack != (null || undefined))) {
+									initZones();
+								} else {
 									return;
 								}
+							});
 
+							function initZones(){
 								let zones = pack.packType.zoneTypes.split("+");
 								remainingZones = zones.slice();
 								nZones = zones.length;
@@ -234,14 +262,8 @@ block contenido
 									selectTrack.push(trackObj);
 								}
 
-								selectionSurface.badge.html("0");
-
-								selectionSurface.zonesElement.css({"display":"block"});
-
-								if ((userObj != (null || undefined)) && (pack != (null || undefined))) {
-									selectionSurface.element.css({"display":"block"});
-								}
-							});
+								
+							}
 
 							/* Polígono gráfico de la zona */
 
@@ -520,7 +542,7 @@ block contenido
 								femaleBody: $("#femaleBody"),
 								maleBody: $("#maleBody"),
 								zonesElement: $("#selectedZones"),
-								badge: $("#selectedZones .badge"),
+								badge: $("#selectedZonesCount"),
 								sizeZones: $("#sizeZones")
 							};
 
@@ -537,8 +559,48 @@ block contenido
 							let nZones;
 							let remainingZones = [];
 
+							let packsSelected = false;
+
 							$("#usr").on("change", function(event){
 								userObj = _.where(!{JSON.stringify(users)}, {_id: this.value})[0];
+
+								let packs = !{JSON.stringify(packs)};
+
+								let picker = $("#svc");
+								picker.html("");
+
+								$("#svcContainer").css({"display":"block"});
+
+								let openingOption = document.createElement("option");
+								$(openingOption).addClass("text-secondary")
+												.attr("value", "undefined")
+												.prop("disabled", true)
+												.html("Elija un pack");
+
+								picker.append($(openingOption));
+
+								packs.filter(function(element){
+									return element.usuario == userObj._id;
+								}).forEach(function(element){
+									let option = document.createElement("option");
+									$(option).addClass("text-secondary")
+											 .attr("value", element._id)
+											 .html(element.packType.title);
+									picker.append(option);
+								});
+
+								picker.selectpicker("refresh");
+
+								if (userObj.gender == "M") {
+									selectionSurface.femaleBody.css({"display":"block"});
+									selectionSurface.maleBody.css({"display":"none"});
+								} else if (userObj.gender == "H") {
+									selectionSurface.maleBody.css({"display":"block"});
+									selectionSurface.femaleBody.css({"display":"none"});
+								}
+
+								selectionSurface.badge.html("0");
+								selectionSurface.element.css({"display":"block"});
 
 								if ((userObj != (null || undefined)) && (pack != (null || undefined))) {
 									initZones();
@@ -593,19 +655,7 @@ block contenido
 									selectTrack.push(trackObj);
 								}
 
-								selectionSurface.badge.html("0");
-
 								selectionSurface.zonesElement.css({"display":"block"});
-
-								if (userObj.gender == "M") {
-									selectionSurface.femaleBody.css({"display":"block"});
-									selectionSurface.maleBody.css({"display":"none"});
-								} else if (userObj.gender == "H") {
-									selectionSurface.maleBody.css({"display":"block"});
-									selectionSurface.femaleBody.css({"display":"none"});
-								}
-
-								selectionSurface.element.css({"display":"block"});
 							}
 
 							/* Polígono gráfico de la zona */
