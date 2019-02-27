@@ -33,7 +33,7 @@ block contenido
 						label(for="svc") Selecciona un pack:
 						select(class="form-control selectpicker" name="svc" id="svc" multiple)
 					div(class="selection-surface" id="selectionSurface" style="display:none;")
-						p Selecciona las partes deseadas para tratamiento
+						p Haz click sobre una zona para agregarla. Haz click de nuevo sobre dicha zona para removerla.
 						div(class="human-body" id="femaleBody" style="display:none;")
 							nav(class="nav nav-pills nav-fill")
 								a(class="nav-item nav-link active" id="femalePillsFront" data-toggle="tab" href="#femaleBodyFront" role="tab" aria-controls="femaleBodyFront" aria-selected="true") Frente
@@ -67,6 +67,19 @@ block contenido
 											polygon(points="16.7,50 18.3,50 18.4,50.3 18.3,50.5 18.1,50.7 18.1,53 18.5,53.9 18.6,54.1 18.4,54.1 18.1,54.2 17.5,54.3 17,54.3 16.5,54.3 15.5,54.3 15.3,54.2")
 										g(data-toggle="tooltip" data-placement="bottom" title="Nariz" data-size="XS" data-gender="female")
 											polygon(points="16,11 15.5,12 16,12.2 16.3,12.3 16.7,12 16,10.4")
+										g(data-toggle="tooltip" data-placement="bottom" title="Areola de pezón" data-size="XS" data-gender="female")
+											circle(cx="14.4" cy="17.3" r="0.7")
+											circle(cx="18.5" cy="17.3" r="0.7")
+										g(data-toggle="tooltip" data-placement="top" title="Orejas" data-size="XS" data-gender="female")
+											polygon(points="13.9,9.5 13.9,10 14.3,10.8 14.4,10.6 14.5,10")
+											polygon(points="18,10 18.5,9.5 18.5,10.5 18,11")
+										g(data-toggle="tooltip" data-placement="top" title="Mentón" data-size="XS" data-gender="female")
+											polygon(points="15.7,12.8 16.5,12.8 16.6,13.2 16.2,13.4 15.7,13.2")
+										g(data-toggle="tooltip" data-placement="right" title="Pómulos" data-size="XS" data-gender="female")
+											circle(cx="15" cy="11.6" r="0.4")
+											circle(cx="17.25" cy="11.6" r="0.4")
+										g(data-toggle="tooltip" data-placement="right" title="Bozo" data-size="XS" data-gender="female")
+											polygon(points="15.5,12 16,12.2 16.8,12.2 16.9,12 16.8,12.5 15.5,12.5")
 								div(class="tab-pane fade" id="femaleBodyBack" role="tabpanel" aria-labelledby="femalePillsBack")
 									svg(class="svg-body" viewBox="0 0 30 60")
 										image(href="/public/femalebody_back.jpg" x="0" y="5" height="50")
@@ -77,7 +90,7 @@ block contenido
 										g(data-toggle="tooltip" data-placement="left" title="Glúteos" data-size="M" data-gender="female")
 											polygon(points="11.4,27.8 11.45,27 12,26.5 13,26.2 13.5,26.2 16,26.25 18,26.35 19.1,26.7 19.2,28 19.1,29 17.3,31 16,31.05 13,31 11,30")
 										// S
-										g(data-toggle="tooltip" data-placement="left" title="Nuca/Cuello posterior" data-size="M" data-gender="female")
+										g(data-toggle="tooltip" data-placement="left" title="Nuca/Cuello posterior" data-size="S" data-gender="female")
 											polygon(points="14.2,11 14.5,11.5 16.5,12.5 16.5,13 14.5,12.5 13.5,12")
 						div(class="human-body" id="maleBody" style="display:none;")
 							nav(class="nav nav-pills nav-fill")
@@ -97,8 +110,9 @@ block contenido
 										// M
 										g(data-toggle="tooltip" data-placement="bottom" title="Abdomen completo" data-size="M" data-gender="male")
 											polygon(points="12,21 12.2,22 12.3,23 12.5,24 12.23,25 12.23,26 12,27 11.8,27.5 12,27.6 12.5,27.7 13,27.8 13.5,27.9 14.5,28 15.5,28.1 16.5,28 17.5,27.9 18.5,27.8 19.5,27.6 19.8,27.5 19.6,26.5 19.4,25.5 19.3,24.5 19.3,23 19.55,22 19.7,21 19.9,20.2 19,20.2 18,20.5 17,20.7 16,20.8 15,20.7 14,20.6 13,20.5 12,20.4")
-										g(data-toggle="tooltip" data-placement="bottom" title="Barba" data-size="M" data-gender="female")
-											polygon(points="14,11 14.5,12 15,12.5 15.5,12.5 17,12.5 17.5,11.5 17.5,12 17,12.8 16,13.5 15,13.1 14.3,12.4")
+										g(data-toggle="tooltip" data-placement="right" title="Barba" data-size="M" data-gender="male")
+											polygon(points="14.5,11.6 15,12.1 15.2,12.5 15.2,13.2 14.6,12.7")
+											polygon(points="16.5,12.5 17.1,11.7 17.1,12.7 16.6,13.1")
 										// S
 										g(data-toggle="tooltip" data-placement="right" title="Axilas" data-size="S" data-gender="male")
 											polygon(points="19.55,15 19.8,15.7 20.5,20 20.3,20.5 20.6,22 20,20.5")
@@ -114,6 +128,19 @@ block contenido
 											polygon(points="18.2,48.5 19.7,48.5 19.7,49.5 20,50 20.7,51 20.8,51.5 20.8,51.5 20.6,51.7 20.5,51.7 20,51.9 19.5,51.9 19,51.9 18.4,51.9 18,51.0 17.8,50.5")
 										g(data-toggle="tooltip" data-placement="bottom" title="Nariz" data-size="XS" data-gender="male")
 											polygon(points="15.7,10 15.4,11.6 16.4,11.6")
+										g(data-toggle="tooltip" data-placement="right" title="Pómulos" data-size="XS" data-gender="male")
+											circle(cx="14.8" cy="11.2" r="0.4")
+											circle(cx="16.9" cy="11.2" r="0.4")
+										g(data-toggle="tooltip" data-placement="right" title="Bigotes" data-size="XS" data-gender="male")
+											polygon(points="15,11.8 16,11.5 16.5,12 16.5,12.1")
+										g(data-toggle="tooltip" data-placement="left" title="Patillas" data-size="XS" data-gender="male")
+											polygon(points="14.05,11 14.5,11.5 14.5,12.7")
+											polygon(points="17.5,11 17.2,11.5 17.2,12.4 17.5,12")
+										g(data-toggle="tooltip" data-placement="right" title="Mentón" data-size="XS" data-gender="male")
+											polygon(points="15.3,12.5 16.5,12.5 16.5,13.2 16,13.3 15.75,13.5 15.5,13.3 15.2,13.2")
+										g(data-toggle="tooltip" data-placement="left" title="Orejas" data-size="XS" data-gender="male")
+											polygon(points="13.65,10.2 13.8,11.5 14.2,11.5 14,10.5")
+											polygon(points="17.5,10.2 18,10.2 17.8,11.2 17.6,11.5")
 								div(class="tab-pane fade" id="maleBodyBack" role="tabpanel" aria-labelledby="malePillsBack")
 									svg(class="svg-body" viewBox="0 0 30 60")
 										image(href="/public/malebody_back.jpg" x="0" y="5" height="50")
@@ -128,6 +155,7 @@ block contenido
 											polygon(points="14.5,12.5 15,12.4 16,12.3 17.4,12.4 17.3,13 17.4,13.5 14.3,13.5")
 						div(class="selected-zones" id="selectedZones" style="display:none;")
 							h5 Zonas seleccionadas #[span(id="selectedZonesCount" class="badge badge-primary") ]
+							p(id="noSelectedZones") Aquí se van a mostrar las zonas seleccionadas
 							div(class="packed-container" id="packedContainer")
 								h6 Zonas del pack
 								div(class="packed-zones" id="packedZones")
@@ -163,128 +191,78 @@ block contenido
 				script(src="/public/js/renderFuncs.js")
 
 				script.
-						$(document).ready(function(){
-							let form = {
-								user: $("#usr"),
-								pack: {
-									container: $("#svcContainer"),
-									selectElement: $("#svc")
-								}
+					$(document).ready(function(){
+						let form = {
+							user: $("#usr"),
+							pack: {
+								container: $("#svcContainer"),
+								selectElement: $("#svc")
 							}
+						}
 
-							/* Superficie de selección */
-							let selectionSurface = {
-								element: $("#selectionSurface"),
-								femaleBody: $("#femaleBody"),
-								maleBody: $("#maleBody"),
-								zonesElement: $("#selectedZones"),
-								badge: $("#selectedZonesCount"),
-								selectedZones: $("#selectedZones"),
-								packedZones: {
-									container: $("#packedContainer"),
-									zones: $("#packedZones")
-								},
-								nonPackedZones: {
-									container: $("#nonPackedContainer"),
-									zones: $("#nonPackedZones")
-								},
-								card: {
-									element: $("#toggableCard"),
-									title: $("#toggableCard .card-title"),
-									body: $("#toggableCard .card-body")
-								}
-							};
-
-							let card = {
+						/* Superficie de selección */
+						let selectionSurface = {
+							element: $("#selectionSurface"),
+							femaleBody: $("#femaleBody"),
+							maleBody: $("#maleBody"),
+							zonesElement: $("#selectedZones"),
+							badge: $("#selectedZonesCount"),
+							noSelectedZones: $("#noSelectedZones"),
+							selectedZones: $("#selectedZones"),
+							packedZones: {
+								container: $("#packedContainer"),
+								zones: $("#packedZones")
+							},
+							nonPackedZones: {
+								container: $("#nonPackedContainer"),
+								zones: $("#nonPackedZones")
+							},
+							card: {
 								element: $("#toggableCard"),
-								title: $(".card-title"),
-								text: $(".card-text")
-							};
+								title: $("#toggableCard .card-title"),
+								body: $("#toggableCard .card-body")
+							}
+						};
 
-							/* Elementos seleccionables */
-							let userObj;
-							let pack;
+						let card = {
+							element: $("#toggableCard"),
+							title: $(".card-title"),
+							text: $(".card-text")
+						};
 
-							/* Datos desde back-end */
-							let packs = !{JSON.stringify(packs)};
-							let users = !{JSON.stringify(users)};
+						/* Elementos seleccionables */
+						let userObj;
+						let pack;
 
-							/* Arreglos de tracking */
-							let packTrack = [];
-							let nonPackTrack = [];
+						/* Datos desde back-end */
+						let packs = !{JSON.stringify(packs)};
+						let users = !{JSON.stringify(users)};
 
-							let filteredPacks = [];
+						/* Arreglos de tracking */
+						let packTrack = [];
+						let nonPackTrack = [];
 
-							let selectedPacks;
+						let filteredPacks = [];
 
-							if (users.length > 1) {
-								/* Configuración inicial para administrador */
+						let selectedPacks;
 
-								/* El administrador puede cambiar el usuario */
-								form.user.on("change", function(event){
-									setDefaultState();
+						if (users.length > 1) {
+							/* Configuración inicial para administrador */
 
-									userObj = _.where(!{JSON.stringify(users)}, {_id: this.value})[0];
+							/* El administrador puede cambiar el usuario */
+							form.user.on("change", function(event){
+								setDefaultState();
 
-									form.pack.selectElement.html("");
-
-									/* Al seleccionar el usuario, se habilita
-									   el elemento select */
-									form.pack.container.css({"display":"block"});
-
-									/* El elemento select se llena con todos
-									   los packs disponibles para el usuario seleccionado */
-									let openingOption = document.createElement("option");
-									$(openingOption).addClass("text-secondary")
-													.attr("value", "undefined")
-													.prop("disabled", true)
-													.html("Elija un pack");
-
-									form.pack.selectElement.append($(openingOption));
-
-									filteredPacksByUser = packs.filter(function(element){
-										return element.usuario == userObj._id;
-									});
-
-									filteredPacksByUser.forEach(function(element){
-										let option = document.createElement("option");
-										$(option).addClass("text-secondary")
-											 	.attr("value", element._id)
-											 	.html(element.packType.title);
-										form.pack.selectElement.append(option);
-									});
-
-									form.pack.selectElement.selectpicker("refresh");
-
-									/* Se muestra el cuerpo de selección
-									   perteneciente al género del usuario */
-									if (userObj.gender == "M") {
-										selectionSurface.femaleBody.css({"display":"block"});
-										selectionSurface.maleBody.css({"display":"none"});
-									} else if (userObj.gender == "H") {
-										selectionSurface.maleBody.css({"display":"block"});
-										selectionSurface.femaleBody.css({"display":"none"});
-									}
-
-									selectionSurface.badge.html("0");
-									selectionSurface.element.css({"display":"block"});
-
-									selectionSurface.packedZones.container.css({"display":"none"});
-									selectionSurface.nonPackedZones.container.css({"display":"none"});
-
-									selectionSurface.selectedZones.css({"display":"block"});
-								});
-							} else {
-								/* Configuración inicial para usuario */
-
-								userObj = !{JSON.stringify(user)};
+								userObj = _.where(!{JSON.stringify(users)}, {_id: this.value})[0];
 
 								form.pack.selectElement.html("");
 
-								/* Al haber solo un usuario, el elemento select
-								   se llena con los packs disponibles para ese usuario */
+								/* Al seleccionar el usuario, se habilita
+								   el elemento select */
 								form.pack.container.css({"display":"block"});
 
+								/* El elemento select se llena con todos
+								   los packs disponibles para el usuario seleccionado */
 								let openingOption = document.createElement("option");
 								$(openingOption).addClass("text-secondary")
 												.attr("value", "undefined")
@@ -309,11 +287,12 @@ block contenido
 
 								/* Se muestra el cuerpo de selección
 								   perteneciente al género del usuario */
-
 								if (userObj.gender == "M") {
 									selectionSurface.femaleBody.css({"display":"block"});
+									selectionSurface.maleBody.css({"display":"none"});
 								} else if (userObj.gender == "H") {
 									selectionSurface.maleBody.css({"display":"block"});
+									selectionSurface.femaleBody.css({"display":"none"});
 								}
 
 								selectionSurface.badge.html("0");
@@ -323,512 +302,599 @@ block contenido
 								selectionSurface.nonPackedZones.container.css({"display":"none"});
 
 								selectionSurface.selectedZones.css({"display":"block"});
+							});
+						} else {
+							/* Configuración inicial para usuario */
+
+							userObj = !{JSON.stringify(user)};
+
+							form.pack.selectElement.html("");
+
+							/* Al haber solo un usuario, el elemento select
+							   se llena con los packs disponibles para ese usuario */
+							form.pack.container.css({"display":"block"});
+
+							let openingOption = document.createElement("option");
+							$(openingOption).addClass("text-secondary")
+											.attr("value", "undefined")
+											.prop("disabled", true)
+											.html("Elija un pack");
+
+							form.pack.selectElement.append($(openingOption));
+
+							filteredPacksByUser = packs.filter(function(element){
+								return element.usuario == userObj._id;
+							});
+
+							filteredPacksByUser.forEach(function(element){
+								let option = document.createElement("option");
+								$(option).addClass("text-secondary")
+										 .attr("value", element._id)
+										 .html(element.packType.title);
+								form.pack.selectElement.append(option);
+							});
+
+							form.pack.selectElement.selectpicker("refresh");
+
+							/* Se muestra el cuerpo de selección
+							   perteneciente al género del usuario */
+
+							if (userObj.gender == "M") {
+								selectionSurface.femaleBody.css({"display":"block"});
+							} else if (userObj.gender == "H") {
+								selectionSurface.maleBody.css({"display":"block"});
 							}
 
-							form.pack.selectElement.on("change", function(event){
-								/* El arreglo de tracking con las zonas paquetizadas
-								   se forma cuando se selecciona el elemento select de selección del pack */
-								selectionSurface.packedZones.container.css({"display":"none"});
-								selectionSurface.packedZones.zones.html("");
-								selectedPacks = [];
+							selectionSurface.badge.html("0");
+							selectionSurface.element.css({"display":"block"});
 
-								let packs = !{JSON.stringify(packs)};
+							selectionSurface.packedZones.container.css({"display":"none"});
+							selectionSurface.nonPackedZones.container.css({"display":"none"});
 
-								let foo = _.where(!{JSON.stringify(packs)}, {_id: this.value});
-								pack = _.where(!{JSON.stringify(packs)}, {_id: this.value})[0];
+							selectionSurface.selectedZones.css({"display":"block"});
+						}
 
-								$(this).find("option").each(function(){
-									if($(this).is(":selected")) {
-										let value = $(this).attr("value");
-										let index = getIndexOfPacksByID(value, packs);
-										selectedPacks.push(packs[index].packType.zoneTypes.split("+"));
-									}
-								});
+						form.pack.selectElement.on("change", function(event){
+							/* El arreglo de tracking con las zonas paquetizadas
+							   se forma cuando se selecciona el elemento select de selección del pack */
+							selectionSurface.packedZones.container.css({"display":"none"});
+							selectionSurface.packedZones.zones.html("");
+							selectedPacks = [];
 
-								/* La función que determina las zonas paquetizadas
-								   solo se ejecuta cuando se ha establecido el usuario y el pack */
-								if ((userObj != (null || undefined)) && (pack != (null || undefined))) {
-									initZones();
-								} else {
-									return;
+							let packs = !{JSON.stringify(packs)};
+
+							pack = _.where(!{JSON.stringify(packs)}, {_id: this.value})[0];
+
+							/* Se arma un arreglo de arreglos, con cada
+							   arreglo interno albergando los tamaños de cada paquete */
+							$(this).find("option").each(function(){
+								if($(this).is(":selected")) {
+									let value = $(this).attr("value");
+									let index = getIndexOfPacksByID(value, packs);
+									selectedPacks.push(packs[index].packType.zoneTypes.split("+"));
 								}
 							});
 
-							function initZones(){
-								/* Se establecen en su arreglo de tracking las zonas del cuerpo paquetizadas */
-								packTrack = [];
-
-								selectedPacks.forEach(function(packZones){
-									packZones.forEach(function(zone){
-										let alertContainer = document.createElement("div");
-										$(alertContainer).addClass("alert-container")
-													 	 .addClass("alert-container-header");
-
-										let sizeHeader = document.createElement("div");
-										$(sizeHeader).addClass("size-header")
-											 	 	 .html(zone);
-
-										let alertHolder = document.createElement("div")
-										$(alertHolder).addClass("alert-holder");
-
-										$(sizeHeader).appendTo($(alertContainer));
-										$(alertHolder).appendTo($(alertContainer));
-
-										$(alertContainer).appendTo(selectionSurface.packedZones.zones);
-
-										let trackObj = {};
-										trackObj.zoneName = null;
-										trackObj.gender = null;
-										trackObj.size = zone;
-										trackObj.container = $(alertContainer);
-										trackObj.holder = $(alertHolder);
-										trackObj.alert = null;
-										trackObj.shape = null;
-
-										packTrack.push(trackObj);
-									});
-								});
-
-								selectionSurface.packedZones.container.css({"display":"block"});
-
-								updateSelectedZones();
+							/* La función que determina las zonas paquetizadas
+							   solo se ejecuta cuando se ha establecido el usuario y el pack */
+							if ((userObj != (null || undefined)) && (pack != (null || undefined))) {
+								initZones();
+							} else {
+								return;
 							}
+						});
 
-							/* Eventos de mouse sobre las zonas del cuerpo */
+						function initZones(){
+							/* Se establecen en su arreglo de tracking las zonas del cuerpo paquetizadas */
+							packTrack = [];
 
-							$("g").on("mouseenter", function(event){
-								let shape = $(event.currentTarget)
-								shape.css({"opacity":"0.3"});
+							selectedPacks.forEach(function(packZones){
+								packZones.forEach(function(zone){
+									let alertContainer = document.createElement("div");
+									$(alertContainer).addClass("alert-container")
+													 .addClass("alert-container-header");
 
-								openCard(event, shape);
+									let sizeHeader = document.createElement("div");
+									$(sizeHeader).addClass("size-header")
+											 	 .html(zone);
+
+									let alertHolder = document.createElement("div")
+									$(alertHolder).addClass("alert-holder");
+
+									$(sizeHeader).appendTo($(alertContainer));
+									$(alertHolder).appendTo($(alertContainer));
+
+									$(alertContainer).appendTo(selectionSurface.packedZones.zones);
+
+									let trackObj = {};
+									trackObj.zoneName = null;
+									trackObj.gender = null;
+									trackObj.size = zone;
+									trackObj.container = $(alertContainer);
+									trackObj.holder = $(alertHolder);
+									trackObj.alert = null;
+									trackObj.shape = null;
+
+									packTrack.push(trackObj);
+								});
 							});
 
-							$("g").on("mousemove", function(event){
-								let shape = $(event.currentTarget);
+							selectionSurface.packedZones.container.css({"display":"block"});
 
-								editCard(event,shape);
-							});
+							updateSelectedZones();
+						}
 
-							$("g").on("click", function(event){
-								let shape = $(event.currentTarget);
-								let size = $(shape).attr("data-size");
+						/* Eventos de mouse sobre las zonas del cuerpo */
 
-								if (!isShapeTracked(shape, packTrack) && !isShapeTracked(shape, nonPackTrack)) {
-									/* Seleccionzar una zona */
-									if (isSizeTracked(size, packTrack)) {
-										/* ¿El tamaño de la zona está en el arreglo de tracking de los packs establecidos? */
-										if (isShapeTracked(shape, packTrack)) {
-											/* Si la zona ya está seleccionada en los packs establecidos, se agrega fuera del pack */
-											addShapeToNonPackTrack(shape);
-											shape.css({"opacity":"0.6"});
-										} else if (isSizeAvailable(size, packTrack)) {
-											/* Si la zona está disponible para ser seleccionada, se agrega al pack */
-											addShapeToPackTrack(shape);
-											shape.css({"opacity":"0.6"});
-										} else {
-											/* Si la zona no está disponible para ser seleccionada, se agrega al pack */
-											addShapeToNonPackTrack(shape);
-											shape.css({"opacity":"0.6"});
-										}
-									} else  {
-										/* Si el tamaño de la zona no está en el arreglo de tracking de los packs,
-										   se agrega fuera de pack */
+						$("g").on("mouseenter", function(event){
+							let shape = $(event.currentTarget);
+
+							shape.css({"opacity":"0.3"});
+
+							openCard(event, shape);
+						});
+
+						$("g").on("mousemove", function(event){
+							let shape = $(event.currentTarget);
+
+							editCard(event,shape);
+						});
+
+						$("g").on("click", function(event){
+							let shape = $(event.currentTarget);
+							let size = $(shape).attr("data-size");
+
+							if (!isShapeTracked(shape, packTrack) && !isShapeTracked(shape, nonPackTrack)) {
+								/* Seleccionzar una zona */
+								if (isSizeTracked(size, packTrack)) {
+									/* ¿El tamaño de la zona está en el arreglo de tracking de los packs establecidos? */
+									if (isShapeTracked(shape, packTrack)) {
+										/* Si la zona ya está seleccionada en los packs establecidos, se agrega fuera del pack */
+										addShapeToNonPackTrack(shape);
+										shape.css({"opacity":"0.6"});
+									} else if (isSizeAvailable(size, packTrack)) {
+										/* Si la zona está disponible para ser seleccionada, se agrega al pack */
+										addShapeToPackTrack(shape);
+										shape.css({"opacity":"0.6"});
+									} else {
+										/* Si la zona no está disponible para ser seleccionada, se agrega al pack */
 										addShapeToNonPackTrack(shape);
 										shape.css({"opacity":"0.6"});
 									}
-								} else if (isShapeTracked(shape, packTrack)){
-									/* Deseleccionar una zona dentro de los packs establecidos */
-									let index = getIndexTrackOfShape(shape, packTrack);
-									$(packTrack[index].alert).alert("close");
-									shape.css({"opacity":"0.3"});
-								} else if (isShapeTracked(shape, nonPackTrack)) {
-									/* Deseleccionar una zona fuera de los packs establecidos */
-									let index = getIndexTrackOfShape(shape, nonPackTrack);
-									$(nonPackTrack[index].alert).alert("close");
-									shape.css({"opacity":"0.3"});
+								} else  {
+									/* Si el tamaño de la zona no está en el arreglo de tracking de los packs,
+									   se agrega fuera de pack */
+									addShapeToNonPackTrack(shape);
+									shape.css({"opacity":"0.6"});
 								}
+							} else if (isShapeTracked(shape, packTrack)){
+								/* Deseleccionar una zona dentro de los packs establecidos */
+								let index = getIndexTrackOfShape(shape, packTrack);
+								$(packTrack[index].alert).alert("close");
+								shape.css({"opacity":"0.3"});
+							} else if (isShapeTracked(shape, nonPackTrack)) {
+								/* Deseleccionar una zona fuera de los packs establecidos */
+								let index = getIndexTrackOfShape(shape, nonPackTrack);
+								$(nonPackTrack[index].alert).alert("close");
+								shape.css({"opacity":"0.3"});
+							}
 
-								editCard(event,shape);
+							editCard(event,shape);
+						});
+
+						$("g").on("mouseleave", function(event){
+							let shape = $(event.currentTarget);
+
+							if (isShapeTracked(shape, packTrack)) {
+								shape.css({"opacity":"0.6"});
+							} else if (isShapeTracked(shape, nonPackTrack)) {
+								shape.css({"opacity":"0.6"});
+							} else {
+								shape.css({"opacity":"0"});
+							}
+
+							hideCard();
+						});
+
+						/* Edición de objetos dentro y fuera del pack */
+
+						function addShapeToPackTrack(shape) {
+							/* Se añade la zona al arreglo de tracking de zonas paquetizadas */
+							let zoneName = $(shape).attr("title");
+							let gender = $(shape).attr("data-gender");
+							let size = $(shape).attr("data-size");
+
+							let index = getAvailableIndexTrackForSize(size, packTrack);
+
+							packTrack[index].zoneName = zoneName;
+							packTrack[index].gender = gender;
+							packTrack[index].size = size;
+
+							packTrack[index].alert = createPackedAlert(shape, zoneName);
+							packTrack[index].shape = $(shape);
+
+							updateSelectedZones();
+
+							$(packTrack[index].alert).appendTo($(packTrack[index].holder));
+						}
+
+						function deleteShapePacked(index, event) {
+							/* Se borra la zona del arreglo de tracking de zonas paquetizadas */
+							let shape = packTrack[index].shape;
+
+							packTrack[index].zoneName = null;
+							packTrack[index].gender = null;
+							packTrack[index].alert = null;
+							packTrack[index].shape = null;
+
+							$(shape).css({"opacity":"0"});
+
+							updateSelectedZones();
+						}
+
+						function addShapeToNonPackTrack(shape) {
+							/* Se añade la zona al arreglo de tracking de zonas no paquetizadas */
+							let trackObj = new Object();
+
+							let zoneName = $(shape).attr("title");
+							let gender = $(shape).attr("data-gender");
+							let size = $(shape).attr("data-size");
+
+							let alertContainer = document.createElement("div");
+							$(alertContainer).addClass("alert-container");
+
+							let alert = createNonPackedAlert(shape, zoneName);
+
+							trackObj.zoneName = zoneName;
+							trackObj.gender = gender;
+							trackObj.size = size;
+							trackObj.container = $(alertContainer);
+							trackObj.alert = $(alert);
+							trackObj.shape = $(shape);
+
+							nonPackTrack.push(trackObj);
+							$(alert).appendTo($(alertContainer));
+							$(alertContainer).appendTo(selectionSurface.nonPackedZones.zones);
+
+							updateSelectedZones();
+
+							if (nonPackTrack.length > 0) {
+								showNonPackContainer();
+							}
+						}
+
+						function deleteShapeNonPacked(index, event) {
+							/* Se borra la zona del arreglo de tracking de zonas no paquetizadas */
+							let shape = nonPackTrack[index].shape;
+							$(nonPackTrack[index].container).remove();
+							nonPackTrack = nonPackTrack.slice(0, index).concat(nonPackTrack.slice(index + 1));
+							$(shape).css({"opacity":"0"});
+							updateSelectedZones();
+						}
+
+						/* Alertas */
+
+						function createPackedAlert(shape, zoneName) {
+							/* Alerta para zona paquetizada */
+							let myShape = shape;
+							let alert = document.createElement("div");
+							$(alert).addClass("alert")
+									.addClass("alert-info")
+									/* .addClass("alert-selection") */
+									.addClass("alert-dismissible")
+									/* .addClass("text-light") */
+									.addClass("text-dark")
+									.addClass("fade")
+									.addClass("show")
+									.html(zoneName);
+
+							let closeButton = document.createElement("button");
+							$(closeButton).addClass("close")
+									   /* .addClass("text-light") */
+										  .attr("data-dismiss", "alert")
+										  .attr("aria-label", "close")
+										  .html("&times");
+
+							$(alert).on("close.bs.alert", function(event){
+								let index = getIndexTrackOfShape(myShape, packTrack);
+								deleteShapePacked(index, event);
 							});
 
-							$("g").on("mouseleave", function(event){
-								let shape = $(event.currentTarget);
+							$(closeButton).appendTo($(alert));
 
-								if (isShapeTracked(shape, packTrack)) {
-									shape.css({"opacity":"0.6"});
-								} else if (isShapeTracked(shape, nonPackTrack)) {
-									shape.css({"opacity":"0.6"});
-								} else {
-									shape.css({"opacity":"0"});
-								}
+							return alert;
+						}
 
-								hideCard();
+						function createNonPackedAlert(shape, zoneName) {
+							/* Alerta para zona no paquetizada */
+							let myShape = shape;
+							let alert = document.createElement("div");
+							let size = $(shape).attr("data-size");
+
+							/* El badge podría no ser implementado */
+							let badge = document.createElement("span");
+							$(badge).addClass("badge")
+									.addClass("badge-primary")
+									.append(size);
+
+							$(alert).addClass("alert")
+									.addClass("alert-info")
+								 /* .addClass("alert-selection") */
+									.addClass("alert-dismissible")
+								 /* .addClass("text-light") */
+									.addClass("fade")
+									.addClass("show")
+									.append(zoneName)
+									.append(badge);
+
+							let closeButton = document.createElement("button");
+							$(closeButton).addClass("close")
+										/*.addClass("text-light") */
+										  .attr("data-dismiss", "alert")
+										  .attr("aria-label", "close")
+										  .html("&times");
+
+							$(alert).on("close.bs.alert", function(event){
+								let index = getIndexTrackOfShape(myShape, nonPackTrack);
+								deleteShapeNonPacked(index, event);
 							});
 
-							/* Edición de objetos dentro y fuera del pack */
+							$(closeButton).appendTo($(alert));
 
-							function addShapeToPackTrack(shape) {
-								/* Se añade la zona al arreglo de tracking de zonas paquetizadas */
-								let zoneName = $(shape).attr("title");
-								let gender = $(shape).attr("data-gender");
-								let size = $(shape).attr("data-size");
+							return alert;
+						}
 
-								let index = getAvailableIndexTrackForSize(size, packTrack);
+						/* Tarjeta */
 
-								packTrack[index].zoneName = zoneName;
-								packTrack[index].gender = gender;
-								packTrack[index].size = size;
+						function openCard(event, shape) {
+							/* Se muestra la tarjeta */
+							let posX = event.clientX;
+							let posY = event.clientY;
 
-								packTrack[index].alert = createPackedAlert(shape, zoneName);
-								packTrack[index].shape = $(shape);
+							selectionSurface.card.element.css({
+								"left":(posX + 20) + "px",
+								"top":(posY + 20) + "px",
+								"display":"block"
+							});
+						}
 
-								updateSelectedZones();
+						function editCard(event, shape) {
+							/* Se edita la tarjeta */
+							let posX = event.clientX;
+							let posY = event.clientY;
 
-								$(packTrack[index].alert).appendTo($(packTrack[index].holder));
+							let size = $(shape).attr("data-size");
+
+							selectionSurface.card.body.html("");
+
+							selectionSurface.card.body.append(setTitle(shape));
+
+							if (isShapeTracked(shape, packTrack) || isShapeTracked(shape, nonPackTrack)) {
+								selectionSurface.card.body.append(addedParagraph());
+								selectionSurface.card.body.append(removeParagraph());
+							} else {
+								selectionSurface.card.body.append(selectToAddParagraph());
 							}
 
-							function deleteShapePacked(index, event) {
-								/* Se borra la zona del arreglo de tracking de zonas paquetizadas */
-								let shape = packTrack[index].shape;
-
-								packTrack[index].zoneName = null;
-								packTrack[index].gender = null;
-								packTrack[index].alert = null;
-								packTrack[index].shape = null;
-
-								$(shape).css({"opacity":"0"});
-
-								updateSelectedZones();
-							}
-
-							function addShapeToNonPackTrack(shape) {
-								/* Se añade la zona al arreglo de tracking de zonas no paquetizadas */
-								let trackObj = new Object();
-
-								let zoneName = $(shape).attr("title");
-								let gender = $(shape).attr("data-gender");
-								let size = $(shape).attr("data-size");
-
-								let alertContainer = document.createElement("div");
-								$(alertContainer).addClass("alert-container");
-
-								let alert = createNonPackedAlert(shape, zoneName);
-
-								trackObj.zoneName = zoneName;
-								trackObj.gender = gender;
-								trackObj.size = size;
-								trackObj.container = $(alertContainer);
-								trackObj.alert = $(alert);
-								trackObj.shape = $(shape);
-
-								nonPackTrack.push(trackObj);
-								$(alert).appendTo($(alertContainer));
-								$(alertContainer).appendTo(selectionSurface.nonPackedZones.zones);
-
-								updateSelectedZones();
-
-								if (nonPackTrack.length > 0) {
-									showNonPackContainer();
-								}
-							}
-
-							function deleteShapeNonPacked(index, event) {
-								/* Se borra la zona del arreglo de tracking de zonas no paquetizadas */
-							    let shape = nonPackTrack[index].shape;
-								$(nonPackTrack[index].container).remove();
-								nonPackTrack = nonPackTrack.slice(0, index).concat(nonPackTrack.slice(index + 1));
-								$(shape).css({"opacity":"0"});
-								updateSelectedZones();
-							}
-
-							/* Alertas */
-
-							function createPackedAlert(shape, zoneName) {
-								/* Alerta para zona paquetizada */
-								let myShape = shape;
-								let alert = document.createElement("div");
-								$(alert).addClass("alert")
-										.addClass("alert-selection")
-										.addClass("alert-dismissible")
-										.addClass("text-light")
-										.addClass("fade")
-										.addClass("show")
-										.html(zoneName);
-
-								let closeButton = document.createElement("button");
-								$(closeButton).addClass("close")
-											  .addClass("text-light")
-											  .attr("data-dismiss", "alert")
-											  .attr("aria-label", "close")
-											  .html("&times");
-
-								$(alert).on("close.bs.alert", function(event){
-									let index = getIndexTrackOfShape(myShape, packTrack);
-									deleteShapePacked(index, event);
-								});
-
-								$(closeButton).appendTo($(alert));
-
-								return alert;
-							}
-
-							function createNonPackedAlert(shape, zoneName) {
-								/* Alerta para zona no paquetizada */
-								let myShape = shape;
-								let alert = document.createElement("div");
-								$(alert).addClass("alert")
-										.addClass("alert-selection")
-										.addClass("alert-dismissible")
-										.addClass("text-light")
-										.addClass("fade")
-										.addClass("show")
-										.html(zoneName);
-
-								let closeButton = document.createElement("button");
-								$(closeButton).addClass("close")
-											  .addClass("text-light")
-											  .attr("data-dismiss", "alert")
-											  .attr("aria-label", "close")
-											  .html("&times");
-
-								$(alert).on("close.bs.alert", function(event){
-									let index = getIndexTrackOfShape(myShape, nonPackTrack);
-									deleteShapeNonPacked(index, event);
-								});
-
-								$(closeButton).appendTo($(alert));
-
-								return alert;
-							}
-
-							/* Tarjeta */
-
-							function openCard(event, shape) {
-								/* Se muestra la tarjeta */
-								let posX = event.clientX;
-								let posY = event.clientY;
-
-								selectionSurface.card.element.css({
-									"left":(posX + 20) + "px",
-									"top":(posY + 20) + "px",
-									"display":"block"
-								});
-							}
-
-							function editCard(event, shape) {
-								/* Se edita la tarjeta */
-								let posX = event.clientX;
-								let posY = event.clientY;
-
-								let size = $(shape).attr("data-size");
-
-								selectionSurface.card.body.html("");
-
-								selectionSurface.card.body.append(setTitle(shape));
-
-								if (isShapeTracked(shape, packTrack) || isShapeTracked(shape, nonPackTrack)) {
-									selectionSurface.card.body.append(addedParagraph());
-								} else {
-									selectionSurface.card.body.append(selectToAddParagraph());
-								}
-
-								if (!isShapeTracked(shape, packTrack) && !isShapeTracked(shape, nonPackTrack)) {
-									if(isSizeTracked(size, packTrack)) {
-										if (isShapeTracked(shape, packTrack)) {
-											selectionSurface.card.body.append(warningParagraph());
-										} else if (!isSizeAvailable(size, packTrack)) {
-											selectionSurface.card.body.append(warningParagraph());
-										}
-									} else {
+							if (!isShapeTracked(shape, packTrack) && !isShapeTracked(shape, nonPackTrack)) {
+								if(isSizeTracked(size, packTrack)) {
+									if (isShapeTracked(shape, packTrack)) {
+										selectionSurface.card.body.append(warningParagraph());
+									} else if (!isSizeAvailable(size, packTrack)) {
 										selectionSurface.card.body.append(warningParagraph());
 									}
+								} else {
+									selectionSurface.card.body.append(warningParagraph());
 								}
-
-								selectionSurface.card.element.css({
-									"left":(posX + 20) + "px",
-									"top":(posY + 20) + "px",
-									"display":"block"
-								});
 							}
 
-							function hideCard() {
-								/* Se esconde la tarjeta */
-								selectionSurface.card.element.css({
-									"display":"none"
-								});
-							}
+							selectionSurface.card.element.css({
+								"left":(posX + 20) + "px",
+								"top":(posY + 20) + "px",
+								"display":"block"
+							});
+						}
 
-							function setTitle(shape) {
-								/* Se setea el título de la tarjeta */
-								let h5 = document.createElement("h5");
-								$(h5).addClass("text-secondary");
+						function hideCard() {
+							/* Se esconde la tarjeta */
+							selectionSurface.card.element.css({
+								"display":"none"
+							});
+						}
 
-								let title = $(shape).attr("title");
-								let size = $(shape).attr("data-size");
+						function setTitle(shape) {
+							/* Se setea el título de la tarjeta */
+							let h5 = document.createElement("h5");
+							$(h5).addClass("text-secondary");
 
-								let badge = document.createElement("span");
-								$(badge).addClass("badge").addClass("badge-primary").append(size);
+							let title = $(shape).attr("title");
+							let size = $(shape).attr("data-size");
 
-								$(h5).append(title).append(badge);
-								return $(h5);
-							}
+							let badge = document.createElement("span");
+							$(badge).addClass("badge").addClass("badge-primary").append(size);
 
-							function selectToAddParagraph() {
-								/* Se añade una párrafo de "Seleccione para agregar" */
-								let p = document.createElement("p");
-								$(p).addClass("card-text").addClass("text-secondary");
+							$(h5).append(title).append(badge);
+							return $(h5);
+						}
 
-								let i = document.createElement("i");
-								$(i).addClass("fa").addClass("fa-check").addClass("fa-fw");
+						function selectToAddParagraph() {
+							/* Se añade una párrafo de "Seleccione para agregar" */
+							let p = document.createElement("p");
+							$(p).addClass("card-text").addClass("text-secondary");
 
-								$(p).append($(i)).append("Seleccione para agregar");
-								return $(p);
-							}
+							let i = document.createElement("i");
+							$(i).addClass("fa").addClass("fa-plus").addClass("fa-fw");
 
-							function addedParagraph() {
-								/* Se añade un párrafo de "agregada" */
-								let p = document.createElement("p");
-								$(p).addClass("card-text").addClass("text-success");
+							$(p).append($(i)).append("Click para agregar esta zona");
+							return $(p);
+						}
 
-								let i = document.createElement("i");
-								$(i).addClass("fa").addClass("fa-plus").addClass("fa-fw");
+						function addedParagraph() {
+							/* Se añade un párrafo de "agregada" */
+							let p = document.createElement("p");
+							$(p).addClass("card-text").addClass("text-success");
 
-								$(p).append($(i)).append("Agregada");
-								return $(p);
-							}
+							let i = document.createElement("i");
+							$(i).addClass("fa").addClass("fa-check").addClass("fa-fw");
 
-							function warningParagraph() {
-								/* Se añade un párrafo de advertencia al momento de hacer la selección */
-								let p = document.createElement("p");
-								$(p).addClass("card-text").addClass("text-warning-custom");
+							$(p).append($(i)).append("Zona agregada");
+							return $(p);
+						}
 
-								let i = document.createElement("i");
-								$(i).addClass("fa").addClass("fa-warning").addClass("fa-fw");
+						function removeParagraph() {
+							let p = document.createElement("p");
+							$(p).addClass("card-text").addClass("text-secondary");
 
-								$(p).append($(i)).append("Se agregará fuera de los packs seleccionados, con cargo adicional.");
-							    return $(p);
-							}
+							let small = document.createElement("small");
 
-							/* Funciones auxiliares */
+							let i = document.createElement("i");
+							// $(i).addClass("fa").addClass("fa-times").addClass("fa-fw");
 
-							function getIndexOfPacksByID(id, packs) {
-								/* Se obtiene la ID del pack con una ID dada como parámetro */
-								return packs.findIndex(function(element){
-									return id == element._id;
-								});
-							}
+							// $(small).append($(i)).append("Haz click para quitar esta zona");
+							$(small).append("Haz click para quitar esta zona");
+							$(p).append($(small));
+							return $(p);
+						}
 
-							function getIndexTrackOfShape(shape, track){
-								/* Se obtiene el índice del arreglo de tracking para una forma dada como parámetro*/
-								return track.findIndex(function(element){
-									return $(shape).is($(element.shape));
-								});
-							}
+						function warningParagraph() {
+							/* Se añade un párrafo de advertencia al momento de hacer la selección */
+							let p = document.createElement("p");
+							$(p).addClass("card-text").addClass("text-warning-custom");
 
-							function getIndexTrackOfAlert(alert, track){
-								/* Se obtiene el índice del arreglo de tracking para un elemento de alerta dado como parámetro */
-								return track.findIndex(function(element){
-									return $(alert).is($(element.alert));
-								});
-							}
+							let small = document.createElement("small");
 
-							function isSizeTracked(size, track) {
-								/* ¿Es el tamaño parte de un arreglo de tracking? */
-								let index = track.findIndex(function(element){
-									return size == element.size;
-								});
+							let i = document.createElement("i");
+							$(i).addClass("fa").addClass("fa-warning").addClass("fa-fw");
 
-								return (index != -1);
-							}
+							$(small).append($(i)).append("Se agregará fuera de los packs seleccionados, con cargo adicional.");
+							$(p).append($(small));
+							return $(p);
+						}
 
-							function isShapeTracked(shape, track) {
-								/* ¿La forma ha sido agregada previamente a un arreglo de tracking? */
-								let index = track.findIndex(function(element){
-									return $(shape).is($(element.shape));
-								});
-								return (index != -1);
-							}
+						/* Funciones auxiliares */
 
-							function isSizeAvailable(size, track) {
-								/* ¿El tamaño actual tiene disponibilidad en el arreglo de tracking? */
-								let index = track.findIndex(function(element){
-									return ((size == element.size) && (element.shape == null));
-								});
+						function getIndexOfPacksByID(id, packs) {
+							/* Se obtiene la ID del pack con una ID dada como parámetro */
+							return packs.findIndex(function(element){
+								return id == element._id;
+							});
+						}
 
-								return (index != -1);
-							}
+						function getIndexTrackOfShape(shape, track){
+							/* Se obtiene el índice del arreglo de tracking para una forma dada como parámetro*/
+							return track.findIndex(function(element){
+								return $(shape).is($(element.shape));
+							});
+						}
 
-							function getAvailableIndexTrackForSize(size, track) {
-								/* Se obtiene el primer índice de elemento en el pack
-								   que coincida con el tamaño y no tenga una forma asociada */
-								return track.findIndex(function(element){
-									return ((size == element.size) && (element.shape == null));
-								});
-							}
+						function getIndexTrackOfAlert(alert, track){
+							/* Se obtiene el índice del arreglo de tracking para un elemento de alerta dado como parámetro */
+							return track.findIndex(function(element){
+								return $(alert).is($(element.alert));
+							});
+						}
 
-							/* Interfaz gráfica */
+						function isSizeTracked(size, track) {
+							/* ¿Es el tamaño parte de un arreglo de tracking? */
+							let index = track.findIndex(function(element){
+								return size == element.size;
+							});
 
-							function showNonPackContainer() {
-								/* Mostrar el contenedor de las zonas
-								   no-pertenecientes a un pack */
-								selectionSurface.nonPackedZones.container.css({
-									"display":"block"
-								});
-							}
+							return (index != -1);
+						}
 
-							function hideNonPackContainer() {
-								/* Esconder el contenedor de las zonas
-								   no-pertenecientes a un pack */
-								selectionSurface.nonPackedZones.container.css({
-									"display":"none"
-								});
-							}
+						function isShapeTracked(shape, track) {
+							/* ¿La forma ha sido agregada previamente a un arreglo de tracking? */
+							let index = track.findIndex(function(element){
+								return $(shape).is($(element.shape));
+							});
+							return (index != -1);
+						}
 
-							function updateSelectedZones(){
-								/* Actualización de la información
-								   en la interfaz gráfica referente */
-								let totalZones = getTotalZones();
+						function isSizeAvailable(size, track) {
+							/* ¿El tamaño actual tiene disponibilidad en el arreglo de tracking? */
+							let index = track.findIndex(function(element){
+								return ((size == element.size) && (element.shape == null));
+							});
 
-								selectionSurface.badge.html(totalZones);
+							return (index != -1);
+						}
 
-								selectionSurface.nonPackedZones.container.css({
-									"display": (nonPackTrack.length > 0 ? "block": "none")
-								});
-							}
+						function getAvailableIndexTrackForSize(size, track) {
+							/* Se obtiene el primer índice de elemento en el pack
+							   que coincida con el tamaño y no tenga una forma asociada */
+							return track.findIndex(function(element){
+								return ((size == element.size) && (element.shape == null));
+							});
+						}
 
-							/* General */
+						/* Interfaz gráfica */
 
-							function getSelectedPackedZones() {
-								/* Se obtiene la cuenta de zonas del cuerpo seleccionadas como parte de los packs seleccionados */
-								let count = 0;
+						function showNonPackContainer() {
+							/* Mostrar el contenedor de las zonas
+							   no-pertenecientes a un pack */
+							selectionSurface.nonPackedZones.container.css({
+								"display":"block"
+							});
+						}
 
-								packTrack.forEach(function(element){
-									count += (element.shape != null ? 1 : 0);
-								});
+						function hideNonPackContainer() {
+							/* Esconder el contenedor de las zonas
+							   no-pertenecientes a un pack */
+							selectionSurface.nonPackedZones.container.css({
+								"display":"none"
+							});
+						}
 
-								return count;
-							}
+						function updateSelectedZones(){
+							/* Actualización de la información
+							   en la interfaz gráfica referente */
+							let totalZones = getTotalZones();
 
-							function getTotalZones() {
-								/* Se obtiene la cuenta de zonas seleccionadas (paquetizadas + no paquetizadas) */
-								return getSelectedPackedZones() + nonPackTrack.length;
-							}
+							selectionSurface.badge.html(totalZones);
 
-							function setDefaultState(){
-								/* Reseteo de todos los componentes al estado por defecto */
+							selectionSurface.nonPackedZones.container.css({
+								"display": (nonPackTrack.length > 0 ? "block": "none")
+							});
 
-								/* Reseteo de los arreglos de tracking */
-								packTrack = [];
-							    nonPackTrack = [];
+							selectionSurface.noSelectedZones.css({
+								"display": (totalZones == 0 ? "block" : "none")
+							});
+						}
 
-								/* Reseteo de las formas */
-								$("g").css({"opacity":"0"});
+						/* General */
 
-								/* Reseteo de la selección */
-								selectionSurface.packedZones.zones.html("");
-								selectionSurface.nonPackedZones.zones.html("");
-							}
-						});
+						function getSelectedPackedZones() {
+							/* Se obtiene la cuenta de zonas del cuerpo seleccionadas como parte de los packs seleccionados */
+							let count = 0;
+
+							packTrack.forEach(function(element){
+								count += (element.shape != null ? 1 : 0);
+							});
+
+							return count;
+						}
+
+						function getTotalZones() {
+							/* Se obtiene la cuenta de zonas seleccionadas (paquetizadas + no paquetizadas) */
+							return getSelectedPackedZones() + nonPackTrack.length;
+						}
+
+						function setDefaultState(){
+							/* Reseteo de todos los componentes al estado por defecto */
+
+							/* Reseteo de los arreglos de tracking */
+							packTrack = [];
+							nonPackTrack = [];
+
+							/* Reseteo de las formas */
+							$("g").css({"opacity":"0"});
+
+							/* Reseteo de la selección */
+							selectionSurface.packedZones.zones.html("");
+							selectionSurface.nonPackedZones.zones.html("");
+						}
+					});
 
 				script.
 					$(document).ready(function() {

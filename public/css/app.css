@@ -178,11 +178,13 @@ main {
   margin-left: 0.5rem;
 }
 
-/*
-.documento-new .human-body .svg-body g:hover {
-  opacity: 0.3;
+.documento-new .alert-container .badge {
+  margin-left: 0.5rem;
 }
-*/
+
+.documento-new .selected-zones h5 .badge {
+  margin-left: 0.5rem;
+}
 
 .documento-new .selected-zones .alert-container:not(:last-child) {
   margin-bottom: 1rem;
@@ -199,24 +201,12 @@ main {
   .documento-new .selected-zones .alert-container {
     font-size: 0.5rem;
   }
-
-  /*
-  .documento-new .size-zones .alert-container button {
-    font-size: 0.5rem;
-  }
-  */
 }
 
 @media screen and (min-width:576px) and (max-width: 991px) {
   .documento-new .selected-zones .alert-container {
     font-size: 0.75rem;
   }
-
-  /*
-  .documento-new .size-zones .alert-container button {
-    font-size: 0.75rem;
-  }
-  */
 }
 
 .documento-new .selected-zones .alert-container.alert-container-header {
@@ -244,7 +234,7 @@ main {
 }
 
 .documento-new .selected-zones .alert-container > .alert {
-  margin-bottom: 0; 
+  margin-bottom: 0;
 }
 
 .documento-new .map,
@@ -301,7 +291,7 @@ main {
   grid-template-columns: 1fr;
   grid-template-areas: "sidebar"
                        "content";
-  width: 100vw; /* unnecessary, but let's keep things consistent */
+  width: 100vw; /* For size consistency */
   height: 100vh;
 }
 
@@ -493,7 +483,7 @@ main {
 }
 
 .text-warning-custom {
-  color: orange !important; 
+  color: orange !important;
 }
 
 .shadow-text {
