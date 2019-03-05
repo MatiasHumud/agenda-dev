@@ -18,6 +18,11 @@ block contenido
 					label(for="name") Nombre
 					input(type="text" name="name" id="name" class="form-control" value="#{service.name}")
 				div(class="form-group")
+					label(for="gender") Género
+					select(class="form-control" name="gender" id="gender")
+						for gender in genders
+							option(class="text-secondary" value=gender)=gender
+				div(class="form-group")
 					label(for="category") Tipo
 					select(class="form-control" name="category" id="category")
 						for tipo in tipos

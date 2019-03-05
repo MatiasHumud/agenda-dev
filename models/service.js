@@ -10,7 +10,11 @@ var serviceSchema = new Schema({
 	},
 	brief:{type: String},
 	duration:{type: Number, required: "Session duration is blank"},
-	shapes:{type: [String], required: "Body part is blank"},
+	gender:{
+		type: String, required: "Gender is blank",
+		enum: {values: ["H", "M"], message: "Incorrect category"}
+	},
+	shapes:{type: Object, required: "Body part is blank"},
 	isAllDay:{type: Boolean, default: false}
 });
 

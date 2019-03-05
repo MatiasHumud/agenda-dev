@@ -17,6 +17,13 @@ block contenido
 				label(class="font-weight-bold mr-3") Nombre:
 				label #{service.name}
 			div(class="form-group")
+				label(class="font-weight-bold mr-3") Género:
+				label
+					-if (service.gender == null)
+						| No determinado
+					-else
+						| #{service.gender}
+			div(class="form-group")
 				label(class="font-weight-bold mr-3") Categoría:
 				label #{service.category}
 			div(class="form-group")

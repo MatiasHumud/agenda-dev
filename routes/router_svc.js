@@ -14,7 +14,10 @@ var client = redis.createClient();
 // Assign "availableServices" middleware to every service creation request
 router.all("/new", availableServices);
 router.get("/new", function(req, res){
-	res.render("session/servicios/new", { tipos: res.locals.tipos });
+	res.render("session/servicios/new", {
+		tipos: res.locals.tipos,
+		genders: res.locals.genders
+	});
 });
 
 // Assign "serviceFinder" middleware to every servicios request 
@@ -23,7 +26,10 @@ router.all("/:id*", serviceFinder);
 router.all("/:id/edit", availableServices);
 // Despliega el formulario para edición de un servicios específico
 router.get("/:id/edit", function(req, res){
-	res.render("session/servicios/edit", { service: res.locals.service });
+	res.render("session/servicios/edit", {
+		genders: res.locals.genders,
+		service: res.locals.service
+	});
 });
 
 // Assign "svcCollFinder" middleware to every document collection request
