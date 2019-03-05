@@ -47,35 +47,8 @@ router.route("/:id")
 		res.render("session/horarios/show", {documento: res.locals.documento});
 	})
 	.put(function(req, res){//Editar bloqueo seleccionado
-		var usr, ress, bch = undefined;
-		switch(req.body.perm) {
-			case "Branch":
-				usr = req.body.userId; 
-				bch = req.body.userId;
-				break;
-			case "Resource":
-				usr = req.body.userId; 
-				ress = req.body.userId;
-				break;
-		}
-		res.locals.documento.usuario = usr;
-		res.locals.documento.servicio = undefined;
-		res.locals.documento.recurso = ress;
-		res.locals.documento.sucursal = bch;
-		if(req.body.dateSelect){
-			res.locals.documento.event = new Event(JSON.parse(req.body.dateSelect));
-			res.locals.documento.event.title = "block";
-		}
-		
-		res.locals.documento.save(function(err){
-			if(!err){
-				res.redirect("/session/horarios/");	
-			}
-			else{
-				console.log(err);
-				res.redirect("/session/horarios/"+req.params.id+"/edit");
-			}				
-		})
+		editInDB(req, res);
+		res.redirect("/session/horarios/");	
 	})
 	.delete(function(req, res){//Borrar bloqueo seleccionado
 		Documento.findOneAndRemove({_id: req.params.id}, function(err){
@@ -97,7 +70,7 @@ router.route("/")
 		res.redirect("/session/horarios/")
 	});		
 
-async function saveToDB(req, res){	
+async function saveToDB(req, res){
 	var blockTitle = "block";
 	var evt = JSON.parse(req.body.dateSelect);
 	evt.title = blockTitle;
@@ -125,6 +98,20 @@ async function saveToDB(req, res){
 			return false;
 		}
 	});
+}
+
+async function editInDB(req, res){
+	res.locals.documento.event = new Event(JSON.parse(req.body.dateSelect));
+	res.locals.documento.event.title = "block";
+	res.locals.documento.save(function(err){
+		if(!err){
+			return true;
+		}
+		else{
+			console.log("Error on saving: "+ err);
+			return false;
+		}				
+	})
 }
 
 module.exports = router;

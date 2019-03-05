@@ -10,7 +10,7 @@ var docSchema = new Schema({
 	servicio:{type: Schema.Types.ObjectId, ref: "Service"},
 	status:{
 		type: String, required: "Status is blank", default: "agendado",
-		enum: {values: ["agendado", "ejecutado", "abandonado"], message: "Incorrect status"}
+		enum: {values: ["agendado", "confirmado", "ejecutado", "abandonado"], message: "Incorrect status"}
 	},
 	event:{type: Object, required: "Sesión no agendada"},
 	timestamp:{
