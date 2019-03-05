@@ -39,6 +39,7 @@ router.route("/:id")
 		res.locals.member.name = req.body.name;
 		res.locals.member.lastName = req.body.lastName;
 		res.locals.member.email = req.body.email;
+		res.locals.member.gender = req.body.gender;
 		res.locals.member.password = req.body.newPassword;
 		res.locals.member.pass_confirm = req.body.password_confirmation;
 

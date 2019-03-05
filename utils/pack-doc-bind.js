@@ -18,7 +18,6 @@ async function updatePacks (req, res, docs, packBind) {
 	
 		packs[i].save(function(err, doc){
 			if(!err){
-				console.log(doc.treatment);
 				return true;	
 			}
 			else{

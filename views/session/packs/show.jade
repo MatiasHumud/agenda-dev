@@ -69,12 +69,15 @@ block contenido
 								for (var j = 0; j < "#{pack.packType.nSessions}"; j++) {
 									var actualDoc = treatDocs[j];
 									var docPath = "";
-									var docStat = ["primary", "fa fa-plus-square-o"];
+									var docStat = ["secondary", "fa fa-calendar-plus-o"];
 									if(actualDoc !== undefined) {
 										docPath = "/session/documentos/" + treatDocs[j]._id;
 										switch(actualDoc.status){
 											case "agendado":
 												docStat = ["warning", "fa fa-calendar"];
+												break;
+											case "confirmado":
+												docStat = ["primary", "fa fa-calendar-check-o"];
 												break;
 											case "ejecutado":
 												docStat = ["success", "fa fa-calendar-check-o"];

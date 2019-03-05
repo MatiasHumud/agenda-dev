@@ -42,11 +42,12 @@ function validateForm() {
 	x = document.getElementsByClassName("tab");
 	y = x[currentTab].getElementsByTagName("select");
 	z = x[currentTab].getElementsByTagName("input");
-	// A loop that checks every input field in the current tab:
+	// A loop that checks every select field in the current tab:
 	for (i = 0; i < y.length; i++) {
 		if (y[i].value == "undefined") {
 			y[i].className += " invalid";
 			valid = false;
+			console.log(y[i] + " está indefinido");
 		}
 		else {
 			y[i].className = "form-control";
@@ -57,6 +58,7 @@ function validateForm() {
 		if (z[i].value == "") {
 			z[i].className += " invalid";
 			valid = false;
+			console.log("input " + z[i].name + " está indefinido");
 		}
 		else {
 			z[i].className = "form-control";

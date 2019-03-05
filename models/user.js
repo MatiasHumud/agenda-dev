@@ -82,7 +82,16 @@ var Resource = User.discriminator("Resource", resourceSchema);
 
 // Admin User
 var adminSchema = new Schema({
-
+	workHours: {
+		type: Array,
+		default: [
+			{
+				dow: [1, 2 ,3 ,4 ,5, 6, 7],
+				start: "00:00",
+				end: "24:00"
+			}
+		]
+	}
 }, options);
 var Admin = User.discriminator("Admin", adminSchema);
 
