@@ -171,55 +171,50 @@ main {
 .documento-new .toggable-card {
   position: fixed;
   display: none;
+  /* border: 1px solid black; */
+  box-shadow:3px 3px 5px black;
 }
 
 .documento-new .toggable-card .badge {
-  margin-left: 0.5rem; 
+  margin-left: 0.5rem;
 }
 
-/*
-.documento-new .human-body .svg-body g:hover {
-  opacity: 0.3;
-}
-*/
-
-.documento-new .size-zones .alert-container:not(:last-child) {
-  margin-bottom: 1rem; 
+.documento-new .alert-container .badge {
+  margin-left: 0.5rem;
 }
 
-.documento-new .size-zones .alert-container {
+.documento-new .selected-zones h5 .badge {
+  margin-left: 0.5rem;
+}
+
+.documento-new .selected-zones .alert-container:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.documento-new .selected-zones .alert-container {
   border-radius: .25rem;
   border: 1px solid #a8b2b9;
   margin-bottom: 1rem;
   display: grid;
-  grid-template-columns: 20% 1fr;
 }
 
 @media screen and (max-width: 575px) {
-  .documento-new .size-zones .alert-container {
-    font-size: 0.5rem; 
+  .documento-new .selected-zones .alert-container {
+    font-size: 0.5rem;
   }
-
-  /*
-  .documento-new .size-zones .alert-container button {
-    font-size: 0.5rem; 
-  }
-  */
 }
 
 @media screen and (min-width:576px) and (max-width: 991px) {
-  .documento-new .size-zones .alert-container {
-    font-size: 0.75rem; 
-  }
-
-  /*
-  .documento-new .size-zones .alert-container button {
+  .documento-new .selected-zones .alert-container {
     font-size: 0.75rem;
   }
-  */
 }
 
-.documento-new .size-zones .alert-container .size-header {
+.documento-new .selected-zones .alert-container.alert-container-header {
+  grid-template-columns: 20% 1fr;
+}
+
+.documento-new .selected-zones .alert-container.alert-container-header .size-header {
   position: relative;
   font-weight: bold;
   padding: .75rem 1.25rem;
@@ -228,15 +223,19 @@ main {
   text-align: center;
 }
 
-.documento-new .size-zones .alert-container .alert-holder {
+.documento-new .selected-zones .alert-container .alert-holder {
   width: 100%;
 }
 
-.documento-new .size-zones .alert-container .alert-holder .alert {
+.documento-new .selected-zones .alert-container .alert-holder .alert {
   width: inherit;
   margin-bottom:0;
   border-radius:0 .25rem .25rem 0;
   border:0;
+}
+
+.documento-new .selected-zones .alert-container > .alert {
+  margin-bottom: 0;
 }
 
 .documento-new .map,
@@ -293,7 +292,7 @@ main {
   grid-template-columns: 1fr;
   grid-template-areas: "sidebar"
                        "content";
-  width: 100vw; /* unnecessary, but let's keep things consistent */
+  width: 100vw; /* For size consistency */
   height: 100vh;
 }
 
@@ -481,7 +480,11 @@ main {
 }
 
 .alert-selection {
-  background-color: steelblue; 
+  background-color: steelblue;
+}
+
+.text-warning-custom {
+  color: orange !important;
 }
 
 .shadow-text {
