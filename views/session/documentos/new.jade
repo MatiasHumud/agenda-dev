@@ -21,6 +21,7 @@ block contenido
 				div(class="tab")
 					p Selección de tratamiento
 					div(class="form-group")
+						label(for="usr") Usuario:
 						select(class="form-control" name="usr" id="usr")
 							if(users.length == 1)
 								option(class="text-secondary" value=users[0]._id selected)=users[0].name
@@ -28,11 +29,181 @@ block contenido
 								option(class="text-secondary" value="undefined" disabled selected) Seleccione un usuario
 								for user in users
 									option(class="text-secondary" value=user._id)=user.name
-					div(class="form-group")
+					div(class="form-group mb-5" id="svcContainer" style="display:none;")
+						label(for="svc") Selecciona uno o varios packs:
 						select(class="form-control selectpicker" name="svc" id="svc" multiple)
-							option(class="text-secondary" value="undefined" disabled) Elija una zona
-							for service in services
-								option(class="text-secondary" value=service._id)=service.name
+					div(class="selection-surface" id="selectionSurface" style="display:none;")
+						p Haz click sobre una zona para agregarla. Haz click de nuevo sobre dicha zona para removerla.
+						div(class="human-body" id="femaleBody" style="display:none;")
+							nav(class="nav nav-pills nav-fill")
+								a(class="nav-item nav-link active" id="femalePillsFront" data-toggle="tab" href="#femaleBodyFront" role="tab" aria-controls="femaleBodyFront" aria-selected="true") Frente
+								a(class="nav-item nav-link" id="femalePillsBack" data-toggle="tab" href="#femaleBodyBack" role="tab" aria-controls="femaleBodyBack" aria-selected="false") Espalda
+							div(class="tab-content" id="femaleTabContent")
+								div(class="tab-pane fade show active" id="femaleBodyFront" role="tabpanel" aria-labelledby="femalePillsFront")
+									svg(class="svg-body" viewBox="0 0 30 60")
+										image(href="/public/femalebody_front.jpg" x="0" y="5" height="50")
+										// L
+										g(data-toggle="tooltip" data-placement="left" title="Piernas completas" data-size="L" data-gender="female")
+											polygon(points="11.8,32 16.3,32 16.3,34 16.2,34.3 16.1,34.8 16.1,35.2 16.1,35.7 16.2,36.2 16.2,36.7 16.3,37.1 16.3,37.5 16.2,38 16.2,38.5 16.2,39 16.1,39.5 16,40 15.9,40.5 16,41 16,42.5 15.9,43 15.9,42.5 15.8,44 15.6,46 15.5,48 15.7,49.5 15.9,50 14.2,50 14.2,49 14,48 13.9,47 13.6,45 13.4,44.5 13.3,44 13.3,43.5 13.1,43 13.1,42 13.1,41 13.2,40.5 13.3,40 13.3,39.5")
+											polygon(points="17,32 21,32 20.9,32.5 20.8,33 20.7,33.6 20.6,34 20.5,34.7 20.3,35.5 20.2,36 20,36.7 19.9,37.4 19.8,38.2 19.7,39 19.6,39.8 19.6,40.6 19.7,41.8 19.7,42.3 19.6,43 19.5,43.8 19.3,44.8 19.1,45.8 18.9,46.8 18.7,47.8 18.4,48.8 18.2,49 18.3,50 16.7,50 16.6,50 16.8,49 16.8,48 16.9,47.5 16.9,47 16.8,46 16.7,45 16.6,43")
+										// M
+										g(data-toggle="tooltip" data-placement="right" title="Brazos completos" data-size="M" data-gender="female")
+											polygon(points="12.4,13.6 11,14 10,15 9.2,16 8.7,16.5 8.4,16.7 8,17 7.5,17.8 7,18.4 6.5,18.8 6,19.4 5.7,19.7 5.6,20 5.6,20.5 5.8,21 6.2,21.5 6.5,21.8 6.7,22 6.9,22.2 7.1,22.4 7.5,22.8 7.7,22.9 8.4,23.3 8.9,23.8 9.2,24.0 9.4,24.2 9.7,24.4 10,24.9 10.3,25.3 10.8,25.8 11.3,26.1 12.1,26.4 12.4,26.8 12.7,27 13,27 13.5,27 13.8,27 14,26.8 14.3,26.5 14.5,26.5 14.5,25.5 14.7,25.5 14.2,24.9 13.6,24.7 13.3,24.6 13,24.2 12.5,24.2 12,24.2 11.5,24.1 11,23.8 10.5,23.3 10,22.9 9.5,22.4 9,21.9 8.5,21.4 8,20.6 7.7,20.3 7.7,20 8,19.7 8.4,19.3 8.7,19.2 9.2,18.7 9.7,18.2 10.2,17.7 10.7,17.2 10.9,16.9")
+											polygon(points="19.5,13.6 20,13.6 20.5,13.6 20.8,13.7 21,13.8 21.3,14.1 21.6,14.5 22,14.8 22.5,15.3 22.9,15.9 23.5,16.9 23.9,17.4 24,17.5 24.5,18 25,18.6 25.5,19.3 25.8,19.8 26,20.2 26.1,20.5 26.1,21 26,21.3 25.5,22.2 25,22.9 24.5,23.7 24,24.3 23.5,24.8 23.2,25.1 22.7,25.6 22.4,26 22.2,26.1 21.9,26.3 21.5,26.2 21,26.3 20.5,26.5 20,26.7 19.5,27 19.2,26.8 18.7,26.7 18.2,26.2 18,26 18.2,25 18.2,24.8 18.6,24.5 18.9,24.3 19.4,24.2 19.7,24.2 20,24.2 20.3,24.2 20.5,24.3 20.8,24.4 21.2,24.7 21.4 24.8 21.6,24.8 21.8,24.7 22.3,24.2 22.8,23.4 23.3,22.7 23.8,21.7 24.2,21 24.2,20.5 23.7,20 23.2,19.5 22.7,18.8 22.2,18.3 21.7,17.8")
+										g(data-toggle="tooltip" data-placement="bottom" title="Abdomen completo" data-size="M" data-gender="female")
+											polygon(points="13,22.6 15,21.7 16,21.3 16.4,21.1 16.5,21.1 17,21.3 17.9,21.7 18.5,22 19.4,22.4 19.4,22.9 19.7,23.4 19.9,23.6 20.3,24 20.9,26.8 20.2,27.1 19,27.3 18,27.4 17,27.5 16,27.55 15,27.5 14,27.49 13,27.4 12.1,27.3")
+										g(data-toggle="tooltip" data-placement="top" title="Rostro completo" data-size="M" data-gender="female")
+											polygon(points="14.7,12 14.5,11 14.4,10.5 14.4,10 14.4,9.5 14.5,9.4 14.7,9.2 15,8.7 16,8.5 17,8.6 17.3,8.7 17.6,8.8 17.9,9 18,9.1 18.1,10 18,11 17.7,12 17.5,12.5 16.7,13.4 16.4,13.5 16.2,13.5 16,13.5 15.6,13.3 15.3,13")
+										g(data-toggle="tooltip" data-placement="bottom" title="Tórax" data-size="M" data-gender="female")
+											polygon(points="12.4,13.6 12.5,14.7 12.6,15 12.7,15.5 12.8,16 12.9,16.5 12.9,17.8 12.8,18 12.7,18.4 12.4,18.7 12.5,19 12.6,19.5 12.7,20 12.8,21 12.9,22 13,22.5 16.5,21 19.3,22.3 19.6,20 19.7,19 19.8,18 20.2,17.3 20.1,17.1 20,16 19.8,15 19.6,14 19.4,13.65 19,13.45 18.5,13.3 18.35,13.35 18.2,13.5 18.1,13.85 17.8,14.05 17.5,14.15 17.2,14.25 16.5,14.3 16,14.35 15.5,14.2 15,14.1 14.5,13.9 14,13.7 13.5,13.3")
+										// S
+										g(data-toggle="tooltip" data-placement="bottom" title="Axilas" data-size="S" data-gender="female")
+											polygon(points="12.25,14 11.7,15 11.5,15.4 11.2,15.9 10.9,16.5 10.8,16.9 10.7,17 12,16.5 12.2,17.7 12.4,18.5 12.5,18 12.7,17.6 12.8,16.3")
+											polygon(points="19.7,14 20.5,15.5 21.9,17.9 21,17 20.5,17 20.3,17.3")
+										g(data-toggle="tooltip" data-placement="top" title="Cuello interior" data-size="S" data-gender="female")
+											polygon(points="13.6,13.25 14.1,13 14.5,12.8 14.8,12.5 15.4,13.2 15.8,13.5 16.2,13.6 16.6,13.5 17,13.2 17.5,12.6 17.8,12.9 18.4,13.3 17.9,13.7 17.5,13.9 17,14.1 16.5,14.2 16.2,14.3 15.7,14.2 15,14.05")
+										g(data-toggle="tooltip" data-placement="bottom" title="Mamas" data-size="S" data-gender="female")
+											circle(cx="14.4" cy="17.3" r="1.7")
+											circle(cx="18.2" cy="17.3" r="1.7")
+										g(data-toggle="tooltip" data-placement="right" title="Frente" data-size="S" data-gender="female")
+											polygon(points="14.8,9 15.5,8.7 17.5,8.7 18,9 17.9,10.2 16,10.5 14.8,9.8")
+										// XS
+										g(data-toggle="tooltip" data-placement="right" title="Manos + dedos" data-size="XS" data-gender="female")
+											polygon(points="9.7,24.4 10,24.9 10.3,25.3 10.8,25.8 11.3,26.1 12.1,26.4 12.4,26.8 12.7,27 13,27 13.5,27 13.8,27 14,26.8 14.3,26.5 14.5,26.5 14.5,25.5 14.7,25.5 14.2,24.9 13.6,24.7 13.3,24.6 13,24.2 12.5,24.2 12,24.2 11.5,24.1 11,23.8 10.5,23.3 10,22.9")
+											polygon(points="23.2,25.1 22.7,25.6 22.4,26 22.2,26.1 21.9,26.3 21.5,26.2 21,26.3 20.5,26.5 20,26.7 19.5,27 19.2,26.8 18.7,26.7 18.2,26.2 18,26 18.2,25 18.2,24.8 18.6,24.5 18.9,24.3 19.4,24.2 19.7,24.2 20,24.2 20.3,24.2 20.7,24.4 21.5,24.7")
+										g(data-toggle="tooltip" data-placement="top" title="Pies + dedos" data-size="XS" data-gender="female")
+											polygon(points="14.3,50 15.8,50 16.2,51 16.3,51.5 16.2,51.4 16.2,51.8 16.1,52 15.7,53 15.5,53.5 15,53.5 14.5,53.2")
+											polygon(points="16.7,50 18.3,50 18.4,50.3 18.3,50.5 18.1,50.7 18.1,53 18.5,53.9 18.6,54.1 18.4,54.1 18.1,54.2 17.5,54.3 17,54.3 16.5,54.3 15.5,54.3 15.3,54.2")
+										g(data-toggle="tooltip" data-placement="bottom" title="Nariz" data-size="XS" data-gender="female")
+											polygon(points="16,11 15.5,12 16,12.2 16.3,12.3 16.7,12 16.3,11")
+										g(data-toggle="tooltip" data-placement="bottom" title="Areola de pezón" data-size="XS" data-gender="female")
+											circle(cx="14.4" cy="17.3" r="0.7")
+											circle(cx="18.5" cy="17.3" r="0.7")
+										g(data-toggle="tooltip" data-placement="top" title="Orejas" data-size="XS" data-gender="female")
+											polygon(points="13.9,9.5 13.9,10 14.3,10.8 14.4,10.6 14.5,10")
+											polygon(points="18,10 18.5,9.5 18.5,10.5 18,11")
+										g(data-toggle="tooltip" data-placement="top" title="Mentón" data-size="XS" data-gender="female")
+											polygon(points="15.7,12.8 16.5,12.8 16.6,13.2 16.2,13.4 15.7,13.2")
+										g(data-toggle="tooltip" data-placement="right" title="Pómulos" data-size="XS" data-gender="female")
+											circle(cx="15" cy="11.6" r="0.4")
+											circle(cx="17.25" cy="11.6" r="0.4")
+										g(data-toggle="tooltip" data-placement="right" title="Bozo" data-size="XS" data-gender="female")
+											polygon(points="15.5,12 16,12.2 16.8,12.2 16.9,12 16.8,12.5 15.5,12.5")
+										g(data-toggle="tooltip" data-placement="top" title="Entrecejo" data-size="XS" data-gender="female")
+											polygon(points="16,10.5 16,11 16.5,11 16.5,10.5")
+										g(data-toggle="tooltip" data-placement="top" title="Intermamario" data-size="XS" data-gender="female")
+											polygon(points="15.95,16.5 16,16.7 16.1,17 16.3,17.8 16.65,17.8 16.65,17 16.8,16.5")
+								div(class="tab-pane fade" id="femaleBodyBack" role="tabpanel" aria-labelledby="femalePillsBack")
+									svg(class="svg-body" viewBox="0 0 30 60")
+										image(href="/public/femalebody_back.jpg" x="0" y="5" height="50")
+										// L
+										g(data-toggle="tooltip" data-placement="right" title="Espalda completa" data-size="L" data-gender="female")
+											polygon(points="11.2,13.5 11,14 10.8,15 10.7,17.5 10.9,18 11.5,19 12,20 12.4,21 12.7,22 12.8,23 12.85,23.3 12.3,24.5 12,25 11.8,26 11.8,26.5 12.5,26.2 14,26.2 17,26.2 18,26.3 19,26.6 19.3,26.7 19.3,26 19.4,25.7 19.6,25.4 19.8,25 19.5,24 19.1,23 18.9,21 18.7,19 18.7,17 18.6,15 18.5,13.5 18,13.35 17,13.1 16.7,13 16,12.9 15,12.7 14,12.4")
+										// M
+										g(data-toggle="tooltip" data-placement="left" title="Medio brazo + hombros" data-size="M" data-gender="female")
+											polygon(points="11,13.6 10,14.3 9.5,15.2 9,15.7 8.5,16.3 8,16.7 7.5,17.2 6.5,18.3 6,19 5.7,19.5 5.4,19.8 5.4,20 5.1,20.4 7.7,20.4 8.6,19.2 9,18.8 9.5,18.3 10,17.7 10.3,17.3")
+											polygon(points="18.6,13.5 18.65,14.5 18.7,16 18.75,17.2 19.2,16.6 19.3,16.5 20,17.5 22,19.8 22.3,20.4 24.3,20.4 23.6,19 23,18 22.2,17 22,16.8 21.5,16 21,15.1 20.5,14.4 20,14 19.5,13.5 19,13.4")
+										g(data-toggle="tooltip" data-placement="left" title="Muslos" data-size="M" data-gender="female")
+											polygon(points="10.8,30.1 13,31.1 14,31.2 15.5,31.25 17,31.2 18,30.5 18.5,29.9 19,29.3 19.4,29 19.5,28.8 19.7,29.5 20.1,30.5 20,31 19.6,33 19.2,35 18.5,37 18.1,39 13.3,39 13,37")
+										g(data-toggle="tooltip" data-placement="left" title="Glúteos" data-size="M" data-gender="female")
+											polygon(points="11.4,27.8 11.45,27 12,26.5 13,26.2 13.5,26.2 16,26.25 18,26.35 19.1,26.7 19.2,28 19.1,29 17.3,31 16,31.05 13,31 11,30")
+										g(data-toggle="tooltip" data-placement="right" title="Medias piernas" data-size="M" data-gender="female")
+											polygon(points="13.3,39.1 18.1,39.1 18,40 17.9,40.5 17.9,41 17.9,42 17.8,43 17.7,44 17.4,46 16.9,48 16.8,48.3 17.1,49 17.4,50 17.8,51 18.3,52 18.8,52.5 19,52.7 18.8,53 17,53.2 16.8,54 16.5,54.2 16,54.2 14.5,54.2 14.1,54 14.25,53 14.5,52.5 14.6,52.3 14.3,51.5 14.4,51 15,50 15.1,48 15,47 14.6,46 14.3,45 13.9,44")
+										// S
+										g(data-toggle="tooltip" data-placement="right" title="Antebrazo" data-size="S" data-gender="female")
+											polygon(points="5.1,20.45 7.7,20.45 8,21 8.7,22 9.5,23 10.5,24 11.2,24.5 9.8,24.5 9,24 8,23.2 7,22.5 6,21.6")
+											polygon(points="22.2,20.5 24.25,20.5 24.2,21 23.9,21.5 23.3,22.5 23.05,23 22.5,23.8 22,24.2 21,25.3 20.5,26 20.1,25 20.4,24.5 21,23.5 22,21.7 22.3,21")
+										g(data-toggle="tooltip" data-placement="left" title="Nuca/Cuello posterior" data-size="S" data-gender="female")
+											polygon(points="14.2,11 14.5,11.5 16.5,12.5 16.5,13 14.5,12.5 13.5,12")
+						div(class="human-body" id="maleBody" style="display:none;")
+							nav(class="nav nav-pills nav-fill")
+								a(class="nav-item nav-link active" id="malePillsFront" data-toggle="tab" href="#maleBodyFront" role="tab" aria-controls="femaleBodyFront" aria-selected="true") Frente
+								a(class="nav-item nav-link" id="malePillsBack" data-toggle="tab" href="#maleBodyBack" role="tab" aria-controls="maleBodyBack" aria-selected="false") Espalda
+							div(class="tab-content" id="maleTabContent")
+								div(class="tab-pane fade show active" id="maleBodyFront" role="tabpanel" aria-labelledby="malePillsFront")
+									svg(class="svg-body" viewBox="0 0 30 60")
+										image(href="/public/malebody_front.jpg" x="0" y="5" height="50")
+										// L
+										g(data-toggle="tooltip" data-placement="right" title="Piernas completas" data-size="L" data-gender="male")
+											polygon(points="11.7,28.7 11.4,30 11.4,31.3 11.7,31.5 11.9,31.7 12,32 12,32.4 11.8,32.7 11.5,33 11.4,33.1 11.4,33.4 11.5,33.7 11.6,34 11.65,34.3 11.7,35 11.75,35.5 11.8,36 11.85,37 12,38 11.95,38.5 11.95,39 11.93,39.5 11.7,41 11.55,42 11.55,42.5 11.55,43 11.65,44 11.75,45 11.9,46 12,47 12.3,48 12.4,48.45 13.8,48.5 13.7,48 13.75,46 14,44 14.27,43 14.2,42 14.1,41 14,40.5 14.7,39 14.8,38 14.9,37 14.93,35 15.54,33 15.6,32 15.65,31.5 15,31 14,29.9 13,29.3")
+											polygon(points="15.9,31.6 16.7,31 17,30.5 17.5,30.2 17.8,30 18.4,29.6 18.9,29.3 19.4,29 19.9,28.7 20,29.4 20.05,30 20.1,32 20.25,34 20.22,36 20.2,35.5 20.15,37 20.05,38 20,39 20.1,40 20.5,41.5 20.5,42.5 20.4,44 20,47 19.8,48 19.7,48.5 18.4,48.5 18.3,48 18.3,47 18.2,46 18,44 17.9,43 17.8,42 17.9,41 18,40 17.4,39 17.3,38 17.2,37 17.1,36 17,35.5 16.9,35")
+										// M
+										g(data-toggle="tooltip" data-placement="left" title="Brazos completos" data-size="M" data-gender="male")
+											polygon(points="11.5,14.8 11,15 10.7,15.1 10.4,15.4 10.3,15.6 10.2,15.9 10,16.5 9.8,17 9.7,18 9.7,18.5 9.5,19.5 9.45,20 9.4,21 9.35,22 9.4,23 9.2,23.5 9.2,24 9.2,24.4 9.1,25 9.03,26 9,27 9.1,28 9.1,29 10.3,29 10.4,28.5 10.5,28 10.6,27 10.7,26 10.95,25.5 11.1,24 11.3,23")
+											polygon(points="19.5,14.3 20,14.5 21,15 21.4,15.5 21.6,15.8 21.7,16 21.7,16.5 21.95,17.5 21.96,18 21.95,18.5 21.93,19 22.2,20 22.3,22 22.3,22.3 22.5,23 22.6,24 22.7,25 22.8,26 22.8,27 22.8,28 22.7,29 22.7,29.5 22,29.15 21.5,29 21.3,28 21.2,27 21,26 20.5,22 20.5,20 19.7,14.5")
+										g(data-toggle="tooltip" data-placement="bottom" title="Tórax" data-size="M" data-gender="male")
+											polygon(points="11.65,14.7 13,14.2 13.5,13.9 13.6,14.1 13.9,14.5 14.4,14.9 15.1,15.15 16,15.2 16.5,15.15 17,15.1 17.4,15 17.7,14.9 18,14.8 18.2,14.6 18.6,14.3 18.8,14.1 19.4,14.4 19.5,14.5 19.5,16 19.6,18 19.7,20.5 19.6,21 19.55,22 19.4,23 16.1,21 12.4,23 12.3,22 12.15,21 12.2,20 12.25,19 12.4,18 12.4,17.8")
+										g(data-toggle="tooltip" data-placement="top" title="Rostro completo" data-size="M" data-gender="male")
+											polygon(points="14.1,10 14.2,9 14.5,8.7 15,8.6 16,8.65 17.2,8.75 17.3,9.2 17.4,9.5 17.6,10 17.6,11 17.5,12 17.25,12.5 17.1,12.6 16.8,12.9 16.5,13.3 16.2,13.45 15.7,13.45 15.3,13.3 15,13 14.6,12.5 14.4,12.2 14.2,11.7")
+										g(data-toggle="tooltip" data-placement="bottom" title="Abdomen completo" data-size="M" data-gender="male")
+											polygon(points="12.4,23.1 12.3,25 12.2,26 12,27 11.9,27.2 12,27.3 12.5,27.6 14,27.8 16,27.9 17,27.9 18,27.8 19,27.7 19.8,27.4 19.6,26.4 19.4,25.4 19.2,24.4 19.3,23.4 19.4,23 16.1,21.2")
+										g(data-toggle="tooltip" data-placement="bottom" title="Barba" data-size="M" data-gender="male")
+											polygon(points="14.5,11.6 15,11.8 15.1,12.4 16,12.4 16.5,12.4 17.1,11.7 17.1,12.6 16.3,13.3 15.3,13.4 14.65,12.7")
+										// S
+										g(data-toggle="tooltip" data-placement="right" title="Axilas" data-size="S" data-gender="male")
+											polygon(points="19.55,15 19.8,15.7 20.5,20 20.3,20.5 20.6,22 20,20.5")
+											polygon(points="11.5,15.5 11.5,19 11.5,22 11.6,21.5 11.7,21 11.8,20.5 11.9,20 12,19.2 12.25,18.5 12.25,18 12,16.5")
+										g(data-toggle="tooltip" data-placement="bottom" title="Cuello interior" data-size="S" data-gender="male")
+											polygon(points="14.3,12.5 14.5,13.3 13.7,14 14.3,14.8 15,15 16,15.1 17,15 18,14.7 18.5,14.2 18.5,14.1 18.3,14 18,13.8 17.7,13.7 17.5,13.6 17.3,13 17.3,12.7 17,12.7 16.5,13.4 16,13.5 15.5,13.5 15,13.3")
+										g(data-toggle="tooltip" data-placement="top" title="Frente" data-size="S" data-gender="male")
+											polygon(points="14.3,8.8 15,8.6 15.5,8.6 16,8.6 17,8.7 17.3,9 17.5,10 16,9.8 14.15,9.8")
+										// XS
+										g(data-toggle="tooltip" data-placement="right" title="Manos + dedos" data-size="XS" data-gender="male")
+											polygon(points="9.1,29 9.04,30 9.1,31 9.2,32 9.25,32.5 9.3,32.6 9.3,32.5 9.9,33 10.4,33.4 10.7,33.3 10.6,33.2 10.4,33.3 10.8,33.2 11.1,33 11.5,32.5 11.7,32.4 11.9,32 11.5,31.5 11.3,31.3 11,30.5 10.3,30 10.3,30 10.2,29.9 10,29.8 10.1,29.8 10.25,29.1")
+											polygon(points="22.75,29.5 22.7,30 22.75,32 22.1,33 21.9,33 21.5,33.1 21,33.2 20.5,33 20.4,32.5 20.5,32 20.6,31 20.65,30.5 20.9,30 21,29.9 21.5,29.5 21.4,29")
+										g(data-toggle="tooltip" data-placement="left" title="Pies + dedos" data-size="XS" data-gender="male")
+											polygon(points="12.5,48.5 14,48.5 13.8,49 13.9,50 13.5,50.5 13.3,51 13.2,51.5 13.1,51 13,52 12.5,52.1 12,52 11.5,51.8 10.7,51.5 10.59,51.2 10.8,51 11.5,50 11.9,49.5 12.1,49")
+											polygon(points="18.2,48.5 19.7,48.5 19.7,49.5 20,50 20.7,51 20.8,51.5 20.8,51.5 20.6,51.7 20.5,51.7 20,51.9 19.5,51.9 19,51.9 18.4,51.9 18,51.0 17.8,50.5")
+										g(data-toggle="tooltip" data-placement="bottom" title="Nariz" data-size="XS" data-gender="male")
+											polygon(points="15.8,10.2 15.4,11.6 16.4,11.6")
+										g(data-toggle="tooltip" data-placement="right" title="Pómulos" data-size="XS" data-gender="male")
+											circle(cx="14.8" cy="11.2" r="0.4")
+											circle(cx="16.9" cy="11.2" r="0.4")
+										g(data-toggle="tooltip" data-placement="right" title="Bigotes" data-size="XS" data-gender="male")
+											polygon(points="15,11.8 16,11.5 16.5,12 16.5,12.1")
+										g(data-toggle="tooltip" data-placement="left" title="Patillas" data-size="XS" data-gender="male")
+											polygon(points="14.05,11 14.5,11.5 14.5,12.7")
+											polygon(points="17.5,11 17.2,11.5 17.2,12.4 17.5,12")
+										g(data-toggle="tooltip" data-placement="bottom" title="Mentón" data-size="XS" data-gender="male")
+											polygon(points="15.4,12.5 16.5,12.5 16.5,13.3 16,13.4 15.4,13.3 15.3,13")
+										g(data-toggle="tooltip" data-placement="left" title="Orejas" data-size="XS" data-gender="male")
+											polygon(points="13.65,10.2 13.8,11.5 14.2,11.5 14,10.5")
+											polygon(points="17.5,10.2 18,10.2 17.8,11.2 17.6,11.5")
+										g(data-toggle="tooltip" data-placement="top" title="Entrecejo" data-size="XS" data-gender="male")
+											polygon(points="15.5,10 16.1,10 16.1,10.5 15.5,10.5")
+								div(class="tab-pane fade" id="maleBodyBack" role="tabpanel" aria-labelledby="malePillsBack")
+									svg(class="svg-body" viewBox="0 0 30 60")
+										image(href="/public/malebody_back.jpg" x="0" y="5" height="50")
+										// L
+										g(data-toggle="tooltip" data-placement="left" title="Espalda completa" data-size="L" data-gender="male")
+											polygon(points="11.5,14.5 11,16.5 11.3,18 11.7,19 11.9,20 12.1,21 12.3,22 12.5,23 12.7,24 12.7,26 12.5,27.3 13,27 18,26.8 19,26.9 20.2,27.1 20,26.5 19.8,26 19.6,25.8 19.5,25 19.3,23 19.5,22 19.6,21 20,20 20.2,19 20.4,18.5 20.6,18 20.8,17.5 20.8,14.8 20.5,14.6 20,14.4 19.5,14.3 19,14.2 18.5,14.1 18,13.8 17.5,13.6 14.5,13.6")
+										// M
+										g(data-toggle="tooltip" data-placement="right" title="Medio brazos + hombros" data-size="M" data-gender="male")
+											polygon(points="11.2,14.7 10.5,15.2 10.1,16 9.8,17 9.7,18 9.8,18.5 9.7,19 9.5,20 9.45,21 9.4,24 11.2,24 11.3,23.5 11.5,22 11.8,20.8 11.7,20 11,17.5 10.9,16.7")
+											polygon(points="20.8,14.7 21.4,15.4 22,16.5 22.1,17.5 22.3,19 22.6,21 22.7,23 20.8,23 20.7,22.5 20.6,22 20.5,21 20.35,19.5 20.7,18.5 20.9,18")
+										g(data-toggle="tooltip" data-placement="left" title="Muslos" data-size="M" data-gender="male")
+											polygon(points="12.2,29.5 11.9,32 11.8,33 11.7,35 11.85,37 11.95,38 11.95,39 14.6,39 14.7,38 14.8,37 15,36 15.2,35 15.7,34 15.9,33 16.1,32 14.5,31.8 14.1,31.7 13.7,31.5 13,30.9")
+											polygon(points="16.7,32 17.5,31.8 18.1,31.6 18.5,31.5 19,31.3 19.4,31 19.8,30.7 19.9,30.5 20.1,30.2 20.3,30 20.5,29.6 20.7,29.4 20.7,30 20.9,31 21,31.5 20.9,33 20.7,35 20.5,37 20.5,39 17.7,39")
+										g(data-toggle="tooltip" data-placement="right" title="Glúteos" data-size="M" data-gender="male")
+											polygon(points="12.4,27.3 14,27 15,26.9 17,26.9 19,27 20.2,27.2 20.6,29 20.5,29.2 20.3,29.7 19.8,30.5 19.2,31 18.5,31.4 17,31.7 15,31.8 14,31.5 13.5,31 13,30.5 12.7,30 12.4,29.7")
+										g(data-toggle="tooltip" data-placement="left" title="Medias piernas" data-size="M" data-gender="male")
+											polygon(points="11.8,39.1 14.5,39.1 14.4,40 13.8,41 13.9,43 14,44 14,45 13.7,46 13.6,47 13.5,48 13.4,49 13.5,50 13.9,51 13.9,51.7 13,52.1 12.5,52 12,51.5 11.5,51 11.1,50.5 11.1,50 11.9,49.65 11.9,49 11.7,48 11.5,47 11.3,45 11.2,44 11.2,43")
+											polygon(points="17.7,39.1 20.5,39.1 20.6,40.1 20.9,41.5 21.2,43 21.2,44 21,45 20.9,46 20.8,47 20.7,48 20.4,49 20.4,49.5 21.8,50 21.8,50.7 21.2,51.2 21,51.4 20.5,51.7 20,52.1 18.8,52.1 18.8,51 19,50.5 18.9,49.5 19,49 18.8,48 18.8,47.5 18.4,45 18.3,43.5 18.5,42 18.55,41.5")
+										// S
+										g(data-toggle="tooltip" data-placement="left" title="Antebrazos" data-size="S" data-gender="male")
+											polygon(points="9.5,24.1 11.2,24.1 11.2,25 11.1,27 10.9,28 10.8,28.5 9.75,28.5 9.7,28 9.6,27.5 9.5,27 9.4,26.5 9.3,26")
+											polygon(points="21,23.1 22.8,23.1 23,24 23.1,25 23.2,26 23,27 23,28.5 21.9,28.5 21.7,28 21.4,26 21.2,26")
+										g(data-toggle="tooltip" data-placement="right" title="Nuca/Cuello posterior" data-size="S" data-gender="male")
+											polygon(points="14.5,12.5 15,12.4 16,12.3 17.4,12.4 17.3,13 17.4,13.5 14.3,13.5")
+						div(class="selected-zones" id="selectedZones" style="display:none;")
+							h5 Zonas seleccionadas #[span(id="selectedZonesCount" class="badge badge-primary") ]
+							p(id="noSelectedZones") Aquí se van a mostrar las zonas seleccionadas
+							div(class="packed-container" id="packedContainer")
+								h6 Zonas del pack
+								div(class="packed-zones" id="packedZones")
+							div(class="non-packed-container" id="nonPackedContainer")
+								h6 Zonas fuera de pack
+								div(class="non-packed-zones" id="nonPackedZones")
 				div(class="tab")
 					p Selección de sucursal
 					div(class="form-group")
@@ -54,7 +225,775 @@ block contenido
 					button(type="button" class="btn btn-outline-success btn-lg" id="nextBtn" onclick="nextPrev(1)" data-toggle="tooltip" data-placement="top" title="Siguiente")
 						i(class="fa fa-check-square-o")
 
+				div(id="toggableCard" class="toggable-card card width-300")
+					div(class="card-header")
+					div(class="card-body")
+
 				script(src="/public/js/renderFuncs.js")
+
+				script.
+					$(document).ready(function(){
+						let form = {
+							user: $("#usr"),
+							pack: {
+								container: $("#svcContainer"),
+								selectElement: $("#svc")
+							}
+						}
+
+						/* Superficie de selección */
+						let selectionSurface = {
+							element: $("#selectionSurface"),
+							femaleBody: $("#femaleBody"),
+							maleBody: $("#maleBody"),
+							zonesElement: $("#selectedZones"),
+							badge: $("#selectedZonesCount"),
+							noSelectedZones: $("#noSelectedZones"),
+							selectedZones: $("#selectedZones"),
+							packedZones: {
+								container: $("#packedContainer"),
+								zones: $("#packedZones")
+							},
+							nonPackedZones: {
+								container: $("#nonPackedContainer"),
+								zones: $("#nonPackedZones")
+							}
+						};
+
+						let card = {
+							element: $("#toggableCard"),
+							header: $("#toggableCard .card-header"),
+							title: $("#toggableCard .card-title"),
+							body: $("#toggableCard .card-body")
+						};
+
+						/* Elementos seleccionables */
+						let userObj;
+						let pack;
+
+						/* Datos desde back-end */
+						let packs = !{JSON.stringify(packs)};
+						let users = !{JSON.stringify(users)};
+
+						/* Arreglos de tracking */
+						let packTrack = [];
+						let nonPackTrack = [];
+
+						let filteredPacks = [];
+
+						let selectedPacks;
+
+						if (users.length > 1) {
+							/* Configuración inicial para administrador */
+
+							/* El administrador puede cambiar el usuario */
+							form.user.on("change", function(event){
+								setDefaultState();
+
+								userObj = _.where(!{JSON.stringify(users)}, {_id: this.value})[0];
+
+								form.pack.selectElement.html("");
+
+								/* Al seleccionar el usuario, se habilita
+								   el elemento select */
+								form.pack.container.css({"display":"block"});
+
+								/* El elemento select se llena con todos
+								   los packs disponibles para el usuario seleccionado */
+								let openingOption = document.createElement("option");
+								$(openingOption).addClass("text-secondary")
+												.attr("value", "undefined")
+												.prop("disabled", true)
+												.html("Elija un pack");
+
+								form.pack.selectElement.append($(openingOption));
+
+								filteredPacksByUser = packs.filter(function(element){
+									return element.usuario == userObj._id;
+								});
+
+								filteredPacksByUser.forEach(function(element){
+									let option = document.createElement("option");
+									$(option).addClass("text-secondary")
+											 .attr("value", element._id)
+											 .html(element.packType.title);
+									form.pack.selectElement.append(option);
+								});
+
+								form.pack.selectElement.selectpicker("refresh");
+
+								/* Se muestra el cuerpo de selección
+								   perteneciente al género del usuario */
+								if (userObj.gender == "M") {
+									selectionSurface.femaleBody.css({"display":"block"});
+									selectionSurface.maleBody.css({"display":"none"});
+								} else if (userObj.gender == "H") {
+									selectionSurface.maleBody.css({"display":"block"});
+									selectionSurface.femaleBody.css({"display":"none"});
+								}
+
+								selectionSurface.badge.html("0");
+								selectionSurface.element.css({"display":"block"});
+
+								selectionSurface.packedZones.container.css({"display":"none"});
+								selectionSurface.nonPackedZones.container.css({"display":"none"});
+
+								selectionSurface.selectedZones.css({"display":"block"});
+							});
+						} else {
+							/* Configuración inicial para usuario */
+
+							userObj = !{JSON.stringify(user)};
+
+							form.pack.selectElement.html("");
+
+							/* Al haber solo un usuario, el elemento select
+							   se llena con los packs disponibles para ese usuario */
+							form.pack.container.css({"display":"block"});
+
+							let openingOption = document.createElement("option");
+							$(openingOption).addClass("text-secondary")
+											.attr("value", "undefined")
+											.prop("disabled", true)
+											.html("Elija un pack");
+
+							form.pack.selectElement.append($(openingOption));
+
+							filteredPacksByUser = packs.filter(function(element){
+								return element.usuario == userObj._id;
+							});
+
+							filteredPacksByUser.forEach(function(element){
+								let option = document.createElement("option");
+								$(option).addClass("text-secondary")
+										 .attr("value", element._id)
+										 .html(element.packType.title);
+								form.pack.selectElement.append(option);
+							});
+
+							form.pack.selectElement.selectpicker("refresh");
+
+							/* Se muestra el cuerpo de selección
+							   perteneciente al género del usuario */
+
+							if (userObj.gender == "M") {
+								selectionSurface.femaleBody.css({"display":"block"});
+							} else if (userObj.gender == "H") {
+								selectionSurface.maleBody.css({"display":"block"});
+							}
+
+							selectionSurface.badge.html("0");
+							selectionSurface.element.css({"display":"block"});
+
+							selectionSurface.packedZones.container.css({"display":"none"});
+							selectionSurface.nonPackedZones.container.css({"display":"none"});
+
+							selectionSurface.selectedZones.css({"display":"block"});
+						}
+
+						form.pack.selectElement.on("change", function(event){
+							/* El arreglo de tracking con las zonas paquetizadas se forma
+							   cuando se selecciona el elemento select de selección del pack */
+							selectionSurface.packedZones.container.css({"display":"none"});
+							selectionSurface.packedZones.zones.html("");
+							selectedPacks = [];
+
+							let packs = !{JSON.stringify(packs)};
+
+							pack = _.where(!{JSON.stringify(packs)}, {_id: this.value})[0];
+
+							/* Se arma un arreglo de arreglos, con cada arreglo interno
+							   albergando los tamaños de cada paquete */
+							$(this).find("option").each(function(){
+								if($(this).is(":selected")) {
+									let value = $(this).attr("value");
+									let index = getIndexOfPacksByID(value, packs);
+									selectedPacks.push(packs[index].packType.zoneTypes.split("+"));
+								}
+							});
+
+							/* La función que determina las zonas paquetizadas
+							   solo se ejecuta cuando se ha establecido el usuario */
+							if (userObj != (null || undefined)) {
+								initZones();
+							} else {
+								return;
+							}
+						});
+
+						function initZones(){
+							/* Las zonas paquetizadas previamente seleccionadas
+							   se mueven a las zonas no paquetizadas */
+							convertPackedZonesToNonPacked();
+
+							/* Se establecen en su arreglo de tracking las zonas del cuerpo paquetizadas */
+							packTrack = [];
+
+							selectedPacks.forEach(function(packZones){
+								packZones.forEach(function(zone){
+									let alertContainer = document.createElement("div");
+									$(alertContainer).addClass("alert-container alert-container-header")
+
+									let sizeHeader = document.createElement("div");
+									$(sizeHeader).addClass("size-header")
+											 	 .html(zone);
+
+									let alertHolder = document.createElement("div")
+									$(alertHolder).addClass("alert-holder");
+
+									$(sizeHeader).appendTo($(alertContainer));
+									$(alertHolder).appendTo($(alertContainer));
+
+									$(alertContainer).appendTo(selectionSurface.packedZones.zones);
+
+									let trackObj = {};
+									trackObj.zoneName = null;
+									trackObj.gender = null;
+									trackObj.size = zone;
+									trackObj.container = $(alertContainer);
+									trackObj.holder = $(alertHolder);
+									trackObj.alert = null;
+									trackObj.shape = null;
+
+									packTrack.push(trackObj);
+								});
+							});
+
+							/* Las zonas no paquetizadas que forman parte de los packs
+							   seleccionados, se convierten a zonas paquetizadas */
+							convertNonPackedZonesToPacked();
+
+							selectionSurface.packedZones.container.css({"display":"block"});
+
+							updateSelectedZones();
+							colorizeSelectedZones();
+						}
+
+						function convertPackedZonesToNonPacked() {
+							/* Si hay zonas paquetizadas, se deben agregar a la zona de no paquetizado antes
+							   de vaciar el arreglo de zonas paquetizadas */
+							if (packTrack.length != 0) {
+								packTrack.forEach(function(element){
+									if (element.shape != null) {
+										addShapeToNonPackTrack(element.shape);
+									}
+								});
+							}
+						}
+
+						function convertNonPackedZonesToPacked() {
+							/* Si hay zonas no paquetizadas, se procede a llenar el arreglo de zonas paquetizadas
+							   con las zonas no-paquetizadas agregadas anteriormente.
+							   Al final del proceso, el arreglo de zonas paquetizadas debe contener todas las zonas no-paquetizadas
+							   que alcanzen. Las demás deben seguir en el arreglo de zonas no-paquetizadas */
+							if (nonPackTrack.length != 0) {
+								packTrack.forEach(function(elementOfPackTrack){
+									let indexOfElementUntracked = nonPackTrack.findIndex(function(elementOfNonPackTrack){
+										return elementOfPackTrack.size == elementOfNonPackTrack.size;
+									});
+
+									if (indexOfElementUntracked != -1) {
+										let shape = nonPackTrack[indexOfElementUntracked].shape;
+										addShapeToPackTrack(shape);
+										$(nonPackTrack[indexOfElementUntracked].alert).alert("close");
+									}
+								});
+							}
+						}
+
+						/* Eventos de mouse sobre las zonas del cuerpo */
+
+						$("g").on("mouseenter", function(event){
+							/* Al poner el cursor sobre la zona */
+							let shape = $(event.currentTarget);
+
+							shape.css({"opacity":"0.3"});
+
+							openCard(event, shape);
+						});
+
+						$("g").on("mousemove", function(event){
+							/* Al mover el cursor estando en la zona */
+							let shape = $(event.currentTarget);
+
+							editCard(event,shape);
+						});
+
+						$("g").on("click", function(event){
+							/* Al hacer click sobre la zona */
+							let shape = $(event.currentTarget);
+							let size = $(shape).attr("data-size");
+
+							if (!isShapeTracked(shape, packTrack) && !isShapeTracked(shape, nonPackTrack)) {
+								/* ¿La zona está seleccionada, como parte o fuera de un pack? */
+								if (isSizeTracked(size, packTrack)) {
+									/* ¿El tamaño de la zona está en el arreglo de tracking de los packs establecidos? */
+									if (isShapeTracked(shape, packTrack)) {
+										/* Si la zona ya está seleccionada en los packs establecidos, se agrega fuera del pack */
+										addShapeToNonPackTrack(shape);
+										shape.css({"opacity":"0.6"});
+									} else if (isSizeAvailable(size, packTrack)) {
+										/* Si la zona está disponible para ser seleccionada, se agrega al pack */
+										addShapeToPackTrack(shape);
+										shape.css({"opacity":"0.6"});
+									} else {
+										/* Si la zona no está disponible para ser seleccionada, se agrega fuera del pack */
+										addShapeToNonPackTrack(shape);
+										shape.css({"opacity":"0.6"});
+									}
+								} else  {
+									/* Si el tamaño de la zona no está en el arreglo de tracking de los packs,
+									   se agrega fuera de pack */
+									addShapeToNonPackTrack(shape);
+									shape.css({"opacity":"0.6"});
+								}
+							} else if (isShapeTracked(shape, packTrack)){
+								/* Deseleccionar una zona dentro de los packs establecidos */
+								let index = getIndexTrackOfShape(shape, packTrack);
+								$(packTrack[index].alert).alert("close");
+								shape.css({"opacity":"0.3"});
+							} else if (isShapeTracked(shape, nonPackTrack)) {
+								/* Deseleccionar una zona fuera de los packs establecidos */
+								let index = getIndexTrackOfShape(shape, nonPackTrack);
+								$(nonPackTrack[index].alert).alert("close");
+								shape.css({"opacity":"0.3"});
+							}
+
+							editCard(event,shape);
+						});
+
+						$("g").on("mouseleave", function(event){
+							/* Al sacar el cursor de la zona */
+							let shape = $(event.currentTarget);
+
+							if (isShapeTracked(shape, packTrack)) {
+								shape.css({"opacity":"0.6"});
+							} else if (isShapeTracked(shape, nonPackTrack)) {
+								shape.css({"opacity":"0.6"});
+							} else {
+								shape.css({"opacity":"0"});
+							}
+
+							hideCard();
+						});
+
+						/* Edición de objetos dentro y fuera del pack */
+
+						function addShapeToPackTrack(shape) {
+							/* Se añade la zona al arreglo de tracking de zonas paquetizadas */
+							let zoneName = $(shape).attr("title");
+							let gender = $(shape).attr("data-gender");
+							let size = $(shape).attr("data-size");
+
+							let index = getAvailableIndexTrackForSize(size, packTrack);
+
+							packTrack[index].zoneName = zoneName;
+							packTrack[index].gender = gender;
+							packTrack[index].size = size;
+
+							packTrack[index].alert = createPackedAlert(shape, zoneName);
+							packTrack[index].shape = $(shape);
+
+							updateSelectedZones();
+
+							$(packTrack[index].alert).appendTo($(packTrack[index].holder));
+						}
+
+						function deleteShapePacked(index, event) {
+							/* Se borra la zona del arreglo de tracking de zonas paquetizadas */
+							let shape = packTrack[index].shape;
+
+							packTrack[index].zoneName = null;
+							packTrack[index].gender = null;
+							packTrack[index].alert = null;
+							packTrack[index].shape = null;
+
+							$(shape).css({"opacity":"0"});
+
+							updateSelectedZones();
+						}
+
+						function addShapeToNonPackTrack(shape) {
+							/* Se añade la zona al arreglo de tracking de zonas no paquetizadas */
+							let trackObj = new Object();
+
+							let zoneName = $(shape).attr("title");
+							let gender = $(shape).attr("data-gender");
+							let size = $(shape).attr("data-size");
+
+							let alertContainer = document.createElement("div");
+							$(alertContainer).addClass("alert-container");
+
+							let alert = createNonPackedAlert(shape, zoneName);
+
+							trackObj.zoneName = zoneName;
+							trackObj.gender = gender;
+							trackObj.size = size;
+							trackObj.container = $(alertContainer);
+							trackObj.alert = $(alert);
+							trackObj.shape = $(shape);
+
+							nonPackTrack.push(trackObj);
+							$(alert).appendTo($(alertContainer));
+							$(alertContainer).appendTo(selectionSurface.nonPackedZones.zones);
+
+							updateSelectedZones();
+
+							if (nonPackTrack.length > 0) {
+								showNonPackContainer();
+							}
+						}
+
+						function deleteShapeNonPacked(index, event) {
+							/* Se borra la zona del arreglo de tracking de zonas no paquetizadas */
+							let shape = nonPackTrack[index].shape;
+							$(nonPackTrack[index].container).remove();
+							nonPackTrack = nonPackTrack.slice(0, index).concat(nonPackTrack.slice(index + 1));
+							$(shape).css({"opacity":"0"});
+							updateSelectedZones();
+						}
+
+						/* Alertas */
+
+						function createPackedAlert(shape, zoneName) {
+							/* Alerta para zona paquetizada */
+							let myShape = shape;
+							let alert = document.createElement("div");
+							$(alert).addClass("alert bg-dark text-white alert-dismissible fade show")
+									.html(zoneName);
+
+							let closeButton = document.createElement("button");
+							$(closeButton).addClass("close text-white")
+										  .attr("data-dismiss", "alert")
+										  .attr("aria-label", "close")
+										  .html("&times");
+
+							$(alert).on("close.bs.alert", function(event){
+								let index = getIndexTrackOfShape(myShape, packTrack);
+								deleteShapePacked(index, event);
+							});
+
+							$(closeButton).appendTo($(alert));
+
+							return alert;
+						}
+
+						function createNonPackedAlert(shape, zoneName) {
+							/* Alerta para zona no paquetizada */
+							let myShape = shape;
+							let alert = document.createElement("div");
+							let size = $(shape).attr("data-size");
+
+							let badge = document.createElement("span");
+							$(badge).addClass("badge badge-primary")
+									.append(size);
+
+							$(alert).addClass("alert bg-dark text-white alert-dismissible fade show")
+									.append(zoneName)
+									.append(badge);
+
+							let closeButton = document.createElement("button");
+							$(closeButton).addClass("close text-white")
+										  .attr("data-dismiss", "alert")
+										  .attr("aria-label", "close")
+										  .html("&times");
+
+							$(alert).on("close.bs.alert", function(event){
+								let index = getIndexTrackOfShape(myShape, nonPackTrack);
+								deleteShapeNonPacked(index, event);
+							});
+
+							$(closeButton).appendTo($(alert));
+
+							return alert;
+						}
+
+						/* Tarjeta */
+
+						function openCard(event, shape) {
+							/* Se muestra la tarjeta */
+							let posX = event.clientX;
+							let posY = event.clientY;
+
+							card.element.css({
+								"left":(posX + 20) + "px",
+								"top":(posY + 20) + "px",
+								"display":"block"
+							});
+						}
+
+						function editCard(event, shape) {
+							/* Se edita la tarjeta */
+							let posX = event.clientX;
+							let posY = event.clientY;
+
+							let size = $(shape).attr("data-size");
+
+							card.element.removeClass("bg-secondary bg-success bg-warning text-white text-body");
+							card.header.html("");
+							card.body.html("");
+
+							/* Título */
+							card.header.append(setTitle(shape));
+
+							/* Contenido y colores */
+							card.element.addClass("text-white");
+
+							if (isShapeTracked(shape, packTrack) || isShapeTracked(shape, nonPackTrack)) {
+								card.element.addClass("bg-success");
+								card.body.append(addedParagraph());
+								card.body.append(removeParagraph());
+							} else {
+								card.element.addClass("bg-secondary");
+								card.body.append(selectToAddParagraph());
+							}
+
+							if (!isShapeTracked(shape, packTrack) && !isShapeTracked(shape, nonPackTrack)) {
+								if(isSizeTracked(size, packTrack)) {
+									if (isShapeTracked(shape, packTrack)) {
+										card.element.addClass("bg-secondary");
+										card.body.append(warningParagraph());
+									} else if (!isSizeAvailable(size, packTrack)) {
+										card.element.addClass("bg-secondary");
+										card.body.append(warningParagraph());
+									}
+								} else {
+									card.element.addClass("bg-secondary");
+									card.body.append(warningParagraph());
+								}
+							}
+
+							/* Posición de la tarjeta */
+							card.element.css({
+								"left":(posX + 20) + "px",
+								"top":(posY + 20) + "px",
+								"display":"block"
+							});
+						}
+
+						function hideCard() {
+							/* Se esconde la tarjeta */
+							card.element.css({
+								"display":"none"
+							});
+						}
+
+						function setTitle(shape) {
+							/* Se setea el título de la tarjeta */
+							let h5 = document.createElement("h5");
+							$(h5).addClass("font-weight-bold");
+
+							let title = $(shape).attr("title");
+							let size = $(shape).attr("data-size");
+
+							let badge = document.createElement("span");
+							$(badge).addClass("badge").addClass("badge-primary").append(size);
+
+							$(h5).append(title).append(badge);
+							return $(h5);
+						}
+
+						function selectToAddParagraph() {
+							/* Se añade una párrafo de "Seleccione para agregar" */
+							let p = document.createElement("p");
+							$(p).addClass("card-text");
+
+							let i = document.createElement("i");
+							$(i).addClass("fa").addClass("fa-plus").addClass("fa-fw");
+
+							$(p).append($(i)).append("Click para agregar esta zona");
+							return $(p);
+						}
+
+						function addedParagraph() {
+							/* Se añade un párrafo de "agregada" */
+							let p = document.createElement("p");
+							$(p).addClass("card-text");
+
+							let i = document.createElement("i");
+							$(i).addClass("fa").addClass("fa-check").addClass("fa-fw");
+
+							$(p).append($(i)).append("Zona agregada");
+							return $(p);
+						}
+
+						function removeParagraph() {
+							/* Se añade un párrafo de "Haz click para quitar esta zona" */
+							let p = document.createElement("p");
+							$(p).addClass("card-text");
+
+							let small = document.createElement("small");
+
+							let i = document.createElement("i");
+
+							$(small).append("Haz click para quitar esta zona");
+							$(p).append($(small));
+							return $(p);
+						}
+
+						function warningParagraph() {
+							/* Se añade un párrafo de advertencia al momento de hacer la selección */
+							let p = document.createElement("p");
+							$(p).addClass("card-text text-warning");
+
+							let small = document.createElement("small");
+
+							let i = document.createElement("i");
+							$(i).addClass("fa").addClass("fa-exclamation-triangle").addClass("fa-fw");
+
+							$(small).append($(i)).append("Zona no pertenece a los packs seleccionados. Costo adicional.");
+							$(p).append($(small));
+							return $(p);
+						}
+
+						/* Funciones auxiliares */
+
+						function getIndexOfPacksByID(id, packs) {
+							/* Se obtiene la ID del pack con una ID dada como parámetro */
+							return packs.findIndex(function(element){
+								return id == element._id;
+							});
+						}
+
+						function getIndexTrackOfShape(shape, track){
+							/* Se obtiene el índice del arreglo de tracking para una forma dada como parámetro*/
+							return track.findIndex(function(element){
+								return $(shape).is($(element.shape));
+							});
+						}
+
+						function getIndexTrackOfAlert(alert, track){
+							/* Se obtiene el índice del arreglo de tracking para un elemento de alerta dado como parámetro */
+							return track.findIndex(function(element){
+								return $(alert).is($(element.alert));
+							});
+						}
+
+						function isSizeTracked(size, track) {
+							/* ¿Es el tamaño parte de un arreglo de tracking? */
+							let index = track.findIndex(function(element){
+								return size == element.size;
+							});
+
+							return (index != -1);
+						}
+
+						function isShapeTracked(shape, track) {
+							/* ¿La forma ha sido agregada previamente a un arreglo de tracking? */
+							let index = track.findIndex(function(element){
+								return $(shape).is($(element.shape));
+							});
+							return (index != -1);
+						}
+
+						function isSizeAvailable(size, track) {
+							/* ¿El tamaño actual tiene disponibilidad en el arreglo de tracking? */
+							let index = track.findIndex(function(element){
+								return ((size == element.size) && (element.shape == null));
+							});
+
+							return (index != -1);
+						}
+
+						function getAvailableIndexTrackForSize(size, track) {
+							/* Se obtiene el primer índice de elemento en el pack
+							   que coincida con el tamaño y no tenga una forma asociada */
+							return track.findIndex(function(element){
+								return ((size == element.size) && (element.shape == null));
+							});
+						}
+
+						/* Interfaz gráfica */
+
+						function showNonPackContainer() {
+							/* Mostrar el contenedor de las zonas
+							   no-pertenecientes a un pack */
+							selectionSurface.nonPackedZones.container.css({
+								"display":"block"
+							});
+						}
+
+						function hideNonPackContainer() {
+							/* Esconder el contenedor de las zonas no-pertenecientes a un pack */
+							selectionSurface.nonPackedZones.container.css({
+								"display":"none"
+							});
+						}
+
+						function updateSelectedZones(){
+							/* Actualización de la información en la interfaz gráfica referente */
+							let totalZones = getTotalZones();
+
+							selectionSurface.badge.html(totalZones);
+
+							selectionSurface.packedZones.container.css({
+								"display": (packTrack.length > 0 ? "block" : "none")
+							});
+
+							selectionSurface.nonPackedZones.container.css({
+								"display": (nonPackTrack.length > 0 ? "block" : "none")
+							});
+
+							selectionSurface.noSelectedZones.css({
+								"display": ((totalZones == 0 && packTrack.length == 0) ? "block" : "none")
+							});
+						}
+
+						/* General */
+
+						function getSelectedPackedZones() {
+							/* Se obtiene la cuenta de zonas del cuerpo seleccionadas como parte de los packs seleccionados */
+							let count = 0;
+
+							packTrack.forEach(function(element){
+								count += (element.shape != null ? 1 : 0);
+							});
+
+							return count;
+						}
+
+						function getTotalZones() {
+							/* Se obtiene la cuenta de zonas seleccionadas (paquetizadas + no paquetizadas) */
+							return getSelectedPackedZones() + nonPackTrack.length;
+						}
+
+						function setDefaultState(){
+							/* Reseteo de todos los componentes al estado por defecto */
+
+							/* Reseteo de los arreglos de tracking */
+							packTrack = [];
+							nonPackTrack = [];
+
+							/* Reseteo de las formas */
+							$("g").css({"opacity":"0"});
+
+							/* Reseteo de la selección */
+							selectionSurface.packedZones.zones.html("");
+							selectionSurface.nonPackedZones.zones.html("");
+						}
+
+						function colorizeSelectedZones(){
+							/* Se muestran como marcadas todas las zonas del cuerpo seleccionadas */
+
+							/* Para cada zona del cuerpo paquetizada */
+							packTrack.forEach(function(element){
+								if (element.shape != null) {
+									element.shape.css({
+										"opacity":"0.6"
+									});
+								}
+							});
+
+							/* Para cada zona del cuerpo no paquetizada */
+							nonPackTrack.forEach(function(element){
+								if (element.shape != null) {
+									element.shape.css({
+										"opacity":"0.6"
+									});
+								}
+							});
+						};
+					});
 
 				script.
 					$(document).ready(function() {
