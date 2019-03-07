@@ -21,7 +21,10 @@ block contenido
 					label(for="gender") Género
 					select(class="form-control" name="gender" id="gender")
 						for gender in genders
-							option(class="text-secondary" value=gender)=gender
+							-if(service.gender != null && gender == service.gender)
+								option(class="text-secondary" value=gender selected)=gender
+							-else
+								option(class="text-secondary" value=gender)=gender
 				div(class="form-group")
 					label(for="category") Tipo
 					select(class="form-control" name="category" id="category")

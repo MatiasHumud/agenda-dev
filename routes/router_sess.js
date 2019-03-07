@@ -32,12 +32,12 @@ router.route("/cuenta")
 
 			res.locals.user.save(function(err){
 				if(!err){
-					res.redirect("/session/cuenta");	
+					res.redirect("/session/cuenta");
 				}
 				else{
 					console.log(err);
 					res.redirect("/session/cuenta/edit");
-				}				
+				}
 			})
 		}
 		else{
@@ -46,7 +46,7 @@ router.route("/cuenta")
 		}
 	})
 	.delete(function(req, res){//Borrar cuenta de usuario
-		
+
 	});
 
 module.exports = router;
