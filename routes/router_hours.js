@@ -73,7 +73,6 @@ router.route("/")
 async function saveToDB(req, res){
 	var blockTitle = "block";
 	var evt = JSON.parse(req.body.dateSelect);
-	evt.title = blockTitle;
 	var usr = req.body.userId;
 	var docs = new Array(Documento);
 	var ress = await Resource.find({_id: req.body.resces}).exec();
@@ -81,6 +80,7 @@ async function saveToDB(req, res){
 	for(var i = 0; i < ress.length; i++){
 		docs[i] = new Documento({
 			title: blockTitle,
+			status: blockTitle,
 			usuario: usr,
 			servicio: undefined,
 			recurso: ress[i],
@@ -102,7 +102,6 @@ async function saveToDB(req, res){
 
 async function editInDB(req, res){
 	res.locals.documento.event = new Event(JSON.parse(req.body.dateSelect));
-	res.locals.documento.event.title = "block";
 	res.locals.documento.save(function(err){
 		if(!err){
 			return true;

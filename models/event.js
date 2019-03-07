@@ -4,7 +4,6 @@ var Schema = mongoose.Schema;
 
 // define schema
 var eventSchema = new Schema({
-	title:{type: String, default: "agendado"},
 	start:{type: Date, required: "event start is blank"},
 	end:{type: Date, required: "event end is blank"},
 	allDay:{type: Boolean, default: false}

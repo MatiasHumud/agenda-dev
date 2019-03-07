@@ -13,6 +13,7 @@ module.exports = function(req, res, next){
 					"event.end": { $lte : new Date(req.query.end) },
 				} 
 			},
+			{ "$addFields": { "event.title" : "$status" } },
 			{ "$replaceRoot": { "newRoot": "$event" } }
 		]).exec(function(err, events){
 			if(!err){

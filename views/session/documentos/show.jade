@@ -24,7 +24,10 @@ block contenido
 				label #{documento.sucursal.name}	
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Sesión con el especialista:
-				label #{documento.recurso.name}  #{documento.recurso.lastName}	
+				label #{documento.recurso.name}  #{documento.recurso.lastName}
+			div(class="form-group")
+				label(class="font-weight-bold mr-3") Estado: 
+				label #{documento.status}
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Inicia: 
 				label #{documento.event.start}
@@ -34,4 +37,5 @@ block contenido
 			div(class="btn-group top-space")
 				a(href="/session/documentos/" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver a Mis Agendamientos")
 					i(class="fa fa-caret-square-o-left")
+			#{documento}
 

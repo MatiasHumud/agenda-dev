@@ -103,8 +103,8 @@ block contenido
 								var colors = {
 									"agendado": ['lightBlue', 'grey'],
 									"confirmado": ['blue', 'lightGrey'],
-									"ejecutado": ['green', 'white'],
-									"abandonado": ['red', 'white'],
+									"ejecutado": ['green', 'lightGrey'],
+									"abandonado": ['red', 'lightGrey'],
 									"block": ['lightGrey', 'grey']
 								}
 								events.forEach(function(evt){
@@ -118,38 +118,50 @@ block contenido
 								return doc.event._id == event._id
 							});
 							if(curDoc){
-								var tooltip = '<div class="tooltipevent badge badge-dark" style="position:absolute;z-index:10001;">' + 
-								'<div class="btn btn-light">Paciente: ' + curDoc.usuario.name + '</div>' +
+								var info = '<div class="badge">' + 
 								'<br></br>' +
+								'<div>Paciente: ' + curDoc.usuario.name + '</div>' +
 								'<br>Servicio: ' + curDoc.servicio.name + '</br>' +
 								'<br>Inicio: ' + curDoc.event.start.split('T')[1].split('.')[0] + '</br>' +
 								'<br>Fin: ' + curDoc.event.end.split('T')[1].split('.')[0] + '</br>' +
 								'<br></br>' +
-								'<button class="btn btn-outline-primary"><i class="fa fa-calendar-check-o"></i></button>' +
-								'<button class="btn btn-outline-success"><i class="fa fa-calendar-check-o"></i></button>' +
-								'<button class="btn btn-outline-danger"><i class="fa fa-calendar-times-o"></i></button>' +
+								'<form>' +
+								'<button type="submit" formaction="/session/documentos/' + curDoc._id + '?_method=PATCH" formmethod="POST" class="btn btn-outline-primary" name="sBtn" value="0" data-toggle="tooltip" data-placement="top" title="Confirmado"><i class="fa fa-calendar-check-o"></i></button>' +
+								'<button type="submit" formaction="/session/documentos/' + curDoc._id + '?_method=PATCH" formmethod="POST" class="btn btn-outline-success" name="sBtn" value="1" data-toggle="tooltip" data-placement="top" title="Ejecutado"><i class="fa fa-calendar-check-o"></i></button>' +
+								'<button type="submit" formaction="/session/documentos/' + curDoc._id + '?_method=PATCH" formmethod="POST" class="btn btn-outline-danger" name="sBtn" value="2" data-toggle="tooltip" data-placement="top" title="Abandonado"><i class="fa fa-calendar-times-o"></i></button>' +
+								'</form>' +
 								'<br></br>' +
-								 '</div>';
-								$("body").append(tooltip);
-								$(this).mouseover(function(e) {
-									$(this).css('z-index', 10000);
-									$('.tooltipevent').fadeIn('500');
-									$('.tooltipevent').fadeTo('10', 1.9);
-								}).mousemove(function(e) {
-									$('.tooltipevent').css('top', e.pageY + 10);
-									$('.tooltipevent').css('left', e.pageX + 20);
+								'</div>';
+								$(this)
+									.popover({
+										content:info,
+										trigger:'manual',
+										placement:'left',
+										html:true,
+										container:'body'
+									})
+									.popover("show");
+								var _this = this;
+								$(".popover").on("mouseleave", function () {
+									$(_this).popover('hide');
 								});
 							}
 						},
 						eventMouseout: function(event, jsEvent) {
-							$(this).css('z-index', 8);
-							$('.tooltipevent').remove();
+							var _this = this;
+							setTimeout(function () {
+								if (!$(".popover:hover").length) {
+									$(_this).popover("hide");
+								}
+							}, 20);
 						},
 						eventClick: function(event){
 							var curDoc = _.find(!{JSON.stringify(documentos)}, function(doc){
 								return doc.event._id == event._id
 							});
-							window.location.href = 'http://localhost:3000/session/documentos/' + curDoc._id;
+							if(curDoc){
+								window.location.href = 'http://localhost:3000/session/documentos/' + curDoc._id;
+							}
 						}
 					});
 

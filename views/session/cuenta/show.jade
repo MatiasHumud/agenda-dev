@@ -37,11 +37,11 @@ block contenido
 			-if(user.permission == "Branch")
 				div(class="form-group")
 					label(type="text" class="font-weight-bold mr-3" name="addr" id="addr") Dirección:
-					label(for="permission") #{user.address}
+					label(for="addr") #{user.address}
 			-if(user.permission == "Resource")
 				div(class="form-group")
 					label(type="text" class="font-weight-bold" name="workHours" id="workHours") Horas Hábiles:
-					label #{JSON.stringify(user.workHours)}
+					label(for="workHours") #{JSON.stringify(user.workHours)}
 			div(class="btn-group")
 				a(href="/session/cuenta/edit" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Editar")
 					i(class="fa fa-pencil-square-o")
