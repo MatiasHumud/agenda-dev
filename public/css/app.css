@@ -171,6 +171,7 @@ main {
 .documento-new .toggable-card {
   position: fixed;
   display: none;
+  width: 400px;
   /* border: 1px solid black; */
   box-shadow:3px 3px 5px black;
 }

@@ -17,6 +17,13 @@ block contenido
 				label(class="font-weight-bold mr-3") Nombre:
 				label #{service.name}
 			div(class="form-group")
+				label(class="font-weight-bold mr-3") Género:
+				label
+					-if (service.gender == null)
+						| No determinado
+					-else
+						| #{service.gender}
+			div(class="form-group")
 				label(class="font-weight-bold mr-3") Categoría:
 				label #{service.category}
 			div(class="form-group")
@@ -25,7 +32,13 @@ block contenido
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Duración:
 				label #{service.duration} minutos
-			#{service}
+			//div(class="form-group")
+			//	label(class="font-weight-bold mr-3") Forma HTML:
+			//	label
+			//		-if (service.shape == null)
+			//			| No determinada
+			//		-else
+			//			| #{service.shape}
 			div(class="btn-group top-space" role="group")
 				a(href="/session/servicios/" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver a Mis Servicios")
 					i(class="fa fa-caret-square-o-left")
