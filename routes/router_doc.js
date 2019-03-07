@@ -66,11 +66,11 @@ router.route("/:id")
 		res.render("session/documentos/show", {documento: res.locals.documento});
 	})
 	.put(function(req, res){//Editar documento seleccionado
-		res.locals.documento.usuario = req.body.usr;
-		res.locals.documento.servicio = req.body.svc;
-		res.locals.documento.recurso = req.body.ress;
-		res.locals.documento.sucursal = req.body.brch;
-		res.locals.documento.event = new Event(JSON.parse(req.body.dateSelect));
+		if(req.body.usr) res.locals.documento.usuario = req.body.usr;
+		if(req.body.svc) res.locals.documento.servicio = req.body.svc;
+		if(req.body.ress) res.locals.documento.recurso = req.body.ress;
+		if(req.body.brch) res.locals.documento.sucursal = req.body.brch;
+		if(req.body.dateSelect) res.locals.documento.event = new Event(JSON.parse(req.body.dateSelect));
 		res.locals.documento.timestamp.updatedAt = Date.now();
 
 		res.locals.documento.save(function(err){
@@ -81,7 +81,40 @@ router.route("/:id")
 				console.log(err);
 				res.redirect("/session/documentos/"+req.params.id+"/edit");
 			}				
-		})
+		});
+	})
+	.patch(function(req, res){//Actualizar estado del documento seleccionado
+		var newStat = undefined;
+		switch (req.body.sBtn) {
+			case "0":
+				newStat = "confirmado";
+				res.locals.documento.timestamp.updatedAt = Date.now();
+				break;
+			case "1":
+				newStat = "ejecutado";
+				res.locals.documento.timestamp.executedAt = Date.now();
+				break;
+			case "2":
+				newStat = "abandonado";
+				res.locals.documento.timestamp.updatedAt = Date.now();
+				break;
+			default:
+		}
+
+		if(res.locals.user.permission && newStat) {
+			res.locals.documento.status = newStat;
+			res.locals.documento.event.title = newStat;
+
+			res.locals.documento.save(function(err){
+				if(!err){
+					res.redirect("/session/documentos/");	
+				}
+				else{
+					console.log(err);
+					res.redirect("/session/documentos/"+req.params.id+"/edit");
+				}				
+			});
+		}
 	})
 	.delete(function(req, res){//Borrar documento seleccionado
 		Documento.findOneAndRemove({_id: req.params.id}, function(err){
