@@ -1024,7 +1024,7 @@ block contenido
 						/* En desarrollo */
 
 						var duration = 0;
-						var sessLenght = moment.duration(duration, "minutes");
+						var sessLength = moment.duration(duration, "minutes");
 						var workHours = [
 							{
 								dow: [1, 2 ,3 ,4 ,5],
@@ -1043,7 +1043,7 @@ block contenido
 							else {
 								let services = !{JSON.stringify(services)};
 								
-								let sessLenght = services.filter((element) => {
+								let duration = services.filter((element) => {
 									let currentElement = {
 										name: element.name,
 										gender: element.gender,
@@ -1059,8 +1059,10 @@ block contenido
 									return (index != -1);
 								}).map((element) => element.duration).reduce((a, b) => a + b);
 
+								sessLength = moment.duration(duration, "minutes");
+
 								$('#calendar').fullCalendar('option', {
-									snapDuration: sessLenght
+									snapDuration: sessLength
 								});
 							}
 						});
@@ -1130,9 +1132,9 @@ block contenido
 							selectHelper: true,
 							selectOverlap: false,
 							selectConstraint: 'businessHours',
-							snapDuration: sessLenght,
+							snapDuration: sessLength,
 							selectAllow: function(selectInfo){
-								if (selectInfo.end.diff(selectInfo.start) !== sessLenght._milliseconds || selectInfo.start < Date.now())
+								if (selectInfo.end.diff(selectInfo.start) !== sessLength._milliseconds || selectInfo.start < Date.now())
 									return false;
 								return true;
 							},
