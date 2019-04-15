@@ -1,0 +1,3 @@
+- Bloqueo de horas para Recursos y Sucursales
+- Bloqueo de sucursal replicado en Recursos
+- Horario hábil nuevo Recurso es el de la Sucursal

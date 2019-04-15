@@ -1,0 +1,38 @@
+extends ./layout.jade
+
+block contenido
+	-if (currentSession != null)
+		include ./session/session_permission/authActions.jade
+	-else
+		include ./session/session_permission/unauthActions.jade
+
+	div(class="top-space")
+
+	main
+		div(class="container mx-auto col-xs-12 col-sm-6 top-space")
+			h1(class="text-center mb-3") Registro
+			form(action="/newUser" method="POST" class="registration")
+				div(class="form-group")
+					label(for="name") Nombre
+					input(type="text" name="name" placeholder="Nombre" id="name" class="form-control")
+				div(class="form-group")
+					label(for="lastName") Apellido
+					input(type="text" name="lastName" placeholder="Apellido" id="lastName" class="form-control")
+				div(class="form-group")
+					label(for="gender") Género
+					select(class="form-control" name="gender" id="gender")
+						option(class="text-secondary" value=undefined selected disabled) Seleccione una opción
+						option(class="text-secondary" value="M") Mujer
+						option(class="text-secondary" value="H") Hombre
+				div(class="form-group")
+					label(for="email") Email
+					input(type="text" name="email" placeholder="Email" id="email" class="form-control")
+				div(class="form-group")
+					label(for="password") Contraseña
+					input(type="password" name="password" placeholder="Contraseña" id="password" class="form-control")
+				div(class="form-group")
+					label(for="password_confirmation") Confirmación de contraseña
+					input(type="password" name="password_confirmation" placeholder="Contraseña" id="password_confirmation" class="form-control")
+				div(class="d-flex justify-content-between align-items-center top-space")
+					input(type="submit" value="Enviar" class="btn btn-default btn-outline-dark")
+					a(href="/login") Ya tengo cuenta

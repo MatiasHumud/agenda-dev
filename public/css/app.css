@@ -1,0 +1,529 @@
+/* 1. General conditions */
+
+:root {
+  --red: #ED5454;
+  --semi-black: rgba(255,255,255,0.5);
+  --document-borders: #ced4da;
+}
+
+body {
+  font-family: "Montserrat";
+  font-weight: 100;
+  color: #A8B2B9;
+  background-color: #FCFBFC;
+}
+
+@media screen and (max-width: 575px) { /* -50% */
+  .h1, h1 { font-size: 1.25rem; }
+  .h2, h2 { font-size: 1rem; }
+  .h3, h3 { font-size: 0.875rem; }
+  .h4, h4 { font-size: 0.75rem; }
+  .h5, h5 { font-size: 0.625rem; }
+  .h6, h6 { font-size: 0.5rem; }
+
+  p { font-size: 0.5em; }
+}
+
+@media screen and (min-width: 576px) and (max-width: 991px) { /* -25% */
+  .h1, h1 { font-size: 1.875rem; }
+  .h2, h2 { font-size: 1.5rem; }
+  .h3, h3 { font-size: 1.3125rem; }
+  .h4, h4 { font-size: 1.125rem; }
+  .h5, h5 { font-size: 0.9375rem; }
+  .h6, h6 { font-size: 0.75rem; }
+
+  p { font-size: 0.75em; }
+}
+
+/* 2. Principal elements */
+
+/* Navbar */
+
+@media screen and (max-width: 575px) {
+  nav img.img-responsive {
+      width: 100px;
+      height: auto;
+  }
+
+  nav .nav-link {
+    font-size: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 991px) {
+  nav img.img-responsive {
+      width: 200px;
+      height: auto;
+  }
+
+  nav .nav-link {
+    font-size: 0.75rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  nav img.img-responsive {
+      width:300px;
+      height: auto;
+  }
+}
+
+nav .navbar-text {
+  padding-right: 0.5em;
+  border-right: 1px solid var(--semi-black);
+}
+
+@media screen and (max-width: 575px) {
+  nav .navbar-text {
+      display: none;
+  }
+}
+
+nav .right-space {
+  margin-right: 0.5em;
+}
+
+/* Main */
+
+main {
+  grid-area: content;
+  /* background-color: #FCFBFC; */
+}
+
+/* 3. Category styling */
+
+/* Login and registration */
+
+@media screen and (max-width: 575px) {
+  form.login, form.registration {
+    margin-bottom: 0.5rem;
+  }
+
+  form.login a, form.registration a {
+    font-size: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 991px) {
+  form.login, form.registration {
+    margin-bottom: 1rem;
+  }
+
+  form.login a, form.registration a {
+    font-size: 0.75rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  form.login, form.registration {
+    margin-bottom: 2rem;
+  }
+}
+
+
+/* Documents */
+
+.documento-new .human-body {
+  border: 1px solid var(--document-borders);
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.documento-new .human-body nav.nav  {
+  border-bottom: 1px solid var(--document-borders);
+}
+
+.documento-new .human-body nav .nav-link {
+  border-radius: 0;
+}
+
+@media screen and (max-width: 575px) {
+    .documento-new .human-body nav .nav-link {
+      font-size: 0.5rem;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 991px) {
+    .documento-new .human-body nav .nav-link {
+      font-size: 0.75rem;
+    }
+}
+
+.documento-new .human-body nav .nav-link.active {
+  background-color: #343a40;
+}
+
+.documento-new .human-body nav .nav-item:not(:last-child) {
+  border-right: 1px solid var(--document-borders);
+}
+
+.documento-new .human-body .svg-body {
+  background-color: white;
+}
+
+.documento-new .human-body .svg-body g {
+  opacity: 0;
+  fill: steelblue;
+  cursor: pointer;
+  transition: background-color 0.1s linear;
+}
+
+.documento-new .toggable-card {
+  position: fixed;
+  display: none;
+  width: 400px;
+  /* border: 1px solid black; */
+  box-shadow:3px 3px 5px black;
+}
+
+.documento-new .toggable-card .badge {
+  margin-left: 0.5rem;
+}
+
+.documento-new .alert-container .badge {
+  margin-left: 0.5rem;
+}
+
+.documento-new .selected-zones h5 .badge {
+  margin-left: 0.5rem;
+}
+
+.documento-new .selected-zones .alert-container:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.documento-new .selected-zones .alert-container {
+  border-radius: .25rem;
+  border: 1px solid #a8b2b9;
+  margin-bottom: 1rem;
+  display: grid;
+}
+
+@media screen and (max-width: 575px) {
+  .documento-new .selected-zones .alert-container {
+    font-size: 0.5rem;
+  }
+}
+
+@media screen and (min-width:576px) and (max-width: 991px) {
+  .documento-new .selected-zones .alert-container {
+    font-size: 0.75rem;
+  }
+}
+
+.documento-new .selected-zones .alert-container.alert-container-header {
+  grid-template-columns: 20% 1fr;
+}
+
+.documento-new .selected-zones .alert-container.alert-container-header .size-header {
+  position: relative;
+  font-weight: bold;
+  padding: .75rem 1.25rem;
+  border-right:1px solid #a8b2b9;
+  color: #a8b2b9;
+  text-align: center;
+}
+
+.documento-new .selected-zones .alert-container .alert-holder {
+  width: 100%;
+}
+
+.documento-new .selected-zones .alert-container .alert-holder .alert {
+  width: inherit;
+  margin-bottom:0;
+  border-radius:0 .25rem .25rem 0;
+  border:0;
+}
+
+.documento-new .selected-zones .alert-container > .alert {
+  margin-bottom: 0;
+}
+
+.documento-new .map,
+.documento-edit .map {
+  border: 1px solid var(--document-borders);
+  margin-bottom: 1rem;
+  height: 300px;
+}
+
+/* Specific class styling */
+
+/* Inputs states */
+
+.invalid {
+  background-color: #ffdddd;
+}
+
+.disabled {
+  background-color: #f2f2f2;
+}
+
+/* Steps tabs */
+
+.tab {
+  display: none;
+}
+
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+.step.finish {
+  background-color: #4CAF50;
+}
+
+/* 4. General class styling */
+
+/* Calendar */
+
+.wrapper {
+  display: grid;
+  grid-template-rows: 70px 1fr 70px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "sidebar"
+                       "content";
+  width: 100vw; /* For size consistency */
+  height: 100vh;
+}
+
+@media screen and (min-width: 850px) {
+  .wrapper {
+    grid-template-columns: 200px 5fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "sidebar content";
+  }
+}
+
+.calendar__week,
+.calendar__header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.calendar__week {
+  grid-auto-rows: 100px;
+  text-align: right;
+}
+
+.calendar__header {
+  grid-auto-rows: 50px;
+  align-items: center;
+  text-align: center;
+}
+
+.calendar__day {
+  padding: 16px;
+}
+
+.avatar__name {
+  font-size: 0.8rem;
+}
+
+.menu__item {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 16px 16px 16px 14px;
+  border-left: 4px solid transparent;
+  color: inherit;
+  text-decoration: none;
+  transition: color ease 0.3s;
+}
+
+.menu__item--active .menu__icon {
+  color: var(--red);
+}
+
+.menu__item--active .menu__text {
+  color: black;
+}
+
+.menu__item:hover {
+  color: black;
+}
+
+.menu__icon {
+  font-size: 1.3rem;
+}
+
+@media screen and (min-width: 850px) {
+  .menu__icon {
+    font-size: 0.9rem;
+    padding-right: 16px;
+  }
+  .menu__item--active {
+    border-left: 4px solid var(--red);
+    box-shadow: inset 10px 0px 17px -13px var(--red);
+  }
+}
+
+.copyright {
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.calendar {
+  background-color: white;
+  border: 1px solid #e1e1e1;
+}
+
+.calendar__header > div {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.calendar__day {
+  border-right: 1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
+}
+
+.calendar__day:last-child {
+  border-right: 0;
+}
+
+.toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.toggle__option {
+  padding: 16px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.toggle__option:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.toggle__option:last-child {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.toggle__option--selected{
+  border-color: white;
+  background-color: white;
+  color: var(--red);
+  font-weight: 500;
+  box-shadow: 1px 2px 30px -5px var(--red);
+}
+
+/* 5. Other elements */
+
+.jumbotron{
+	margin-bottom: 10px;
+  background-image: url(../lasertam3.jpg);
+  background-position: 0% 25%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  border-radius: 0;
+}
+
+.img-responsive {
+  height: 5%;
+  width: auto;
+}
+
+@media screen and (max-width: 575px) {
+  .btn { font-size: 0.5rem; }
+  .btn-lg { font-size: 1rem; padding: 0.25rem 0.5rem; }
+}
+
+@media screen and (min-width: 576px) and (max-width: 991px) {
+  .btn { font-size: 0.75rem; }
+  .btn-lg { font-size: 1rem; padding: 0.375rem 0.75rem; }
+}
+
+@media screen and (max-width: 575px) {
+   label, .form-control { font-size: 0.5rem; }
+}
+
+@media screen and (min-width: 576px) and (max-width: 991px) {
+   label, .form-control { font-size: 0.75rem; }
+}
+
+@media screen and (max-width: 575px) {
+  .dropdown-item { font-size: 0.5rem; }
+}
+
+@media screen and (min-width: 576px) and (max-width: 991px) {
+  .dropdown-item { font-size: 0.75rem; }
+}
+
+@media screen and (max-width: 575px) {
+  .alert { font-size: 0.5rem; }
+  .alert button { font-size: 0.5rem; }
+}
+
+@media screen and (min-width: 576px) and (max-width:992px) {
+  .alert { font-size: 0.75rem; }
+  .alert button { font-size: 0.75rem; }
+}
+
+.alert-selection {
+  background-color: steelblue;
+}
+
+.text-warning-custom {
+  color: orange !important;
+}
+
+.shadow-text {
+	text-shadow: black 0.3rem 0.3rem 0.3rem;
+}
+
+.big-top-space {
+	margin-top: 200px;
+}
+
+.top-space {
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+}
+
+.mid-space {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.left-space {
+  margin-left: 0.5rem;
+}
+
+.right-space {
+  margin-right: 0.5rem;
+}
+
+.remove-float {
+	float: none;
+}
+
+.icon {
+  margin: 0.2rem;
+  width: 2.15rem;
+  height: 2.15rem;
+}
+
+.width-300 {
+  width: 300px;
+}

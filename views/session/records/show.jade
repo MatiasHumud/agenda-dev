@@ -1,0 +1,24 @@
+extends ../../layout.jade
+
+block contenido
+	-if (user.permission == "Admin")
+		include ../session_permission/adminActions.jade
+	-else if (user.permission == "Branch")
+		include ../session_permission/branchActions.jade
+	-else if (user.permission == "Resource")
+		include ../session_permission/resourceActions.jade
+	-else
+		include ../session_permission/userActions.jade
+
+	main
+		div(class="container mx-auto col-xs-12 col-sm-6 top-space")
+			h1(class="text-center mb-5") Ficha clínica
+			div(class="form-group")
+				label(class="font-weight-bold mr-3") A1
+				label #{packType.a1}
+			div(class="form-group")
+				label(class="font-weight-bold mr-3") A2
+				label #{packType.a2}
+			div(class="btn-group top-space" role="group")
+				a(href="/session/records/" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver a XX")
+					i(class="fa fa-caret-square-o-left")
