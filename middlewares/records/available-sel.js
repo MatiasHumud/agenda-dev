@@ -1,13 +1,13 @@
-var Client = require("../../models/record").Client;
+var Record = require("../../models/record").Record;
 
 module.exports = function(req, res, next){
 	switch(res.locals.user.permission){
 		case "Admin":
-			Client.find({permission:undefined}).then(function(clnt){
-				if(clnt){
-					Client.find({permission: "Branch"}).then(function(brnchs){
+			Record.find({permission:undefined}).then(function(rcrd){
+				if(rcrd){
+					Record.find({permission: "Branch"}).then(function(brnchs){
 						if(brnchs){
-							Client.find({permission: "Resource"}).then(function(resrcs){
+							Record.find({permission: "Resource"}).then(function(resrcs){
 								if(resrcs){
 									ServiceUIFrameContext.find({}).then(function(svcs){
 										if(svcs){
@@ -17,7 +17,7 @@ module.exports = function(req, res, next){
 												.exec(function(err, pcks){
 													if(!err){
 														if(pcks){
-															res.locals.user = clnt;
+															res.locals.user = rcrd;
 															res.locals.branches = brnchs;
 															res.locals.resources = resrcs;
 															res.locals.services = svcs;
@@ -86,9 +86,9 @@ module.exports = function(req, res, next){
 			});
 			break;
 		case "Resource":
-			Client.find({permission: undefined}).then(function(clnt){
-				if(clnt){
-					Client.find({permission: "Branch", _id: res.locals.user.parentBranch}).then(function(brnchs){
+			Record.find({permission: undefined}).then(function(rcrd){
+				if(rcrd){
+					Record.find({permission: "Branch", _id: res.locals.user.parentBranch}).then(function(brnchs){
 						if(brnchs){
 							Service.find({}).then(function(svcs){
 								if(svcs){
@@ -98,7 +98,7 @@ module.exports = function(req, res, next){
 										.exec(function(err, pcks){
 											if(!err){
 												if(pcks){
-													res.locals.users = clnt;
+													res.locals.user = rcrd;
 													res.locals.branches = brnchs;
 													res.locals.resources = [res.locals.user.depopulate("parentBranch")];
 													res.locals.services = svcs;
