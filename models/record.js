@@ -13,7 +13,6 @@ var recordSchema = new Schema({
     photoCli:{type: String, required: "Photo is blank"},
     usuario:{type: Schema.Types.ObjectId, ref: "User", required: "User is blank"},
     rutCli:{type: String, match: rut_math},
-    locationCli:{type: String, required: "Location is blank"},
     fonoCli:{type: Number, required: "Telephone is blank", match: phone_math},
     a1:{type: String, required: "Description is blank"},
     a2:[{type: Date, require: "Date injury is blank", default: Date.now},
