@@ -3,28 +3,22 @@ var Schema = mongoose.Schema;
 
 mongoose.connect("mongodb://localhost/UsersDB")
 
-var email_match = [/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    "Invalid email"];
+var rut_math = [/^(\d{1}|\d{2})\.(\d{3}\.\d{3}-)([a-zA-Z]{1}$|\d{1}$)/, "Invalid RUT"];
 
-var rut_math = ["^(\d{1}|\d{2})\.(\d{3}\.\d{3}-)([a-zA-Z]{1}$|\d{1}$)", "Invalid RUT"];
+var phone_math = [/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/, "Invalid Number Phone"];
 
 var options = {discriminatorKey: "permission"};
 
 var recordSchema = new Schema({
     photoCli:{type: String, required: "Photo is blank"},
-    nameCli:{type: String, required: "Name is blank"},
-    lastNameCli:{type: String, required: "Last Name is blank"},
-    rutCli:{type: String, required: "RUT is blank", match: rut_math},
-    fechNac:{type: Date, required: "Birth is blank"},
-    genderCli:{
-		type: String, required: "Gender is blank",
-		enum: {values: ["H", "M"], message: "Incorrect category"}
-    },
+    usuario:{type: Schema.Types.ObjectId, ref: "User", required: "User is blank"},
+    rutCli:{type: String, match: rut_math},
     locationCli:{type: String, required: "Location is blank"},
-    emailCli:{type: String, required: "Email is blank", match:email_match},
-    fonoCli:{type: Number, required: "Telephone is blank"},
-    descCli:{type: String, required: "Description is blank"},
-    a2:{type: String, required: "A2 is blank"}
+    fonoCli:{type: Number, required: "Telephone is blank", match: phone_math},
+    a1:{type: String, required: "Description is blank"},
+    a2:[{type: Date, require: "Date injury is blank", default: Date.now},
+        {type: String, required: "Description injury is blank"},
+        {type: String, require: "Photo injuty is blank"}]
 },options);
 
 // Resource User
