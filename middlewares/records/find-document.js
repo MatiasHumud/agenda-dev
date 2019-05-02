@@ -1,13 +1,14 @@
-vmodule.exports = function(req, res, next){
+var Record = require("../../models/record").Record;
+
+module.exports = function(req, res, next){
 	Record.findById(req.params.id)
-		.populate("usuario")
-		.exec(function(err, doc){
-			if(doc != null){
-				res.locals.record = doc;
+		.exec(function(err, rcrd){
+			if(rcrd != null){
+				res.locals.record = rcrd;
 				next();
 			}
 			else{
-				res.redirect("/session");
+				res.redirect("/session/record");
 			}
 	});
 }
