@@ -1,12 +1,12 @@
-var Client = require("../../models/record").Client;
+var Record = require("../../models/record").Record;
 
 module.exports = function(req, res, next){
 	switch(res.locals.user.permission){
 		case "Admin":
-			Client.find({})
-				.populate("records").exec(function(err, client){
+			Record.find({})
+				.populate("records").exec(function(err, record){
 					if(!err){
-						res.locals.client = client;
+						res.locals.record = record;
 						next();
 					}
 					else{
@@ -15,22 +15,22 @@ module.exports = function(req, res, next){
 				})
 			break;
 		case "Branch":
-			Client.find({})
-			.populate("records").exec(function(err, client){
-				if(!err){
-					res.locals.client = client;
-					next();
-				}
-				else{
-					res.redirect("/session");
-				}
-			})
-			break;
+			Record.find({})
+				.populate("records").exec(function(err, record){
+					if(!err){
+						res.locals.record = record;
+						next();
+					}
+					else{
+						res.redirect("/session");
+					}
+				})
+				break;
 		case "Resource":
-			Client.find({})
-			.populate("records").exec(function(err, client){
+			Record.find({})
+			.populate("records").exec(function(err, record){
 				if(!err){
-					res.locals.client = client;
+					res.locals.record = record;
 					next();
 				}
 				else{
