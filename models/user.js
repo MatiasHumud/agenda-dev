@@ -1,24 +1,31 @@
 var mongoose = require("mongoose");
-var Schema = mongoose.Schema; 
+var Schema = mongoose.Schema;
 
 mongoose.connect("mongodb://localhost/UsersDB")
 
 var email_match = [/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 					"Invalid email"];
+
+var rut_math = [/^(\d{1}|\d{2})\.(\d{3}\.\d{3}-)([a-zA-Z]{1}$|\d{1}$)/, "Invalid RUT"];
+
+var phone_math = [/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/, "Invalid Number Phone"];
+
 var options = {discriminatorKey: "permission"};
 
 // define schema
 var userSchema = new Schema({
+	rut:{type: String, match: rut_math},
 	name:{type: String, required: "Name is blank"},
 	lastName:{type: String, required: "Last name is blank"},
 	gender:{
 		type: String, required: "Gender is blank",
 		enum: {values: ["H", "M"], message: "Incorrect category"}
 	},
+    fono:{type: Number, required: "Telephone is blank", match: phone_math},
 	email:{type: String, required: "Email is blank", match: email_match},
 	password:{
-		type: String, 
-		required: "Password is blank", 
+		type: String,
+		required: "Password is blank",
 		minlength: [8, "Password must be 8 characters min"],
 		validate:{
 			validator: function(p){
