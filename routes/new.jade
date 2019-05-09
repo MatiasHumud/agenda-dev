@@ -1,0 +1,47 @@
+extends ../../layout.jade
+
+block contenido
+	-if (user.permission == "Admin")
+		include ../session_permission/adminActions.jade
+	-else if (user.permission == "Branch")
+		include ../session_permission/branchActions.jade
+	-else if (user.permission == "Resource")
+		include ../session_permission/resourceActions.jade
+	-else
+		include ../session_permission/userActions.jade
+
+	main
+		div(class="container mx-auto col-xs-12 col-sm-6 top-space")
+			h1(class="text-center mb-3") Crear ficha clínica
+			form(id="sendRecord" class="form-vertical" action="/session/records" method="POST")
+				div(class="form-group")
+					label(for="form-group") Foto usuario:
+					input(type="text" name="photo")
+				p Cliente:
+				div(class="form-group")
+					select(class="form-control" name="usr" id="usr")
+						if(users.length == 1)
+							option(class="text-secondary" value=users[0]._id selected)=users[0].name
+						else
+							option(class="text-secondary" value="undefined" disabled selected) Usuario
+							for user in users
+								option(class="text-secondary" value=user._id)=user.name
+				div(class="form-group")
+					label(for="a1") Descripción Ficha Paciente:
+					textarea(type="text" name="dscrpa1" class="form-control" Placeholder="Ingresar detalle de ficha clinica del paciente" rows="5")
+				div(class="form-group")
+					label(for="a1") Descripción Herida:
+					textarea(type="text" name="dscrpa2" class="form-control" Placeholder="Ingresar detalle de la herida producida" rows="5")
+				Div(class="form-group")
+					label(for="form-group") Fecha Herida:
+					input(type="date" name="dateInjury" id="dateInjury")
+				Div(class="form-group")
+					label(for="form-group") Foto Herida:
+					input(type="text" name="photoInjury" id="photoInjury")
+				div(class="form-group text-right top-space")
+					div(class="btn-group")
+						button(type="submit" formaction="/session/servicios" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver")
+							i(class="fa fa-caret-square-o-left")
+						button(type="submit" formaction="/session/servicios" formmethod="POST" class="btn btn-outline-success btn-lg" data-toggle="tooltip" data-placement="top" title="Crear Ficha")
+							i(class="fa fa-check-square-o")
+
