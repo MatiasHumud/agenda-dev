@@ -15,46 +15,43 @@ block contenido
 			h1(class="text-center mb-5") Ficha clínica
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Nombre:
-				label #{record.user.name}
+				label #{user.name}
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Apellido:
-				label #{record.user.lastName}
+				label #{user.lastName}
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") RUT:
-				label #{record.user.rut}
+				label #{user.rut}
 			-if(user.permission != "Admin" && user.permission != "Branch" && user.permission != "Resource")
 				div(class="form-group")
-					label(class="font-weight-bold mr-3") Género:
+					label(class="font-weight-bold mr-3") Género: 
 						-if(user.gender == "M")
 							label(for="gender") Mujer
 						-if(user.gender == "H")
 							label(for="gender") Hombre
 			div(class="form-group")
-				label(class="font-weight-bold mr-3") Dirección:
-				label #{record.user.address}
-			div(class="form-group")
 				label(class="font-weight-bold mr-3") Fono:
-				label #{record.user.phono}
+				label #{user.phono}
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Email:
-				label #{record.user.email}
+				label #{user.email}
+
 			div(class="form-group")
-				label(class="font-weight-bold mr-3") Descripción  sesión
-				label #{record.a1}
+				label(class="font-weight-bold mr-3") Descripción sesión:
+				label #{dscrpa1}
 			div(class="form-group")
-				label(class="font-weight-bold mr-3") Descrpción Herida
-				label #{record.a2}
+				label(class="font-weight-bold mr-3") Descrpción Herida:
+				label #{dscrpa2}
 			div(class="form-group")
-				label(class="font-weight-bold mr-3") Fecha Herida
-				label #{record.a2fech}
+				label(class="font-weight-bold mr-3") Fecha Herida:
+				label #{dateInjury}
 			div(class="form-group")
-				label(class="font-weight-bold mr-3") Foto Herida
-				label #{record.photoInjury}
+				label(class="font-weight-bold mr-3") Foto Herida:
+				label #{photoInjury}
+
 			div(class="btn-group")
-				a(href="/session/cuenta/edit" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Editar")
+				a(href="/session/records/edit" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Editar")
 					i(class="fa fa-pencil-square-o")
 				a(href="/session" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver")
 					i(class="fa fa-caret-square-o-left")
-			div(class="btn-group top-space" role="group")
-				a(href="/session/records/" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver a XX")
-					i(class="fa fa-caret-square-o-left")
+

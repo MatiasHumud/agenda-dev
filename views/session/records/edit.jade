@@ -13,10 +13,7 @@ block contenido
 	main
 		div(class="container mx-auto col-xs-12 col-sm-6 top-space")
 			h1(class="text-center mb-3") Editar ficha clínica
-			form(id="sendRecord" class="form-vertical" action="/session/records" method="POST")
-				div(class="form-group")
-					label(for="form-group") Foto usuario:
-					input(type="text" name="photo")
+			form(id="sendRecord" class="form-vertical" action="/session/records?_method=PUT" method="POST")
 				p Cliente:
 				div(class="form-group")
 					select(class="form-control" name="usr" id="usr")
@@ -27,20 +24,20 @@ block contenido
 							for user in users
 								option(class="text-secondary" value=user._id)=user.name
 				div(class="form-group")
-					label(for="a1") Descripción Ficha Paciente:
-					textarea(type="text" name="dscrpa1" class="form-control" Placeholder="Ingresar detalle de ficha clinica del paciente" rows="5")
+					label(for="a1") Descripción Ficha Paciente: 
+					input(type="text" name="dscrpa1" class="form-control" Placeholder="Ingresar detalle de ficha clinica del paciente" rows="5")
 				div(class="form-group")
-					label(for="a1") Descripción Herida:
-					textarea(type="text" name="dscrpa2" class="form-control" Placeholder="Ingresar detalle de la herida producida" rows="5")
+					label(for="a1") Descripción Herida: 
+					input(type="text" name="dscrpa2" class="form-control" Placeholder="Ingresar detalle de la herida producida" rows="5")
 				Div(class="form-group")
-					label(for="form-group") Fecha Herida:
+					label(for="form-group") Fecha Herida: 
 					input(type="date" name="dateInjury" id="dateInjury")
 				Div(class="form-group")
-					label(for="form-group") Foto Herida:
+					label(for="form-group") Foto Herida: 
 					input(type="text" name="photoInjury" id="photoInjury")
 				div(class="form-group text-right top-space")
 					div(class="btn-group")
-						button(type="submit" formaction="/session/servicios" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver")
+						button(type="submit" formaction="/session/records" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Volver")
 							i(class="fa fa-caret-square-o-left")
-						button(type="submit" formaction="/session/servicios" formmethod="POST" class="btn btn-outline-success btn-lg" data-toggle="tooltip" data-placement="top" title="Crear Ficha")
+						button(type="submit" formaction="/session/records" formmethod="POST" class="btn btn-outline-success btn-lg" data-toggle="tooltip" data-placement="top" title="Crear Ficha")
 							i(class="fa fa-check-square-o")
