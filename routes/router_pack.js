@@ -76,7 +76,7 @@ router.route("/")
 				res.send(err);
 			}
 		});
-	});	
+	});
 
 /*REST - Packs*/
 

@@ -44,12 +44,12 @@ router.route("/:id")
 
 		res.locals.packType.save(function(err){
 			if(!err){
-				res.redirect("/session/packTypes/");	
+				res.redirect("/session/packTypes/");
 			}
 			else{
 				console.log(err);
 				res.redirect("/session/packTypes/"+req.params.id+"/edit");
-			}				
+			}
 		})
 	})
 	.delete(function(req, res){//Borrar pack seleccionado
@@ -85,7 +85,7 @@ router.route("/")
 				res.send(err);
 			}
 		});
-	});	
+	});
 
 /*REST - Packs*/
 
