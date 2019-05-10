@@ -13,10 +13,7 @@ block contenido
 	main
 		div(class="container mx-auto col-xs-12 col-sm-6 top-space")
 			h1(class="text-center mb-3") Crear ficha clínica
-			form(id="sendRecord" class="form-vertical" action="/session/records" method="POST" enctype="multipart/form-data")
-				div(class="form-group")
-					label(for="form-group") Foto usuario:
-					input(type="text" name="photo")
+			form(id="sendRecord" class="form-vertical" action="/session/records" method="POST")
 				p Cliente:
 				div(class="form-group")
 					select(class="form-control" name="usr" id="usr")
