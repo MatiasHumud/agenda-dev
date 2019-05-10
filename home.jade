@@ -1,0 +1,18 @@
+extends ../layout.jade
+
+block contenido
+	-if (user.permission == "Admin")
+		include ./session_permission/adminActions.jade
+	-else if (user.permission == "Branch")
+		include ./session_permission/branchActions.jade
+	-else if (user.permission == "Resource")
+		include ./session_permission/resourceActions.jade
+	-else
+		include ./session_permission/userActions.jade
+
+	main
+		div(class="container mx-auto col-xs-12 col-sm-6 top-space text-center")
+			div(class="btn-group-vertical default")
+				a(href="/session/documentos/new" class="btn btn-default btn-outline-dark btn-lg") Nuevo Agendamiento
+				a(href="/session/documentos" class="btn btn-default btn-outline-dark btn-lg") Mis Agendamientos
+				a(href="/session/records/new" class="btn btn-default btn-outline-dark btn-lg") Mi Ficha Clínica

@@ -13,6 +13,7 @@ var router_svc = require("./routes/router_svc");
 var router_hours = require("./routes/router_hours");
 var router_packTypes = require("./routes/router_packTypes");
 var router_pack = require("./routes/router_pack");
+var router_record = require("./routes/router_record");
 var session_middleware = require("./middlewares/sessions");
 var methodOverride = require("method-override");
 var RedisStore = require("connect-redis")(session);
@@ -23,7 +24,9 @@ var server = http.Server(app);
 
 var sessionMiddleware = session({
 	store: new RedisStore({}),
-	secret: "d6s5f9liofd5g146fvdf6156a"
+	secret: "d6s5f9liofd5g146fvdf6156a",
+	resave: true,
+    saveUninitialized: true
 });
 
 realtime(server, sessionMiddleware);
@@ -116,5 +119,6 @@ app.use("/session/horarios", router_hours);
 app.use("/session/packTypes", router_packTypes);
 app.use("/session/packs", router_pack);
 app.use("/session/records", router_record);
+
 
 server.listen(3000);
