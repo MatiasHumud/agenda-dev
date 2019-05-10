@@ -23,9 +23,18 @@ block contenido
 			div(class="form-group")
 				label(type="text" class="font-weight-bold mr-3" name="lastName" id="lastName") Apellido:
 				label(for="lastName") #{user.lastName}
+			div(class="form-group")
+				label(type="text" class="font-weight-bold mr-3" name="rut" id="rut") RUT:
+				label(for="rut") #{user.rut}
+			div(class="form-group")
+				label(type="text" class="font-weight-bold mr-3" name="email" id="email") Email:
+				label(for="email") #{user.email}
+			div(class="form-group")
+				label(type="text" class="font-weight-bold mr-3" name="fono" id="fono") Fono:
+				label(for="fono") #{user.fono}
 			-if(user.permission != "Admin" && user.permission != "Branch" && user.permission != "Resource")
 				div(class="form-group")
-					label(type="text" class="font-weight-bold mr-3" name="email" id="gender") Género:
+					label(type="text" class="font-weight-bold mr-3" name="gender" id="gender") Género:
 					-if(user.gender == "M")
 						label(for="gender")	Mujer
 					-else if (user.gender == "H")
