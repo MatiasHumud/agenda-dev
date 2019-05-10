@@ -10,14 +10,14 @@ var client = redis.createClient();
 
 router.all("/new", availableServices);
 router.get("/new", function(req, res){
-    res.render("session/records/new", {users: res.locals.users});
+    res.render("session/records/new", {record: res.locals.record});
 });
 
 router.all("/:id*", serviceFinder);
 router.all("/:id/edit", availableServices);
 
-router.all("/:id/edit", function(req, res){
-    redis.render("session/records/edit");
+router.get("/session/edit", function(req, res){
+	res.render("session/records/edit", {record: res.locals.record});
 });
 
 router.all("/", svcCollFinder);
@@ -27,52 +27,46 @@ router.route("/:id")
         res.render("session/records/show", {record: res.locals.record});
     })
     .put(function(req, res){
-        res.locals.record.usr = req.body.usr;
-        res.locals.record.a1 = req.body.a1;
-        res.locals.record.a2 = req.body.a2;
-        res.locals.record.a2fech = req.body.a2fech;
+			if(req.body.usr) res.locals.record.usuario = req.body.usr;
+			if(req.body.dscrpa1) res.locals.record.dscrpa1 = req.body.dscrpa1;
+			if(req.body.dscrpa2) res.locals.record.dscrpa2 = req.body.dscrpa2;
+			if(req.body.dateInjury) res.locals.record.dateInjury = req.body.dateInjury;
+			if(req.body.photoInjury) res.locals.record.photoInjury = req.body.photoInjury;
+			res.locals.record.save(function(err){
+				if(!err){
+					res.redirect("/session/records");
+				}
+				else{
+					console.log(err);
+					res.redirect("/session/records/"+req.params.id+"edit");
+				}
+			})
+        });
 
-		res.locals.packType.save(function(err){
+router.route("/")
+    .get(function(req, res){
+		if(res.locals.user.permission == undefined) {
+			res.render("session/records/show", {record: res.locals.record});
+		}
+    })
+    .post(function(req, res){
+        var record = new Record({
+            usuario: req.body.usr,
+            dscrpa1: req.body.dscrpa1,
+            dscrpa2: req.body.dscrpa2,
+            dateInjury: req.body.dateInjury,
+            photoInjury: req.body.photoInjury
+        })
+		record.save(function(err){
 			if(!err){
-				res.redirect("/session/records/");
+                client.publish("record", JSON.stringify(record));
+				res.redirect("/session/records");
 			}
 			else{
 				console.log(err);
-				res.redirect("/session/records/"+req.params.id+"/edit");
+				res.redirect("/session/records/show");
 			}
 		})
-	})
-    .delete(function(req, res){
-        if(res.locals.record.isRemovable) {
-            record.findOneAndRemove({_id: req.params.id}, function(err){
-                if(!err){
-                    res.redirect("/session/records");
-                }
-                else{
-                    res.redirect("/session/records/"+req.params.id)
-                }
-            });
-        }
-});
-
-router.route("/:id")
-    .post(function(req, res){
-        var record = new Record({
-            user: req.body.usr,
-            a1: req.body.a1,
-            a2: req.body.a2,
-            a2fech: req.body.a2fech,
-            photoInjury: req.body.photoInjury
-        });
-        record.save(function(err){
-            if(!err){
-                client.publish("records", JSON.stringify(record));
-                res.redirect("/session/records/"+record._id);
-            }else{
-				console.log("error creando Ficha Clinica");
-				res.send(err);
-			}
-        })
-    });
+	});
 
 module.exports = router;
