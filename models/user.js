@@ -8,7 +8,7 @@ var email_match = [/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+")
 
 var rut_math = [/^(\d{1}|\d{2})\.(\d{3}\.\d{3}-)([a-zA-Z]{1}$|\d{1}$)/, "Invalid RUT"];
 
-var phone_math = [/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/, "Invalid Number Phone"];
+var phone_math = [/\(?([0-9]{2})\)?([ .-]?)([0-9]{4})\2([0-9]{4})/, "Invalid Number Phone"];
 
 var options = {discriminatorKey: "permission"};
 
@@ -21,7 +21,7 @@ var userSchema = new Schema({
 		type: String, required: "Gender is blank",
 		enum: {values: ["H", "M"], message: "Incorrect category"}
 	},
-    fono:{type: Number, required: "Telephone is blank", match: phone_math},
+    fono:{type: String, match: phone_math},
 	email:{type: String, required: "Email is blank", match: email_match},
 	password:{
 		type: String,
