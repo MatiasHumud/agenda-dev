@@ -2,6 +2,7 @@ var http = require("http");
 var bodyParser = require("body-parser");
 var express = require("express");
 var User = require("./models/user").User;
+var Record = require("./models/record").Record;
 var Resource = require("./models/user").Resource;
 var Branch = require("./models/user").Branch;
 var Admin = require("./models/user").Admin;
@@ -60,23 +61,28 @@ app.get("/logout", function(req, res){
 //Creación de usuario común (cliente)
 app.post("/newUser", function(req, res){// Envío de formulario "Registration"
 	
-	User.findOne({ email: req.body.email}).then(function(usr){
+	User.findOne({ mail: req.body.mail}).then(function(usr){
 		if(usr){// Si existe usuario con ese email
-			console.log("El correo "+usr.email+" ya está registrado");
+			console.log("El correo "+usr.mail+" ya está registrado");
 			res.redirect("/");
 		}
 		else{// Si no existe usuario con ese email, se crea
 			var user = new User({
-							email: req.body.email, 
 							name: req.body.name,
-							lastName: req.body.lastName,
+							lastName1: req.body.lastName1,
+							lastName2: req.body.lastName2,
+							rut: req.body.rut,
+							mail: req.body.mail,
 							gender: req.body.gender,
-							password: req.body.password, 
+							password: req.body.password,
+							fechnac: req.body.fechnac,
+							fono: req.body.fono,
+							password: req.body.password,
 							pass_confirm: req.body.password_confirmation
 						});
 
 			user.save().then(function(usr){
-				console.log("Guardamos tus datos: Email "+usr.email+" / Password "+usr.password);
+				console.log("Guardamos tus datos: Email "+usr.mail+" / Password "+usr.password);
 				req.session.user_id = usr._id;
 				res.redirect("/session");
 			},function(err){//Error al guardar datos en la base
@@ -93,10 +99,10 @@ app.post("/newUser", function(req, res){// Envío de formulario "Registration"
 });
 
 app.post("/knock", function(req, res){// Envío de formulario "Login"
-	User.findOne({email: req.body.email, password: req.body.password}).then(function(usr){
+	User.findOne({mail: req.body.mail, password: req.body.password}).then(function(usr){
 		if(usr){
 			req.session.user_id = usr._id;
-			res.redirect("/session");		
+			res.redirect("/session");
 		}
 		else{
 			console.log("Datos Incorrectos");
