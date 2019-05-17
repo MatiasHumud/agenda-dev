@@ -3,10 +3,10 @@ var Schema = mongoose.Schema;
 
 mongoose.connect("mongodb://localhost/UsersDB")
 
-var email_match = [/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+var mail_match = [/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 					"Invalid email"];
 
-var rut_math = [/^(\d{1}|\d{2})\.(\d{3}\.\d{3}-)([a-zA-Z]{1}$|\d{1}$)/, "Invalid RUT"];
+var rut_math = [/^(\d{1}|\d{2})\.(\d{3}\\d{3}-).([a-zA-Z]{1}$|\d{1}$)/, "Invalid RUT"];
 
 var phone_math = [/\(?([0-9]{2})\)?([ .-]?)([0-9]{4})\2([0-9]{4})/, "Invalid Number Phone"];
 
@@ -16,13 +16,15 @@ var options = {discriminatorKey: "permission"};
 var userSchema = new Schema({
 	rut:{type: String, match: rut_math},
 	name:{type: String, required: "Name is blank"},
-	lastName:{type: String, required: "Last name is blank"},
+	lastName1:{type: String, required: "Last name1 is blank"},
+	lastName2:{type: String, required: "Last name2 is blank"},
 	gender:{
 		type: String, required: "Gender is blank",
 		enum: {values: ["H", "M"], message: "Incorrect category"}
 	},
-    fono:{type: String, match: phone_math},
-	email:{type: String, required: "Email is blank", match: email_match},
+	fechnac:{type: Date},
+    fono:{type: Number},
+	mail:{type: String},
 	password:{
 		type: String,
 		required: "Password is blank",
