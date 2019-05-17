@@ -16,11 +16,11 @@ block contenido
 					label(for="name") Nombre
 					input(type="text" name="name" placeholder="Nombre" id="name" class="form-control")
 				div(class="form-group")
-					label(for="lastName") Apellido
-					input(type="text" name="lastName" placeholder="Apellido" id="lastName" class="form-control")
+					label(for="lastName1") Apellido Paterno
+					input(type="text" name="lastName1" placeholder="Apellido Paterno" id="lastName1" class="form-control")
 				div(class="form-group")
-					label(for="lastName") RUT
-					input(type="text" name="rut" placeholder="RUT" id="rut" class="form-control")
+					label(for="lastName2") Apellido Materno
+					input(type="text" name="lastName2" placeholder="Apellido Materno" id="lastName2" class="form-control")
 				div(class="form-group")
 					label(for="gender") Género
 					select(class="form-control" name="gender" id="gender")
@@ -28,11 +28,14 @@ block contenido
 						option(class="text-secondary" value="M") Mujer
 						option(class="text-secondary" value="H") Hombre
 				div(class="form-group")
-					label(for="fono") Telefono
-					input(type="text" name="fono" placeholder="Telefono" id="fono" class="form-control")
+					label(for="fechnac") Fecha de Nacimiento
+					input(type="date" name="fechnac" placeholder="Fecha de Nacimeinto" id="fechnac" class="form-control")
 				div(class="form-group")
-					label(for="email") Email
-					input(type="text" name="email" placeholder="Email" id="email" class="form-control")
+					label(for="fono") Teléfono de contacto
+					input(type="text" name="fono" placeholder="Teléfono de Contacto" id="fono" class="form-control")
+				div(class="form-group")
+					label(for="mail") Email
+					input(type="text" name="mail" placeholder="Email" id="mail" class="form-control")
 				div(class="form-group")
 					label(for="password") Contraseña
 					input(type="password" name="password" placeholder="Contraseña" id="password" class="form-control")
