@@ -25,10 +25,10 @@ block contenido
 								option(class="text-secondary" value=user._id)=user.name
 				div(class="form-group")
 					label(for="dscrpa1") Descripción Ficha Paciente: 
-					input(type="text" name="dscrpa1" class="form-control" Placeholder="Ingresar detalle de ficha clinica del paciente" rows="5")
+					textarea(cols="30" rows="5" name="dscrpa1" class="form-control" Placeholder="Ingresar detalle de ficha clinica del paciente")
 				div(class="form-group")
 					label(for="dscrpa2") Descripción Herida: 
-					input(type="text" name="dscrpa2" class="form-control" Placeholder="Ingresar detalle de la herida producida" rows="5")
+					textarea(cols="30" rows="5" type="text" name="dscrpa2" class="form-control" Placeholder="Ingresar detalle de la herida producida")
 				Div(class="form-group")
 					label(for="form-group") Fecha Herida: 
 					input(type="date" name="dateInjury" id="dateInjury")
@@ -37,8 +37,8 @@ block contenido
 					input(type="text" name="photoInjury" id="photoInjury")
 				div(class="form-group text-right top-space")
 					div(class="btn-group")
-						button(type="submit" class="btn btn-default btn-outline-danger btn-lg" formaction="/session/records" data-toggle="tooltip" data-placement="top" title="Volver")
+						a(href="/session" class="btn btn-default btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="top" title="Editar")
 							i(class="fa fa-caret-square-o-left")
-						button(type="submit" formmethod="POST" formaction="/session/records" class="btn btn-outline-success btn-lg" data-toggle="tooltip" data-placement="top" title="Crear Ficha")
+						button(type="submit" formmethod="POST" class="btn btn-outline-success btn-lg" data-toggle="tooltip" data-placement="top" title="Crear Ficha")
 							i(class="fa fa-check-square-o")
 

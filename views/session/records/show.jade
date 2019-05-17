@@ -17,11 +17,11 @@ block contenido
 				label(class="font-weight-bold mr-3") Nombre:
 				label #{user.name}
 			div(class="form-group")
-				label(class="font-weight-bold mr-3") Apellido:
-				label #{user.lastName}
+				label(class="font-weight-bold mr-3") Apellido Paterno:
+				label #{user.lastName1}
 			div(class="form-group")
-				label(class="font-weight-bold mr-3") RUT:
-				label #{user.rut}
+				label(class="font-weight-bold mr-3") Apellido Materno:
+				label #{user.lastName2}
 			-if(user.permission != "Admin" && user.permission != "Branch" && user.permission != "Resource")
 				div(class="form-group")
 					label(class="font-weight-bold mr-3") Género: 
@@ -31,24 +31,22 @@ block contenido
 							label(for="gender") Hombre
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Fono:
-				label #{user.phono}
+				label #{user.fono}
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Email:
-				label #{user.email}
-
+				label #{user.mail}
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Descripción sesión:
-				label #{dscrpa1}
+				label #{record.dscrpa1}
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Descrpción Herida:
-				label #{dscrpa2}
+				label #{record.dscrpa2}
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Fecha Herida:
-				label #{dateInjury}
+				label #{record.dateInjury}
 			div(class="form-group")
 				label(class="font-weight-bold mr-3") Foto Herida:
-				label #{photoInjury}
-
+				label #{record.photoInjury}
 			div(class="btn-group")
 				a(href="/session/records/edit" class="btn btn-default btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Editar")
 					i(class="fa fa-pencil-square-o")
