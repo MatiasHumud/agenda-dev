@@ -64,12 +64,12 @@ router.route("/:id")
 
 		res.locals.service.save(function(err){
 			if(!err){
-				res.redirect("/session/servicios/");	
+				res.redirect("/session/servicios/");
 			}
 			else{
 				console.log(err);
 				res.redirect("/session/servicios/"+req.params.id+"/edit");
-			}				
+			}
 		})
 	})
 	.delete(function(req, res){//Borrar documento seleccionado
@@ -87,7 +87,7 @@ router.route("/")
 	.get(function(req, res){//Retorna todos los miembros del usuario
 		res.render("session/servicios/collection", {services: res.locals.services});
 	})
-	.post(function(req, res){//Crea un nuevo servicio	
+	.post(function(req, res){//Crea un nuevo servicio
 		var offeredSvc = new Service({
 			name: req.body.name,
 			category: req.body.category,
@@ -107,7 +107,6 @@ router.route("/")
 		offeredSvc.save(function(err){
 			if(!err){
 				client.publish("service", JSON.stringify(offeredSvc));
-				// Streaming!
 				res.redirect("/session/servicios/"+offeredSvc._id);
 			}
 			else{
@@ -115,7 +114,7 @@ router.route("/")
 				res.send(err);
 			}
 		});
-	});	
+	});
 
 /*REST - Servicios de la empresa*/
 

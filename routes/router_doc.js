@@ -107,12 +107,12 @@ router.route("/:id")
 
 			res.locals.documento.save(function(err){
 				if(!err){
-					res.redirect("/session/documentos/");	
+					res.redirect("/session/documentos/");
 				}
 				else{
 					console.log(err);
 					res.redirect("/session/documentos/"+req.params.id+"/edit");
-				}				
+				}
 			});
 		}
 	})

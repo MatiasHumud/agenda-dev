@@ -20,9 +20,11 @@ router.route("/cuenta")
 	.put(function(req, res){//Editar cuenta de usuario
 		if(res.locals.user.password === req.body.oldPassword){
 			if(req.body.name) res.locals.user.name = req.body.name;
-			if(req.body.lastName) res.locals.user.lastName = req.body.lastName;
-			if(req.body.rut) res.locals.user.rut = req.body.rut;
-			if(req.body.email) res.locals.user.email = req.body.email;
+			if(req.body.lastName1) res.locals.user.lastName1 = req.body.lastName1;
+			if(req.body.lastName2) res.locals.user.lastName2 = req.body.lastName2;
+			if(req.body.fechnac) res.locals.user.fechnac = req.body.fechnac;
+			if(req.body.fono) res.locals.user.fono = req.body.fono;
+			if(req.body.mail) res.locals.user.email = req.body.mail;
 			if(req.body.gender) res.locals.user.gender = req.body.gender;
 			if(req.body.newPassword && req.body.password_confirmation) {
 				res.locals.user.password = req.body.newPassword;

@@ -19,9 +19,9 @@ router.get("/new", function(req, res){
 	res.render("session/packTypes/new", { tipos: res.locals.tipos });
 });
 
-// Assign "packTypeFinder" middleware to every packTypes/id request 
+// Assign "packTypeFinder" middleware to every packTypes/id request
 router.all("/:id*", packTypeFinder);
-// Assign "availableSelection" middleware to every packTypes/id/edit request 
+// Assign "availableSelection" middleware to every packTypes/id/edit request
 router.all("/:id/edit", availableSelection);
 // Despliega el formulario para edición de un packType específico
 router.get("/:id/edit", function(req, res){
